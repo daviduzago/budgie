@@ -14,14 +14,14 @@
 */
 
 import React from 'react'
-import {View, Pressable} from 'react-native'
+import {View, Pressable, ActivityIndicator} from 'react-native'
 import Spacer from '../utils/Spacer'
 import Typography from './Typography'
 import colors from '../utils/colors'
 import Icon from "./Icon/Index"
 
 function ButtonActual(props) {
-    const {variant, textVariant, borderColor, onPress, shape, fullWidth = false, iconLeft, iconRight} = props
+    const {variant, textVariant, borderColor, onPress, shape, fullWidth = false, loading = false} = props
 
     let title = props.title || ''
     let background = props.background || colors.grayPrimary
@@ -116,7 +116,7 @@ function ButtonActual(props) {
                         },
                 ]}
             >
-                {!!props.iconLeft && (
+                {!!props.iconLeft && !loading && (
                     <>
                         <Icon
                             {...(typeof props.iconLeft === 'string'
@@ -127,13 +127,17 @@ function ButtonActual(props) {
                     </>
                 )}
 
-                {!!title && (
+                {!!title && !loading && (
                     <Typography variant={textVariant || 'heading2'} color={color} style={{...(props.textStyle || {})}}>
                         {title}
                     </Typography>
                 )}
 
-                {!!props.iconRight && (
+                {loading && (
+                    <ActivityIndicator size={24} color={color} />
+                )}
+
+                {!!props.iconRight && !loading && (
                     <>
                         {!!title && <Spacer />}
                         <Icon

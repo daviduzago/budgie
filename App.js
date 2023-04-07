@@ -1,20 +1,51 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import {NavigationContainer} from "@react-navigation/native";
+import {SafeAreaProvider} from "react-native-safe-area-context";
+import {useFonts} from "expo-font"
+
+import * as SplashScreen from "expo-splash-screen"
+
+import Home from "./screens/Home";
+import TypographyScreen from "./screens/TypographyScreen";
+import colors from "./utils/colors";
+
+SplashScreen.preventAutoHideAsync()
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [fontsLoaded] = useFonts({
+        "Lato Regular": require("./assets/fonts/Lato-Regular.ttf"),
+        "Lato Bold": require("./assets/fonts/Lato-Bold.ttf"),
+        "Lato Light": require("./assets/fonts/Lato-Light.ttf"),
+    })
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    const onLayoutRootView = React.useCallback(async () => {
+        if (fontsLoaded) {
+            await SplashScreen.hideAsync();
+        }
+    }, [fontsLoaded]);
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+    return (
+        <SafeAreaProvider onLayout={onLayoutRootView}>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="Home">
+                    <Stack.Screen
+                        name="Home"
+                        component={Home}
+                        options={{
+                            headerShown: false,
+                        }}
+                    />
+                    <Stack.Screen name="Typography" component={TypographyScreen} />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </SafeAreaProvider>
+    );
+}

@@ -9,10 +9,10 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+    "backgroundColor": "#1f1f1f"
     },
     "assetBundlePatterns": [
-      "**/*"
+        "**/*"
     ],
     "ios": {
       "supportsTablet": true

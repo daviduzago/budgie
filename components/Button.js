@@ -18,7 +18,7 @@ import {View, Pressable} from 'react-native'
 import Spacer from '../utils/Spacer'
 import Typography from './Typography'
 import colors from '../utils/colors'
-import {IconContext} from 'react-icons'
+import Icon from "./Icon/Index"
 
 function ButtonActual(props) {
     const {variant, textVariant, borderColor, onPress, shape, fullWidth = false, iconLeft, iconRight} = props
@@ -29,7 +29,7 @@ function ButtonActual(props) {
     let border = borderColor || background
     let lrPadding = 24
     let tbPadding = 16
-    let iconSize = props.iconSize || 16
+    let iconSize = props.iconSize || 24
 
     if (props.style && props.style.padding === 0) {
         tbPadding = 0
@@ -37,20 +37,25 @@ function ButtonActual(props) {
     }
 
     if (variant === 'secondary') {
-        background = props.background || theme.colors.background50
-        color = theme.colors.primary500
+        background = props.background || colors.accent
+        color = colors.grayPrimary
         border = 'transparent'
     }
     if (variant === 'outlined') {
         background = 'transparent'
-        color = theme.colors.primary500
-        border = borderColor || theme.colors.primary500
+        color = colors.grayPrimary
+        border = borderColor || colors.grayPrimary
+    }
+    if (variant === 'outlined-danger') {
+        background = 'transparent'
+        color = colors.danger
+        border = borderColor || colors.danger
     }
 
-    if (variant === 'text') {
+    if (variant === 'text') {   
         background = 'transparent'
         border = background
-        color = theme.colors.primary500
+        color = colors.grayPrimary
         lrPadding = 0
     }
     if (shape === 'circle') {
@@ -58,25 +63,25 @@ function ButtonActual(props) {
         tbPadding = 8
     }
 
-    if (shape === 'circle' && !props.iconTop) {
+    if (shape === 'circle') {
         title = ''
     }
 
     if (props.color) {
         color = props.color
     }
-    /* if (props.disabled) {
+    if (props.disabled) {
         if (variant !== 'text' && variant !== 'outlined') {
-            background = theme.colors.background50
+            background = colors.gray2
         }
-        color = theme.colors.gray500
+        color = colors.grayPrimary
         if (border) {
-            border = theme.colors.gray500
+            border = colors.gray2
         }
         if (variant === 'text') {
             border = ''
         }
-    } */
+    }
 
     return (
         <Pressable
@@ -113,15 +118,17 @@ function ButtonActual(props) {
             >
                 {!!props.iconLeft && (
                     <>
-                        <IconContext.Provider value={{size: 24, color: color}}>
-                            {iconLeft}
-                        </IconContext.Provider>
+                        <Icon
+                            {...(typeof props.iconLeft === 'string'
+                                ? {name: props.iconLeft, color: color || colors.black, size: iconSize}
+                                : {...{color: color || colors.black, size: iconSize}, ...props.iconLeft})}
+                        />
                         {!!title && <Spacer />}
                     </>
                 )}
 
                 {!!title && (
-                    <Typography variant={textVariant || 'heading2'} normal color={color} style={{...(props.textStyle || {})}}>
+                    <Typography variant={textVariant || 'heading2'} color={color} style={{...(props.textStyle || {})}}>
                         {title}
                     </Typography>
                 )}
@@ -129,9 +136,11 @@ function ButtonActual(props) {
                 {!!props.iconRight && (
                     <>
                         {!!title && <Spacer />}
-                        <IconContext.Provider value={{size: 24, color: color}}>
-                            {iconRight}
-                        </IconContext.Provider>
+                        <Icon
+                            {...(typeof props.iconRight === 'string'
+                                ? {name: props.iconRight, color: color || colors.black, size: iconSize}
+                                : {...{color: color || colors.black, size: iconSize}, ...props.iconRight})}
+                        />
                     </>
                 )}
             </View>

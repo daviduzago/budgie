@@ -10,6 +10,7 @@ import * as SplashScreen from "expo-splash-screen"
 import Home from "./screens/Home";
 import TypographyScreen from "./screens/components/TypographyScreen";
 import ButtonsScreen from "./screens/components/ButtonsScreen";
+import {StatusBar} from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -47,6 +48,7 @@ export default function App() {
                     <Stack.Screen name="Buttons" component={ButtonsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
+            <StatusBar style="auto" />
         </SafeAreaProvider>
     );
 }

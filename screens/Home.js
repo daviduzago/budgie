@@ -1,10 +1,11 @@
-import {View, StyleSheet, Button} from "react-native";
+import {View, StyleSheet} from "react-native";
 
 import colors from "../utils/colors";
 import ROUTES from "../utils/ROUTES";
 import Spacer from "../utils/Spacer";
 import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
+import Button from "../components/Button";
 
 function Home({navigation}) {
     return (
@@ -14,8 +15,8 @@ function Home({navigation}) {
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
-                <Button title="Typography" onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
-                <Button title="Buttons" onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
+                <Button title={"Typography"} onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
+                <Button title={"Buttons"} onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
             </View>
         </Wrapper>
     );
@@ -35,5 +36,8 @@ const styles = StyleSheet.create({
     body: {
         flex: 1,
         paddingHorizontal: 20,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 8,
     }
 });

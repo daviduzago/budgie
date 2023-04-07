@@ -13,7 +13,7 @@ const Wrapper = (props) => {
             <ScrollView
                 style={{flex: 1}}
                 contentContainerStyle={[styles.scrollView, {
-                    paddingTop: hasTopNav ? 8 : insets.top + 8,
+                    paddingTop: hasTopNav ? 0 : insets.top,
                     backgroundColor: dark ? colors.grayPrimary : colors.grayBg,
                     alignItems: centered ? "center" : "flex-start",
                     justifyContent: centered ? "center" : "flex-start"
@@ -33,7 +33,5 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flexGrow: 1,
-        paddingHorizontal: 20,
-        paddingBottom: 24,
     }
 });

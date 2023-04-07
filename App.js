@@ -8,8 +8,8 @@ import {useFonts} from "expo-font"
 import * as SplashScreen from "expo-splash-screen"
 
 import Home from "./screens/Home";
-import TypographyScreen from "./screens/TypographyScreen";
-import colors from "./utils/colors";
+import TypographyScreen from "./screens/components/TypographyScreen";
+import ButtonsScreen from "./screens/components/ButtonsScreen";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -44,8 +44,10 @@ export default function App() {
                         }}
                     />
                     <Stack.Screen name="Typography" component={TypographyScreen} />
+                    <Stack.Screen name="Buttons" component={ButtonsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaProvider>
     );
 }
+

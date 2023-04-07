@@ -1,6 +1,6 @@
-import Typography from "../components/Typography";
-import Wrapper from "../components/ui/wrapper";
-import Spacer from "../utils/Spacer"
+import Typography from "../../components/Typography";
+import Wrapper from "../../components/ui/wrapper";
+import Spacer from "../../utils/Spacer"
 
 function TypographyScreen() {
     return (

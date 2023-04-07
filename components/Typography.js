@@ -87,7 +87,7 @@ function Typography(props) {
     if (colors[props.color]) {
         addStyles.color = colors[props.color]
     } else {
-        addStyles.color = colors.black
+        addStyles.color = props.color
     }
 
     if (props.bold) {

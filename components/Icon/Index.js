@@ -33,6 +33,7 @@ const ourIcons = {
     ),
 }
 
+
 function SvgIcon(props) {
     const {size = 24, svgWidth = 24, svgHeight = 24} = props
     const ratio = svgWidth / svgHeight

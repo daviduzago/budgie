@@ -10,6 +10,7 @@ import * as SplashScreen from "expo-splash-screen"
 import Home from "./screens/Home";
 import TypographyScreen from "./screens/components/TypographyScreen";
 import ButtonsScreen from "./screens/components/ButtonsScreen";
+import InputsScreen from "./screens/components/InputsScreen";
 import {StatusBar} from "expo-status-bar";
 
 SplashScreen.preventAutoHideAsync()
@@ -46,6 +47,7 @@ export default function App() {
                     />
                     <Stack.Screen name="Typography" component={TypographyScreen} />
                     <Stack.Screen name="Buttons" component={ButtonsScreen} />
+                    <Stack.Screen name="Inputs" component={InputsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />

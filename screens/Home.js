@@ -17,6 +17,7 @@ function Home({navigation}) {
             <View style={styles.body}>
                 <Button title={"Typography"} onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
                 <Button title={"Buttons"} onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
+                <Button title={"Inputs"} onPress={() => navigation.navigate(ROUTES.INPUTS)} />
             </View>
         </Wrapper>
     );

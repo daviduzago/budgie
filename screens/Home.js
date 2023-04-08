@@ -15,10 +15,10 @@ function Home({navigation}) {
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
-                <Button title={"Typography"} onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
-                <Button title={"Buttons"} onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
-                <Button title={"Inputs"} onPress={() => navigation.navigate(ROUTES.INPUTS)} />
-                <Button title={"Notifications"} onPress={() => navigation.navigate(ROUTES.NOTIFICATIONS)} />
+                <Button variant={"outlined"} title={"Typography"} onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
+                <Button variant={"outlined"} title={"Buttons"} onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
+                <Button variant={"outlined"} title={"Inputs"} onPress={() => navigation.navigate(ROUTES.INPUTS)} />
+                <Button variant={"outlined"} title={"Notifications"} onPress={() => navigation.navigate(ROUTES.NOTIFICATIONS)} />
             </View>
         </Wrapper>
     );
@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         flexDirection: "row",
         flexWrap: "wrap",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
         gap: 8,
     }
 });

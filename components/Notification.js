@@ -71,7 +71,7 @@ function NotificationCard(item) {
                 <View
                     style={{
                         paddingVertical: 12,
-                        paddingHorizontal: 24,
+                        paddingHorizontal: 16,
                         borderRadius: 8,
                         backgroundColor: colors.white,
                         width: "100%",

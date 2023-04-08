@@ -3,5 +3,5 @@ export default {
     TYPOGRAPHY: "Typography",
     BUTTONS: "Buttons",
     INPUTS: "Inputs",
-    CARDS: "Cards",
+    NOTIFICATIONS: "Notifications",
 }

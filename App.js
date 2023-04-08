@@ -11,7 +11,9 @@ import Home from "./screens/Home";
 import TypographyScreen from "./screens/components/TypographyScreen";
 import ButtonsScreen from "./screens/components/ButtonsScreen";
 import InputsScreen from "./screens/components/InputsScreen";
+import NotificationsScreen from "./screens/components/NotificationsScreen";
 import {StatusBar} from "expo-status-bar";
+import BudgieNotification from "./components/Notification";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -48,9 +50,11 @@ export default function App() {
                     <Stack.Screen name="Typography" component={TypographyScreen} />
                     <Stack.Screen name="Buttons" component={ButtonsScreen} />
                     <Stack.Screen name="Inputs" component={InputsScreen} />
+                    <Stack.Screen name="Notifications" component={NotificationsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
+            <BudgieNotification isAdditional />
         </SafeAreaProvider>
     );
 }

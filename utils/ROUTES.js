@@ -5,4 +5,5 @@ export default {
     INPUTS: "Inputs",
     NOTIFICATIONS: "Notifications",
     SELECT: "Select",
+    EXPAND: "Expand",
 }

@@ -15,6 +15,7 @@ import InputsScreen from "./screens/components/InputsScreen";
 import NotificationsScreen from "./screens/components/NotificationsScreen";
 import SelectScreen from "./screens/components/SelectScreen"
 import TypographyScreen from "./screens/components/TypographyScreen";
+import ExpandScreen from "./screens/components/ExpandScreen";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -53,6 +54,7 @@ export default function App() {
                     <Stack.Screen name="Inputs" component={InputsScreen} />
                     <Stack.Screen name="Notifications" component={NotificationsScreen} />
                     <Stack.Screen name="Select" component={SelectScreen} />
+                    <Stack.Screen name="Expand" component={ExpandScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />

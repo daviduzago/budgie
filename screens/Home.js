@@ -20,6 +20,7 @@ function Home({navigation}) {
                 <Button variant={"outlined"} title={"Inputs"} onPress={() => navigation.navigate(ROUTES.INPUTS)} />
                 <Button variant={"outlined"} title={"Notifications"} onPress={() => navigation.navigate(ROUTES.NOTIFICATIONS)} />
                 <Button variant={"outlined"} title={"Select"} onPress={() => navigation.navigate(ROUTES.SELECT)} />
+                <Button variant={"outlined"} title={"Expand"} onPress={() => navigation.navigate(ROUTES.EXPAND)} />
             </View>
         </Wrapper>
     );

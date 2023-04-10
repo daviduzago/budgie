@@ -6,21 +6,20 @@ import Button from "../../components/Button";
 import {showNotification} from "../../components/Notification";
 import Typography from "../../components/Typography";
 import Input from "../../components/Input";
+import Select from "../../components/Select"
 
 function NotificationScreen() {
     const [notifications, setNotifications] = React.useState({})
     return (
         <Wrapper hasTopNav>
             <View style={{flex: 1, padding: 20, width: "100%"}}>
-                <Typography variant="heading1">Notifications</Typography>
-                <Spacer />
-                <Typography style={{padding: 8}} variant="small">Type: error, warning, success or empty</Typography>
-                <Input
-                    variant="white"
-                    placeholder="Type"
-                    value={notifications.type}
-                    onChangeText={(type) => setNotifications({...notifications, type: type})}
-                />
+                <Select
+                    variant="light"
+                    selected={notifications.type}
+                    title="Type"
+                    options={["warning", "error", "success"]}
+                    onChange={(value) => setNotifications({...notifications, type: value})} />
+                <Spacer x={2} />
                 <Input
                     variant="white"
                     placeholder="Title"

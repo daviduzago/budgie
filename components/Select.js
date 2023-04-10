@@ -93,10 +93,6 @@ export default function Select(props) {
             style={props.style || {minWidth}}
         >
             <Pressable
-                android_ripple={Platform.OS === 'android' ? {
-                    color: variant === "white" ? colors.gray2
-                        : variant === "gray" ? colors.white : colors.gray4
-                } : null}
                 onPress={(e) => {
                     buttonRef.current.measure((fx, fy, w, h, px, py) => {
                         let {width, height} = Dimensions.get('window')
@@ -128,9 +124,10 @@ export default function Select(props) {
                     ref={buttonRef}
                     style={[
                         {
-                            borderRadius: 8,
-                            padding: 8,
-                            borderWidth: 1,
+                            borderRadius: 12,
+                            paddingVertical: 12,
+                            paddingHorizontal: 24,
+                            borderWidth: variant === "none" || variant === null ? 1 : 0,
                             borderColor: variant === "light" || variant === "none" || variant === null ? colors.gray3
                                 : variant === "dark" ? "transparent" : null,
                             backgroundColor: variant === "light" ? colors.white
@@ -144,7 +141,7 @@ export default function Select(props) {
                         <Typography
                             variant={textVariant}
                             color={(_selected.length && (variant === "light" || variant === "none" || variant === null)) ? colors.grayPrimary
-                                : variant === "light" || variant === "none" || variant === null ? colors.gray3
+                                : variant === "light" || variant === "none" || variant === null ? colors.gray4
                                     : _selected.length && variant === "dark" ? colors.white
                                         : !_selected.length ? colors.gray3 : null}
                             nowrap
@@ -164,7 +161,7 @@ export default function Select(props) {
                                         : 'Nothing selected'}
                         </Typography>
                         <Spacer />
-                        <Icon name={showing ? "chevron-up" : "chevron-down"} color={variant === "light" || variant === "none" || variant === null ? colors.gray3
+                        <Icon name={showing ? "chevron-up" : "chevron-down"} color={variant === "light" || variant === "none" || variant === null ? colors.gray4
                             : variant === "dark" ? colors.white : null}
                         />
                     </View>
@@ -179,7 +176,7 @@ export default function Select(props) {
                         style={{
                             position: 'absolute',
                             left: layout.x,
-                            top: layout.y + (Platform.OS === "ios" ? layoutRef.current.height + 8 : 0),
+                            top: layout.y + (Platform.OS === "ios" ? layoutRef.current.height + 8 : 8),
                             backgroundColor: variant === "light" ? colors.white
                                 : variant === "dark" ? colors.grayPrimary
                                     : variant === "none" || variant === null ? colors.grayBg : null,
@@ -191,7 +188,7 @@ export default function Select(props) {
                             width: layout.width,
                             minWidth: layoutRef.current.width,
                             maxHeight: maxHeight || layout.height,
-                            borderRadius: 8,
+                            borderRadius: 12,
                         }}
                     >
                         {_options.map((option, i) =>
@@ -240,7 +237,7 @@ export default function Select(props) {
                                             : variant === "light" || variant === "none" || variant === null ? colors.gray4
                                                 : variant === "dark" ? colors.white : null
                                         }
-                                        style={{padding: 8, paddingLeft: multi ? 8 : 0}}
+                                            style={{padding: 12, paddingLeft: multi ? 12 : 0}}
                                     >
                                         {option.title}
                                     </Typography>

@@ -31,7 +31,6 @@ export default function InputAbs(props) {
         if (props.onChangeText) props.onChangeText("")
         if (useRef.current) useRef.current.clear()
         setClearButton(false)
-        console.log("clearInput")
     }
 
     React.useEffect(() => {

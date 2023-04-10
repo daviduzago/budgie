@@ -106,6 +106,9 @@ function Typography(props) {
         addStyles.fontWeight = '300'
         addStyles.fontFamily = "Lato Light"
     }
+    if (props.underlined) {
+        addStyles.textDecorationLine = 'underline'
+    }
 
     if (props.error) {
         addStyles.color = colors.danger

@@ -21,14 +21,14 @@ import colors from '../utils/colors'
 import Icon from "./Icon/Index"
 
 function ButtonActual(props) {
-    const {variant, textVariant, borderColor, onPress, shape, fullWidth = false, loading = false} = props
+    const {variant, small, textVariant, borderColor, onPress, shape, fullWidth = false, loading = false} = props
 
     let title = props.title || ''
     let background = props.background || colors.grayPrimary
     let color = colors.white
     let border = borderColor || background
-    let lrPadding = 24
-    let tbPadding = 16
+    let lrPadding = small ? 12 : 24
+    let tbPadding = small ? 8 : 16
     let iconSize = props.iconSize || 24
 
     if (props.style && props.style.padding === 0) {

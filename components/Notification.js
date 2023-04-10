@@ -1,9 +1,6 @@
 /**
  * @name Notification
- * @example <Button title="Show Error" onPress={e => {showNotification({ type: 'error', message: 'Oh SH*T we messed up!' })}}  />
- * @example <View><Button title="Show Success" onPress={e => {showNotification({ type: 'success', message: 'Good job you did it!' })}}  /></View>
- * @example <View><Button title="Show Warning" onPress={e => {showNotification({ type: 'warning', message: 'That\'s a bad decision' })}}  /></View>
- * @example <View><Button title="Show Long Text" onPress={e => {showNotification({ type: 'warning', message: 'We have decided that we do not want a short message for you to read quickly but something much longer' })}}  /></View>
+ * @example <Button title="Show Error" onPress={e => {showNotification({ type: 'error',icon: "x-mark", title: "Oops!" message: 'Something went wrong.' })}}  />
  */
 
 /**
@@ -15,7 +12,7 @@
 import Icon from './Icon/Index'
 import React from 'react'
 import {useEffect} from 'react'
-import {View, Animated, Pressable} from 'react-native'
+import {View, Animated} from 'react-native'
 import Spacer from '../utils/Spacer'
 import Typography from './Typography'
 import colors from '../utils/colors'

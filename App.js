@@ -1,19 +1,20 @@
 import React from "react";
+import * as SplashScreen from "expo-splash-screen"
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {SafeAreaProvider} from "react-native-safe-area-context";
+import {StatusBar} from "expo-status-bar";
 import {useFonts} from "expo-font"
 
-import * as SplashScreen from "expo-splash-screen"
 
-import Home from "./screens/Home";
-import TypographyScreen from "./screens/components/TypographyScreen";
+import BudgieNotification from "./components/Notification";
 import ButtonsScreen from "./screens/components/ButtonsScreen";
+import Home from "./screens/Home";
 import InputsScreen from "./screens/components/InputsScreen";
 import NotificationsScreen from "./screens/components/NotificationsScreen";
-import {StatusBar} from "expo-status-bar";
-import BudgieNotification from "./components/Notification";
+import SelectScreen from "./screens/components/SelectScreen"
+import TypographyScreen from "./screens/components/TypographyScreen";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -51,6 +52,7 @@ export default function App() {
                     <Stack.Screen name="Buttons" component={ButtonsScreen} />
                     <Stack.Screen name="Inputs" component={InputsScreen} />
                     <Stack.Screen name="Notifications" component={NotificationsScreen} />
+                    <Stack.Screen name="Select" component={SelectScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />

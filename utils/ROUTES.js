@@ -4,4 +4,5 @@ export default {
     BUTTONS: "Buttons",
     INPUTS: "Inputs",
     NOTIFICATIONS: "Notifications",
+    SELECT: "Select",
 }

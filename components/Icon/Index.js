@@ -23,21 +23,30 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "chevron-down": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+            />
+        </SvgIcon>
+    ),
+    "chevron-up": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z"
+            />
+        </SvgIcon>
+    ),
     plus: (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z"
-            />
-        </SvgIcon>
-    ),
-    "x-mark": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
-            <Path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
             />
         </SvgIcon>
     ),
@@ -50,7 +59,17 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "x-mark": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
+            <Path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
+            />
+        </SvgIcon>
+    ),
 }
+
 
 function SvgIcon(props) {
     const {size = 24, svgWidth = 24, svgHeight = 24} = props

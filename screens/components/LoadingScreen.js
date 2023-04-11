@@ -10,7 +10,6 @@ import Typography from "../../components/Typography";
 
 function LoadingScreen() {
     const [percent, setPercent] = React.useState(0);
-    // increment percent from 0 to 100 in 5 seconds and then restart
     React.useEffect(() => {
         const interval = setInterval(() => {
             if (percent < 100) {
@@ -28,7 +27,7 @@ function LoadingScreen() {
                 <Spacer />
                 <Loading percent={percent} color={colors.grayPrimary} />
                 <Spacer />
-                <Typography normal variant="heading2">Spinner Loading</Typography>
+                <Typography normal variant="heading2">Spinner Loading (fix me)</Typography>
                 <Spacer />
                 <Loading spinner size={40} color={colors.grayPrimary} />
             </View>

@@ -168,14 +168,13 @@ function Spinner(props) {
     return (
         <Animated.View
             style={{
-                //transform: [{rotate: spin}],
+                transform: [{rotate: spin}],
                 width: "auto",
                 height: 'auto',
-                borderColor: color,
-                borderWidth: 2,
             }}
         >
-            <Icon name="spinner" size={size} color={color} />
+            {/* TODO: We need to fix this spinner */}
+            <Icon name="arrow-path" size={size} color={color} />
         </Animated.View >
     );
 };

@@ -9,6 +9,9 @@ import {useFonts} from "expo-font"
 
 
 import BudgieNotification from "./components/Notification";
+import ModalHandler from "./components/modal/ModalHandler";
+
+
 import ButtonsScreen from "./screens/components/ButtonsScreen";
 import Home from "./screens/Home";
 import InputsScreen from "./screens/components/InputsScreen";
@@ -16,6 +19,7 @@ import NotificationsScreen from "./screens/components/NotificationsScreen";
 import SelectScreen from "./screens/components/SelectScreen"
 import TypographyScreen from "./screens/components/TypographyScreen";
 import ExpandScreen from "./screens/components/ExpandScreen";
+import ModalsScreen from "./screens/components/ModalsScreen"
 
 SplashScreen.preventAutoHideAsync()
 
@@ -55,10 +59,12 @@ export default function App() {
                     <Stack.Screen name="Notifications" component={NotificationsScreen} />
                     <Stack.Screen name="Select" component={SelectScreen} />
                     <Stack.Screen name="Expand" component={ExpandScreen} />
+                    <Stack.Screen name="Modals" component={ModalsScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />
             <BudgieNotification isAdditional />
+            <ModalHandler isMobile={true} />
         </SafeAreaProvider>
     );
 }

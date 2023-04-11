@@ -21,6 +21,7 @@ function Home({navigation}) {
                 <Button variant={"outlined"} title={"Notifications"} onPress={() => navigation.navigate(ROUTES.NOTIFICATIONS)} />
                 <Button variant={"outlined"} title={"Select"} onPress={() => navigation.navigate(ROUTES.SELECT)} />
                 <Button variant={"outlined"} title={"Expand"} onPress={() => navigation.navigate(ROUTES.EXPAND)} />
+                <Button variant={"outlined"} title={"Modals"} onPress={() => navigation.navigate(ROUTES.MODALS)} />
             </View>
         </Wrapper>
     );

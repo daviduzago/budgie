@@ -1,5 +1,4 @@
 /**
- * This Checkbox component was built because there is no <CheckBox/> for iOS!!!
  * @name Checkbox
  * @param {boolean} value set as true or false to determine if checked
  * @param {boolean} checked an alias for value/checked i may have to change this, undecided.
@@ -15,7 +14,7 @@ import {View} from 'react-native'
 import colors from '../utils/colors'
 
 export default function Checkbox(props) {
-    const {value, variant = "light"} = props
+    const {value, variant = "light", size = 24} = props
     const checked = props.checked || value ? true : false
 
     return (
@@ -27,11 +26,17 @@ export default function Checkbox(props) {
                 borderRadius: 4,
                 borderWidth: 1,
                 borderColor: variant === "light" ? colors.grayPrimary : colors.white,
-                margin: 2,
+                margin: 4,
             }}
         >
             {checked && (
-                <View style={{width: 14, height: 14, borderRadius: 3, paddingLeft: 1, backgroundColor: variant === "light" ? colors.grayPrimary : colors.white}}>
+                <View style={{
+                    width: 14,
+                    height: 14,
+                    borderRadius: 3,
+                    paddingLeft: 1,
+                    backgroundColor: variant === "light" ? colors.grayPrimary : colors.white
+                }}>
                     <IconFromPath
                         stroke={variant === "light" ? colors.white : colors.grayPrimary}
                         viewBox="0 0 12 9"

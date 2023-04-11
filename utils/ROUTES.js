@@ -7,5 +7,6 @@ export default {
     SELECT: "Select",
     EXPAND: "Expand",
     MODALS: "Modals",
-    LOADING: "Loading"
+    LOADING: "Loading",
+    CHECKBOXES: "Checkboxes",
 }

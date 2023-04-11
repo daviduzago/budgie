@@ -9,6 +9,45 @@ import Button from "../components/Button";
 import Loading from "../components/Loading";
 import React from "react";
 
+const COMPONENTS = [
+    {
+        name: "Typography",
+        route: ROUTES.TYPOGRAPHY,
+    },
+    {
+        name: "Buttons",
+        route: ROUTES.BUTTONS,
+    },
+    {
+        name: "Inputs",
+        route: ROUTES.INPUTS,
+    },
+    {
+        name: "Notifications",
+        route: ROUTES.NOTIFICATIONS,
+    },
+    {
+        name: "Select",
+        route: ROUTES.SELECT,
+    },
+    {
+        name: "Expand",
+        route: ROUTES.EXPAND,
+    },
+    {
+        name: "Modals",
+        route: ROUTES.MODALS,
+    },
+    {
+        name: "Loading",
+        route: ROUTES.LOADING,
+    },
+    {
+        name: "Checkboxes",
+        route: ROUTES.CHECKBOXES,
+    },
+]
+
 function Home({navigation}) {
     return (
         <Wrapper hasTopNav={false}>
@@ -17,14 +56,13 @@ function Home({navigation}) {
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
-                <Button variant={"outlined"} title={"Typography"} onPress={() => navigation.navigate(ROUTES.TYPOGRAPHY)} />
-                <Button variant={"outlined"} title={"Buttons"} onPress={() => navigation.navigate(ROUTES.BUTTONS)} />
-                <Button variant={"outlined"} title={"Inputs"} onPress={() => navigation.navigate(ROUTES.INPUTS)} />
-                <Button variant={"outlined"} title={"Notifications"} onPress={() => navigation.navigate(ROUTES.NOTIFICATIONS)} />
-                <Button variant={"outlined"} title={"Select"} onPress={() => navigation.navigate(ROUTES.SELECT)} />
-                <Button variant={"outlined"} title={"Expand"} onPress={() => navigation.navigate(ROUTES.EXPAND)} />
-                <Button variant={"outlined"} title={"Modals"} onPress={() => navigation.navigate(ROUTES.MODALS)} />
-                <Button variant={"outlined"} title={"Loading"} onPress={() => navigation.navigate(ROUTES.LOADING)} />
+                {COMPONENTS.map((component, index) => (
+                    <Button
+                        variant={"outlined"}
+                        key={index}
+                        title={component.name}
+                        onPress={() => navigation.navigate(component.route)}
+                    />))}
             </View>
         </Wrapper>
     );

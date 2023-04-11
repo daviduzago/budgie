@@ -44,6 +44,12 @@ const styles = {
         letterSpacing: -0.5,
         fontFamily: "Lato Bold",
     },
+    medium: {
+        fontSize: 20,
+        fontWeight: "500",
+        letterSpacing: -0.5,
+        fontFamily: "Lato Regular",
+    },
     body: {
         fontSize: 17,
         fontWeight: "400",

@@ -9,4 +9,5 @@ export default {
     MODALS: "Modals",
     LOADING: "Loading",
     CHECKBOXES: "Checkboxes",
+    CARDS: "Cards",
 }

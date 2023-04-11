@@ -45,6 +45,10 @@ const COMPONENTS = [
         name: "Checkboxes",
         route: ROUTES.CHECKBOXES,
     },
+    {
+        name: "Cards",
+        route: ROUTES.CARDS,
+    },
 ]
 
 function Home({navigation}) {

@@ -6,5 +6,6 @@ export default {
     NOTIFICATIONS: "Notifications",
     SELECT: "Select",
     EXPAND: "Expand",
-    MODALS: "Modals"
+    MODALS: "Modals",
+    LOADING: "Loading"
 }

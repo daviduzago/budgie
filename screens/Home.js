@@ -6,6 +6,8 @@ import Spacer from "../utils/Spacer";
 import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
 import Button from "../components/Button";
+import Loading from "../components/Loading";
+import React from "react";
 
 function Home({navigation}) {
     return (
@@ -22,6 +24,7 @@ function Home({navigation}) {
                 <Button variant={"outlined"} title={"Select"} onPress={() => navigation.navigate(ROUTES.SELECT)} />
                 <Button variant={"outlined"} title={"Expand"} onPress={() => navigation.navigate(ROUTES.EXPAND)} />
                 <Button variant={"outlined"} title={"Modals"} onPress={() => navigation.navigate(ROUTES.MODALS)} />
+                <Button variant={"outlined"} title={"Loading"} onPress={() => navigation.navigate(ROUTES.LOADING)} />
             </View>
         </Wrapper>
     );

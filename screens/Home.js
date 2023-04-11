@@ -1,4 +1,4 @@
-import {View, StyleSheet} from "react-native";
+import {View, StyleSheet, Image} from "react-native";
 
 import colors from "../utils/colors";
 import ROUTES from "../utils/ROUTES";
@@ -6,7 +6,6 @@ import Spacer from "../utils/Spacer";
 import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
 import Button from "../components/Button";
-import Loading from "../components/Loading";
 import React from "react";
 
 const COMPONENTS = [
@@ -52,10 +51,14 @@ function Home({navigation}) {
     return (
         <Wrapper hasTopNav={false}>
             <View style={styles.header}>
-                <Typography color={"white"} variant={"heading1"}>Components</Typography>
+                <Image style={{width: 80, height: 80}} source={require("../assets/logo-300.png")} />
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
+                <View>
+                    <Typography variant={"heading1"}>Components</Typography>
+                    <Spacer />
+                </View>
                 {COMPONENTS.map((component, index) => (
                     <Button
                         variant={"outlined"}
@@ -75,9 +78,10 @@ const styles = StyleSheet.create({
         width: "100%",
         backgroundColor: colors.grayPrimary,
         alignItems: "center",
-        paddingVertical: 16,
+        justifyContent: "center",
         borderBottomRightRadius: 30,
         borderBottomLeftRadius: 30,
+        flexDirection: "row",
     },
     body: {
         flex: 1,

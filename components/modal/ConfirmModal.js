@@ -27,31 +27,30 @@ const ConfirmModal = (props) => {
         <View
             style={{
                 flex: 1,
-                justifyContent: 'center',
-                alignItems: 'center',
                 padding: 8 * 3,
             }}
         >
             <View
                 style={{
-                    borderRadius: 8 * 0.5,
                     maxWidth: 500,
                     minWidth: 280,
                     maxHeight: '100%',
+
                 }}
             >
                 <View
                     style={{
                         flex: 1,
+                        borderRadius: 13,
                         backgroundColor: colors.white,
                         borderBottomLeftRadius: 8 * 0.5,
                         borderBottomRightRadius: 8 * 0.5,
                         padding: 20,
                     }}
                 >
-                    <ScrollView style={{maxHeight: 500}}>
+                    <ScrollView>
                         <Spacer />
-                        <Typography variant="heading2" style={{textAlign: 'center'}}>
+                        <Typography variant="heading1" style={{textAlign: 'center'}}>
                             {title || ''}
                         </Typography>
                         <Spacer x={5} />

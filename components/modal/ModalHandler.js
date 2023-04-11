@@ -46,21 +46,16 @@ function FallbackModal(props) {
 }
 
 export default function ModalHandler(props) {
-    const {isMobile} = props
-    const [stack, stackPop, setOpen] = useModal()
+    const [stack, stackPop] = useModal()
 
     if (stack && stack.length) {
         let config = stack[stack.length - 1]
 
         const CustomModal = Modals[config.modal + 'Modal'] || Modals[config.modal] || FallbackModal
-        //console.log('render modal config', config, 'modal func', config.modal, Modal, Modals[config.modal])
+        console.log("Stack", stack[stack.length - 1])
 
         const onDismiss = (data) => {
-
-            console.log(typeof config.onDismiss)
-            setOpen(false)
             stackPop()
-
             if (props.onDismiss) {
                 props.onDismiss(data)
             }
@@ -93,19 +88,19 @@ export default function ModalHandler(props) {
                     statusBarTranslucent
                     style={{
                         borderWidth: 0,
-                        flex: props.minimal ? null : 1,
+                        flex: config.minimal ? null : 1,
                         justifyContent: 'center',
                         alignItems: 'center',
                         alignSelf: 'center',
                         justifySelf: 'center',
-                        width: props.minimal ? null : '100%',
-                        maxWidth: props.maxWidth || 500,
+                        width: config.minimal ? null : '100%',
+                        maxWidth: config.maxWidth || 500,
                         zIndex: 4,
                         elevation: 4,
                     }}
                 >
                     <View style={{position: 'absolute', left: 0, top: 0, bottom: 0, right: 0, backgroundColor: 'rgba(0,0,0,0.9)'}} />
-                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: props.margin}}>
+                    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center', padding: config.margin}}>
                         <TouchableWithoutFeedback onPress={onDismiss}>
                             <View style={{position: 'absolute', left: 0, top: 0, bottom: 0, right: 0}} />
                         </TouchableWithoutFeedback>
@@ -113,16 +108,16 @@ export default function ModalHandler(props) {
                             style={{
                                 flex: 1,
                                 width: '100%',
-                                maxWidth: props.maxWidth ? props.maxWidth : isMobile ? null : props.modal === 'VideoModal' && !isMobile ? 820 : 600,
-                                maxHeight: props.maxHeight ? props.maxHeight : isMobile ? null : props.modal === 'VideoModal' ? (isMobile ? 200 : 585) : 448,
+                                maxWidth: config.maxWidth ? config.maxWidth : 600,
+                                maxHeight: config.maxHeight ? config.maxHeight : 448,
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                paddingLeft: props.minimal ? 16 : null,
-                                paddingRight: props.minimal ? 16 : null,
+                                paddingLeft: config.minimal ? 16 : null,
+                                paddingRight: config.minimal ? 16 : null,
                             }}
                             nativeID="modal-content-container"
                         >
-                            <CustomModal {...props} onDismiss={onDismiss} />
+                            <CustomModal {...config} onDismiss={onDismiss} />
                         </View>
                     </View>
                 </Modal>

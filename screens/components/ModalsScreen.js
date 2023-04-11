@@ -17,9 +17,6 @@ function ModalsScreen() {
                         modal: 'ConfirmModal',
                         title: 'Confirm Modal',
                         body: 'Body',
-                        onConfirm: ({close}) => {
-                            close();
-                        }
                     })
                 }} />
             </View>

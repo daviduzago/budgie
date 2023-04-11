@@ -64,7 +64,7 @@ export default function App() {
             </NavigationContainer>
             <StatusBar style="auto" />
             <BudgieNotification isAdditional />
-            <ModalHandler isMobile={true} />
+            <ModalHandler />
         </SafeAreaProvider>
     );
 }

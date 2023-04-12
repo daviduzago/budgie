@@ -10,4 +10,5 @@ export default {
     LOADING: "Loading",
     CHECKBOXES: "Checkboxes",
     CARDS: "Cards",
+    CARTICON: "CartIcon",
 }

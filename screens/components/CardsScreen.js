@@ -8,7 +8,7 @@ import ITEMS from "../../assets/ITEMS"
 import Button from "../../components/Button";
 
 
-function CardsScreen() {
+export default function CardsScreen() {
     const [loading, setLoading] = React.useState(false);
     return (
         <Wrapper hasTopNav>
@@ -33,5 +33,3 @@ function CardsScreen() {
         </Wrapper>
     );
 }
-
-export default React.memo(CardsScreen);

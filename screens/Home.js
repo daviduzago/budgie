@@ -49,6 +49,10 @@ const COMPONENTS = [
         name: "Cards",
         route: ROUTES.CARDS,
     },
+    {
+        name: "Cart Icon",
+        route: ROUTES.CARTICON,
+    },
 ]
 
 function Home({navigation}) {

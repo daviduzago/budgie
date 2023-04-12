@@ -27,14 +27,3 @@ function CheckboxesScreen() {
 }
 
 export default CheckboxesScreen;
-
-const style = StyleSheet.create({
-    collapsableBox: {
-        backgroundColor: colors.gray2,
-        height: 200,
-        borderRadius: 12,
-        padding: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});

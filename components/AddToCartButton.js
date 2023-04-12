@@ -21,7 +21,7 @@ import colors from '../utils/colors'
 import Icon from "./Icon/Index"
 
 function ButtonActual(props) {
-    const {variant, small, textVariant, noBorder, borderColor, onPressText, onPressLeft, onPressRight, shape, fullWidth = false, loading = false} = props
+    const {variant, small, textVariant, borderColor, onPressText, onPressLeft, onPressRight, shape, fullWidth = false, loading = false} = props
 
     let title = props.title || ''
     let background = props.background || colors.grayPrimary

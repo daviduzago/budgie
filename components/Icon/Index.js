@@ -13,13 +13,41 @@ import IconFromPath from "./IconFromPath"
 import Svg, {Circle, Path, Defs, ClipPath, G, LinearGradient, Stop} from 'react-native-svg'
 
 const ourIcons = {
-    /* Example: (props) => <Example {...props} />, */
+    "arrow-path": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
+            <Path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth={2}
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+            />
+        </SvgIcon>
+    ),
     bell: (props) => (
         <SvgIcon {...props} viewBox="0 0 24 25" fill={props.color}>
             <Path
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M12 4a5.6 5.6 0 0 0-5.6 5.6v3.506l-.358.178a2.247 2.247 0 0 0-1.242 2.01V16a2.4 2.4 0 0 0 2.4 2.4h2.536a2.401 2.401 0 0 0 4.527 0H16.8a2.4 2.4 0 0 0 2.4-2.4v-.706c0-.85-.481-1.629-1.242-2.01l-.358-.178V9.6A5.6 5.6 0 0 0 12 4ZM8 9.6a4 4 0 1 1 8 0v3.779c0 .438.247.84.64 1.035l.602.301c.22.11.358.334.358.58V16a.8.8 0 0 1-.8.8H7.2a.8.8 0 0 1-.8-.8v-.706c0-.245.138-.469.358-.579l.602-.3c.392-.197.64-.598.64-1.036v-3.78Z"
+            />
+        </SvgIcon>
+    ),
+    "cart": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
+            <Path
+
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+            />
+        </SvgIcon>
+    ),
+    "clock": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
+            <Path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
             />
         </SvgIcon>
     ),
@@ -41,6 +69,20 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "eye": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
+            <Path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
+            />
+            <Path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+        </SvgIcon>
+    ),
     plus: (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path
@@ -56,34 +98,6 @@ const ourIcons = {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.776-1.272 5.23 0 1.513 1.324 1.513 3.518 0 4.842a3.75 3.75 0 01-.837.552c-.676.328-1.028.774-1.028 1.152v.75a.75.75 0 01-1.5 0v-.75c0-1.279 1.06-2.107 1.875-2.502.182-.088.351-.199.503-.331.83-.727.83-1.857 0-2.584zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z"
-            />
-        </SvgIcon>
-    ),
-    "x-mark": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
-            <Path
-                fillRule="evenodd"
-                clipRule="evenodd"
-                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
-            />
-        </SvgIcon>
-    ),
-    "arrow-path": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
-            <Path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth={2}
-                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
-            />
-        </SvgIcon>
-    ),
-    "clock": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
-            <Path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
             />
         </SvgIcon>
     ),
@@ -114,17 +128,12 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
-    "eye": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
+    "x-mark": (props) => (
+        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z"
-            />
-            <Path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z"
             />
         </SvgIcon>
     ),

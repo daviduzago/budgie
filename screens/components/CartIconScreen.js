@@ -1,6 +1,5 @@
 import React from "react";
 import {View} from "react-native";
-import Typography from "../../components/Typography";
 import Wrapper from "../../components/ui/wrapper";
 import Spacer from "../../utils/Spacer"
 import colors from "../../utils/colors";
@@ -18,7 +17,7 @@ export default function CartIconScreen() {
                     <CartIcon items={cart} />
                 </View>
                 <Spacer x={4} />
-                <View style={{width: 150}}>
+                <View style={{width: 200}}>
                     <AddToCartButton
                         variant="primary"
                         fullWidth
@@ -26,7 +25,6 @@ export default function CartIconScreen() {
                         title={cart > 0 ? cart : "Add to cart"}
                         textVariant="medium"
                         shape="round"
-                        small
                         iconRight={cart > 0 ? "plus" : null}
                         iconLeft={cart > 0 ? "trash" : null}
                         onPressText={cart === 0 ? () => setCart(cart + 1) : null}

@@ -3,7 +3,7 @@ import React from "react";
 import Wrapper from "../../components/ui/wrapper";
 import Spacer from "../../utils/Spacer"
 import Typography from "../../components/Typography";
-import OptionCard from "../../components/Cards";
+import Card from "../../components/Cards";
 import ITEMS from "../../assets/ITEMS"
 import Button from "../../components/Button";
 
@@ -17,10 +17,16 @@ function CardsScreen() {
                 <Spacer x={2} />
                 <Button fullWidth title="Toggle loading" onPress={() => setLoading(!loading)} />
                 <Spacer x={2} />
-                <OptionCard
+                <Card
+                    option
                     loading={loading}
                     item={ITEMS[0]}
-                    onAddCart={() => console.log("Add to cart")}
+                />
+                <Spacer />
+                <Card
+                    cart
+                    loading={loading}
+                    item={ITEMS[3]}
                 />
                 <Spacer />
             </View>

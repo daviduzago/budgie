@@ -8,13 +8,14 @@ import Spacer from '../utils/Spacer';
 import AddToCartButton from './AddToCartButton';
 
 const Bullet = (props) => {
-    const {quantity, name} = props
+    const {quantity, name, loading} = props
     return (
         <View style={{width: '100%'}}>
-            <View style={{flexDirection: 'row', paddingLeft: 16}}>
+            <View style={{flexDirection: 'row', paddingLeft: 16, alignItems: "center"}}>
                 <Typography variant="body" color={colors.gray3}>
                     {`\u2022`}{' '}
                 </Typography>
+                {!loading && <>
                 <Typography variant="body" color={colors.gray3}>
                     x{quantity}
                 </Typography>
@@ -22,16 +23,26 @@ const Bullet = (props) => {
                 {/* TODO: Fix the nowrap not working for long items */}
                 <Typography nowrap variant="body" color={colors.gray3}>
                     {name}
-                </Typography>
+                    </Typography>
+                </>}
+                {loading && <LoadingView width={40} />}
             </View>
             <Spacer x={0.5} />
         </View>
     )
 }
 
+const LoadingView = (props) => {
+    const {width, height = 12} = props;
+
+    return (
+        <View style={{height: height, width: `${width}%`, backgroundColor: colors.gray2, borderRadius: 100}}></View>
+    )
+}
+
 export default function OptionCard(props) {
     const [cart, setCart] = React.useState(0);
-    const {item, onAddCart} = props;
+    const {item, loading = true} = props;
 
     return (
         <View style={style.container}>
@@ -41,8 +52,8 @@ export default function OptionCard(props) {
                     /* TODO:Fixthecenteringofthedefaultimage */
                     imageStyle={{resizeMode: "contain", width: "100%", height: "100%", }}
                     style={{
-                        height: 100,
-                        width: 100,
+                        height: 120,
+                        width: 120,
                         borderRadius: 10,
                         justifyContent: !item.image ? "center" : null,
                         alignItems: !item.image ? "center" : null,
@@ -60,7 +71,8 @@ export default function OptionCard(props) {
                 <View style={style.rowCenter8}>
                     <Icon strokeWidth={2} name="clock" size={20} color={colors.gray3} />
                     <Spacer x={0.5} />
-                    <Typography variant="body" color={colors.gray3}>{item.deliveryTime} min</Typography>
+                    {!loading && <Typography variant="body" color={colors.gray3}>{item.deliveryTime} min</Typography>}
+                    {loading && <LoadingView width={60} />}
                 </View>
                 <Spacer x={0.5} />
                 <View style={style.rowCenter8}>
@@ -68,8 +80,8 @@ export default function OptionCard(props) {
                         [1, 2, 3, 4, 5].map((index) => {
                             return <Icon
                                 key={index}
-                                name={index <= item.rating ? "star-solid" : "star-outlined"}
-                                color={colors.yellow}
+                                name={loading ? "star-outlined" : index <= item.rating ? "star-solid" : "star-outlined"}
+                                color={loading ? colors.gray2 : colors.yellow}
                                 size={20}
                             />
                         })
@@ -77,16 +89,23 @@ export default function OptionCard(props) {
                 </View>
             </View>
             <View style={style.rightSection}>
-                <Typography bold style={{fontSize: 20}} nowrap color={colors.grayPrimary}>{item.comboTitle}</Typography>
+                {!loading && <Typography bold style={{fontSize: 20}} nowrap color={colors.grayPrimary}>{item.comboTitle}</Typography>}
+                {loading && <LoadingView width={90} height={24} />}
                 <Spacer x={0.5} />
                 <>
-                    {
-                        item.comboItems.map((item, index) => {
+                    {!loading && item.comboItems.map((item, index) => {
                             return (
-                                <Bullet key={"bullet" + index} quantity={item.quantity} name={item.name} />
+                                <Bullet key={"bullet" + index} loading={loading} quantity={item.quantity} name={item.name} />
                             )
                         })
                     }
+                    {loading && [1, 2, 3].map((item, index) => {
+                        return (
+                            <Bullet key={"bullet" + index} loading={loading} quantity={item.quantity} name={item.name} />
+                        )
+                    })
+                    }
+
                 </>
                 <Spacer x={0.5} />
                 <Button
@@ -102,7 +121,7 @@ export default function OptionCard(props) {
                     <Button
                         variant="outlined"
                         textVariant="medium"
-                        title={`$${item.price}`}
+                        title={loading ? '$00.00' : `$${item.price}`}
                         shape="round"
                         small
                     />
@@ -141,7 +160,7 @@ const style = StyleSheet.create({
         flex: 1 / 3,
         padding: 8,
         justifyContent: "center",
-        alignItems: "flex-start"
+        alignItems: "center"
     },
     rightSection: {
         flex: 2 / 3,
@@ -149,6 +168,7 @@ const style = StyleSheet.create({
         paddingRight: 8
     },
     rowCenter8: {
+        width: '100%',
         flexDirection: 'row',
         alignItems: "center",
         paddingHorizontal: 8

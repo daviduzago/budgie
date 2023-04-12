@@ -5,6 +5,7 @@ import Button from './Button';
 import Icon from './Icon/Index';
 import colors from '../utils/colors';
 import Spacer from '../utils/Spacer';
+import AddToCartButton from './AddToCartButton';
 
 const Bullet = (props) => {
     const {quantity, name} = props
@@ -29,7 +30,8 @@ const Bullet = (props) => {
 }
 
 export default function OptionCard(props) {
-    const {item} = props;
+    const [cart, setCart] = React.useState(0);
+    const {item, onAddCart} = props;
 
     return (
         <View style={style.container}>
@@ -39,18 +41,18 @@ export default function OptionCard(props) {
                     /* TODO:Fixthecenteringofthedefaultimage */
                     imageStyle={{resizeMode: "contain", width: "100%", height: "100%", }}
                     style={{
-                        flex: 1,
                         height: 100,
-                        backgroundColor: colors.gray2,
+                        width: 100,
                         borderRadius: 10,
                         justifyContent: !item.image ? "center" : null,
                         alignItems: !item.image ? "center" : null,
-                        overflow: "hidden"
+                        overflow: "hidden",
                     }}>
                     <Image source={{uri: item.image}} style={{
                         flex: 1,
                         height: 100,
-                        resizeMode: "cover",
+                        resizeMode: "contain",
+                        borderRadius: 10,
 
                     }} />
                 </ImageBackground>
@@ -106,13 +108,19 @@ export default function OptionCard(props) {
                     />
                     <Spacer />
                     <View style={{flex: 1}}>
-                        <Button
+                        <AddToCartButton
                             fullWidth
                             variant="primary"
-                            title="Add to cart"
+                            title={cart > 0 ? cart : "Add to cart"}
                             textVariant="medium"
                             shape="round"
                             small
+                            iconSize={23}
+                            iconRight={cart > 0 ? "plus" : null}
+                            iconLeft={cart > 0 ? "trash" : null}
+                            onPressText={cart === 0 ? () => setCart(cart + 1) : null}
+                            onPressLeft={cart > 0 ? () => setCart(cart - 1) : null}
+                            onPressRight={cart > 0 ? () => setCart(cart + 1) : null}
                         />
                     </View>
                 </View>
@@ -132,6 +140,8 @@ const style = StyleSheet.create({
     leftSection: {
         flex: 1 / 3,
         padding: 8,
+        justifyContent: "center",
+        alignItems: "flex-start"
     },
     rightSection: {
         flex: 2 / 3,

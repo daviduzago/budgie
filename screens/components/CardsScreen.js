@@ -15,8 +15,9 @@ function CardsScreen() {
                 <Spacer x={2} />
                 <OptionCard
                     item={ITEMS[0]}
+                    onAddCart={() => console.log("Add to cart")}
                 />
-                <Spacer x={2} />
+                <Spacer />
             </View>
         </Wrapper>
     );

@@ -59,7 +59,7 @@ function Home({navigation}) {
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
-                <View>
+                <View style={{width: "100%"}}>
                     <Typography variant={"heading1"}>Components</Typography>
                     <Spacer />
                 </View>

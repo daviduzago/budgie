@@ -4,6 +4,8 @@ import Wrapper from "../../components/ui/wrapper";
 import Spacer from "../../utils/Spacer"
 import Typography from "../../components/Typography";
 import OptionCard from "../../components/Cards";
+import ITEMS from "../../assets/ITEMS"
+
 
 function CardsScreen() {
     return (
@@ -12,31 +14,12 @@ function CardsScreen() {
                 <Typography variant="heading1">Cards</Typography>
                 <Spacer x={2} />
                 <OptionCard
-                    deliveryTime={15}
-                    image={"https://picsum.photos/200"}
-                    comboTitle={"The capital burger combo"}
-                    comboItems={[
-                        {name: "Burger", quantity: 1},
-                        {name: "Fries", quantity: 1},
-                        {name: "Coke", quantity: 1},
-                    ]}
-                    price={"10.00"}
+                    item={ITEMS[0]}
                 />
                 <Spacer x={2} />
-                <OptionCard
-                    deliveryTime={15}
-                    image={"https://picsum.photos/200"}
-                    comboTitle={"The capital burger combo"}
-                    comboItems={[
-                        {name: "Burger", quantity: 1},
-                        {name: "Fries", quantity: 1},
-                        {name: "Coke", quantity: 1},
-                    ]}
-                    price={"10.00"}
-                />
             </View>
         </Wrapper>
     );
 }
 
-export default CardsScreen;
+export default React.memo(CardsScreen);

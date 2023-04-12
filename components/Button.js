@@ -108,11 +108,11 @@ function ButtonActual(props) {
                     fullWidth
                         ? {
                             flexGrow: 1,
-                            flexDirection: props.iconTop ? null : 'row',
+                            flexDirection: 'row',
                         }
                         : {
                             alignSelf: 'flex-start',
-                            flexDirection: props.iconTop ? null : 'row',
+                            flexDirection: 'row',
                         },
                 ]}
             >

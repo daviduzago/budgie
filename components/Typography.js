@@ -20,6 +20,7 @@ const variants = [
     "display",
     "heading1",
     "heading2",
+    "medium",
     "body",
     "small",
     "extraSmall"

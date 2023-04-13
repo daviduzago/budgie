@@ -26,7 +26,6 @@ export default function RadioButton(props) {
                 borderRadius: 100,
                 borderWidth: 1,
                 borderColor: variant === "light" ? colors.grayPrimary : colors.white,
-                margin: 4,
                 justifyContent: 'center',
                 alignItems: 'center',
             }}

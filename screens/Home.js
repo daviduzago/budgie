@@ -30,7 +30,7 @@ const COMPONENTS = [
         route: ROUTES.SELECT,
     },
     {
-        name: "Expand",
+        name: "Expandables",
         route: ROUTES.EXPAND,
     },
     {

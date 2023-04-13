@@ -104,6 +104,8 @@ function OptionCard(props) {
                 </>
                 <Spacer x={0.5} />
                 <Button
+                    loading={loading}
+                    disabled={loading}
                     borderColor={colors.gray3}
                     color={colors.gray3}
                     variant="outlined"
@@ -114,6 +116,7 @@ function OptionCard(props) {
                 <Spacer />
                 <View style={{flexDirection: "row", flex: 1}}>
                     <Button
+                        disabled={loading}
                         variant="outlined"
                         textVariant="medium"
                         title={loading ? '$00.00' : `$${item.price}`}
@@ -124,6 +127,8 @@ function OptionCard(props) {
                     <View style={{flex: 1}}>
                         <AddToCartButton
                             fullWidth
+                            disabled={loading}
+                            loading={loading}
                             variant="primary"
                             title={cart > 0 ? cart : "Add to cart"}
                             textVariant="medium"
@@ -218,6 +223,7 @@ function CartCard(props) {
                                 <AddToCartButton
                                     fullWidth
                                     noBorder
+                                    disabled={loading}
                                     variant={cart > 0 ? "outlined" : "outlined-danger"}
                                     title={loading ? "0" : cart > 0 ? cart : "Remove"}
                                     textVariant="medium"
@@ -241,12 +247,48 @@ function CartCard(props) {
     )
 }
 
+/* WHEN USING FULL IMAGE, THE IMAGE MUST BE 300X120 */
+function PromoCard(props) {
+    const {loading, title, backgroundColor, subtitle, buttonText, image, fullImage, onPress} = props;
+    return (
+        <Pressable onPress={onPress}>
+            <ImageBackground style={[style.containerPromo, {height: fullImage ? 120 : null, width: fullImage ? 300 : null}]} source={{uri: fullImage}}>
+                {!fullImage && <>
+                    <View style={{flex: 1}}>
+                        <View style={{flex: 1}}>
+                            {!loading && <Typography variant="medium" color={colors.black}>{title}</Typography>}
+                            {loading && <LoadingLine width={50} height={23} />}
+                            <Spacer x={0.5} />
+                            {!loading && <Typography variant="small" color={colors.gray3}>{subtitle}</Typography>}
+                            {loading && <LoadingLine width={90} />}
+                        </View>
+                        <View style={{width: 120}}>
+                            <Button loading={loading} disabled={loading} small fullWidth textVariant="small" title={buttonText} />
+                        </View>
+                    </View>
+                    <View style={{width: 100, height: 100, backgroundColor: colors.gray2, borderRadius: 5, }}>
+                        {!loading && <Image source={{uri: image}} style={{
+                            width: 100,
+                            height: 100,
+                            resizeMode: "contain",
+                            borderRadius: 5,
+
+                        }} />}
+                    </View>
+
+                </>}
+            </ImageBackground>
+        </Pressable>
+    )
+}
+
 function Card(props) {
-    const {option, cart} = props;
+    const {option, cart, promo} = props;
     return (
         <>
             {option && <OptionCard {...props} />}
             {cart && <CartCard {...props} />}
+            {promo && <PromoCard {...props} />}
         </>
     )
 }
@@ -266,6 +308,17 @@ const style = StyleSheet.create({
         backgroundColor: colors.grayBg,
         borderBottomColor: colors.gray2,
         borderBottomWidth: 1,
+        flexDirection: "row",
+        overflow: "hidden"
+    },
+    containerPromo: {
+        flex: 1,
+        minHeight: 120,
+        paddingHorizontal: 16,
+        paddingVertical: 12,
+        borderRadius: 20,
+        borderWidth: 2,
+        borderColor: colors.gray2,
         flexDirection: "row",
         overflow: "hidden"
     },

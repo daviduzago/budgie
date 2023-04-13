@@ -6,15 +6,18 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@expo/webpack-config": "^18.0.1",
     "@react-navigation/native-stack": "^6.9.12",
+    "deprecated-react-native-prop-types": "^4.0.0",
     "expo": "~48.0.10",
     "expo-font": "~11.1.1",
     "expo-splash-screen": "~0.18.1",
     "expo-status-bar": "~1.4.4",
+    "patch-package": "^6.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.6",

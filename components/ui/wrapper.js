@@ -12,6 +12,7 @@ const Wrapper = (props) => {
         >
             <ScrollView
                 style={{flex: 1}}
+                bounces={false}
                 contentContainerStyle={[styles.scrollView, {
                     paddingTop: hasTopNav ? 0 : insets.top,
                     backgroundColor: dark ? colors.grayPrimary : colors.grayBg,

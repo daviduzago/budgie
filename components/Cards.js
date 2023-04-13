@@ -8,6 +8,7 @@ import colors from '../utils/colors';
 import Spacer from '../utils/Spacer';
 import AddToCartButton from './AddToCartButton';
 import LoadingLine from './LoadingLine';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Bullet = (props) => {
     const {quantity, name, loading} = props
@@ -173,70 +174,70 @@ function CartCard(props) {
     }
 
     return (
-        /*  TODO: The swiping is not working properly on android, neither the close() */
-        <Swipeable ref={swipableRef} renderRightActions={rightSwipeAction}>
-            <View style={style.containerCart}>
-                <View style={{padding: 8, justifyContent: 'center', alignItems: 'center'}}>
-                    <Pressable onPress={() => console.log("Open Combo")}>
-                        <ImageBackground
-                            source={require("../assets/fast-food.png")}
-                            imageStyle={{resizeMode: "contain", width: "100%", height: "100%", }}
-                            style={{
-                                height: 100,
-                                width: 100,
-                                borderRadius: 10,
-                                justifyContent: !item.image ? "center" : null,
-                                alignItems: !item.image ? "center" : null,
-                                overflow: "hidden",
-                            }}>
-                            <Pressable style={{position: 'absolute', top: 4, right: 4, zIndex: 10, }}>
-                                <Icon name="eye" color={colors.white} size={24} />
-                            </Pressable>
-                            {!loading &&
-                                <Image source={{uri: item.image}} style={{
-                                    flex: 1,
+        <GestureHandlerRootView>
+            <Swipeable ref={swipableRef} renderRightActions={rightSwipeAction}>
+                <View style={style.containerCart}>
+                    <View style={{padding: 8, justifyContent: 'center', alignItems: 'center'}}>
+                        <Pressable onPress={() => console.log("Open Combo")}>
+                            <ImageBackground
+                                source={require("../assets/fast-food.png")}
+                                imageStyle={{resizeMode: "contain", width: "100%", height: "100%", }}
+                                style={{
                                     height: 100,
-                                    resizeMode: "contain",
+                                    width: 100,
                                     borderRadius: 10,
+                                    justifyContent: !item.image ? "center" : null,
+                                    alignItems: !item.image ? "center" : null,
+                                    overflow: "hidden",
+                                }}>
+                                <Pressable style={{position: 'absolute', top: 4, right: 4, zIndex: 10, }}>
+                                    <Icon name="eye" color={colors.white} size={24} />
+                                </Pressable>
+                                {!loading &&
+                                    <Image source={{uri: item.image}} style={{
+                                        flex: 1,
+                                        height: 100,
+                                        resizeMode: "contain",
+                                        borderRadius: 10,
 
-                                }} />}
-                        </ImageBackground>
-                    </Pressable>
-                </View>
-                <View style={{flex: 1, padding: 8, paddingVertical: 8, paddingRight: 8}}>
-                    {!loading && <Typography variant="medium" nowrap color={colors.grayPrimary}>{item.comboTitle}</Typography>}
-                    {loading && <LoadingLine width={70} height={23} />}
-                    <Spacer />
-                    {!loading && <Typography nowrap variant="small" color="gray3">{comboItems}</Typography>}
-                    {loading && <LoadingLine width={90} />}
-                    <Spacer />
-                    {!loading && <Typography variant="medium">${item.price}</Typography>}
-                    {loading && <LoadingLine width={30} height={23} />}
-                    <View style={{flex: 1, flexDirection: "row", justifyContent: "flex-end"}}>
-                        <View style={{flex: 1 / 2}}>
-                            <AddToCartButton
-                                fullWidth
-                                noBorder
-                                variant={cart > 0 ? "outlined" : "outlined-danger"}
-                                title={loading ? "0" : cart > 0 ? cart : "Remove"}
-                                textVariant="medium"
-                                shape="round"
-                                small
-                                iconSize={23}
-                                iconRight={cart > 0 ? "plus" : null}
-                                iconLeft={cart > 0 ? "trash" : null}
-                                onPressText={cart === 0 ? () => console.log("Removed") : null}
-                                onPressLeft={
-                                    cart === 1 ? () => swipableRef.current.openRight()
-                                        : cart > 0 && cart !== 1 ? () => setCart(cart - 1) : null}
-                                onPressRight={cart > 0 ? () => setCart(cart + 1) : null}
-                            />
+                                    }} />}
+                            </ImageBackground>
+                        </Pressable>
+                    </View>
+                    <View style={{flex: 1, padding: 8, paddingVertical: 8, paddingRight: 8}}>
+                        {!loading && <Typography variant="medium" nowrap color={colors.grayPrimary}>{item.comboTitle}</Typography>}
+                        {loading && <LoadingLine width={70} height={23} />}
+                        <Spacer />
+                        {!loading && <Typography nowrap variant="small" color="gray3">{comboItems}</Typography>}
+                        {loading && <LoadingLine width={90} />}
+                        <Spacer />
+                        {!loading && <Typography variant="medium">${item.price}</Typography>}
+                        {loading && <LoadingLine width={30} height={23} />}
+                        <View style={{flex: 1, flexDirection: "row", justifyContent: "flex-end"}}>
+                            <View style={{flex: 1 / 2}}>
+                                <AddToCartButton
+                                    fullWidth
+                                    noBorder
+                                    variant={cart > 0 ? "outlined" : "outlined-danger"}
+                                    title={loading ? "0" : cart > 0 ? cart : "Remove"}
+                                    textVariant="medium"
+                                    shape="round"
+                                    small
+                                    iconSize={23}
+                                    iconRight={cart > 0 ? "plus" : null}
+                                    iconLeft={cart > 0 ? "trash" : null}
+                                    onPressText={cart === 0 ? () => console.log("Removed") : null}
+                                    onPressLeft={
+                                        cart === 1 ? () => swipableRef.current.openRight()
+                                            : cart > 0 && cart !== 1 ? () => setCart(cart - 1) : null}
+                                    onPressRight={cart > 0 ? () => setCart(cart + 1) : null}
+                                />
+                            </View>
                         </View>
                     </View>
                 </View>
-            </View>
-        </Swipeable>
-
+            </Swipeable>
+        </GestureHandlerRootView>
     )
 }
 

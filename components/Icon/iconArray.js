@@ -1,21 +1,20 @@
 export default [
-    "apple-black", //Pending
-    "apple-pay",//Pending
-    "apple-white", //Pending
+    "apple",
+    "apple-pay",
     "arrow-path",
-    "balanced-diet", //Pending
+    "balanced-diet",
     "bell",
-    "brazil-flag",//Pending
+    "brazil-flag",
     "cart",
     "chevron-down",
     "chevron-up",
     "clock",
-    "colombia",//Pending
+    "colombia-flag",
     "color-clock",
-    "cooking",//Pending
-    "coupon",//Pending
-    "delivery",//Pending
-    "diet",//Pending
+    "cooking",
+    "coupon",
+    "delivery",
+    "diet",
     "empty-cart",//Pending
     "error",//Pending
     "eye",

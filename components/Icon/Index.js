@@ -12,8 +12,19 @@ import colors from "../../utils/colors"
 import IconFromPath from "./IconFromPath"
 import Svg, {Circle, Path, Defs, ClipPath, G, LinearGradient, Stop} from 'react-native-svg'
 import Clock from './color-icons/clock'
+import AppleLogo from './color-icons/apple-logo'
+import ApplePay from './color-icons/apple-pay'
+import BalancedDiet from './color-icons/balanced-diet'
+import BrazilFlag from './color-icons/brazil-flag'
+import ColombiaFlag from './color-icons/colombia-flag'
+import Cooking from './color-icons/cooking'
+import Coupon from './color-icons/coupon'
+import Delivery from './color-icons/delivery'
+import Diet from './color-icons/diet'
 
 const ourIcons = {
+    "apple": (props) => <AppleLogo {...props} />,
+    "apple-pay": (props) => <ApplePay {...props} />,
     "arrow-path": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -24,6 +35,7 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "balanced-diet": (props) => <BalancedDiet {...props} />,
     "bell": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 25" fill={props.color}>
             <Path
@@ -33,6 +45,7 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "brazil-flag": (props) => (<BrazilFlag {...props} />),
     "cart": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -43,6 +56,9 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "coupon": (props) => (<Coupon {...props} />),
+    "delivery": (props) => (<Delivery {...props} />),
+    "diet": (props) => (<Diet {...props} />),
     "color-clock": (props) => <Clock {...props} />,
     "clock": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
@@ -53,6 +69,8 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "cooking": (props) => (<Cooking {...props} />),
+    "colombia-flag": (props) => (<ColombiaFlag {...props} />),
     "chevron-down": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path

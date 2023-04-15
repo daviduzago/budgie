@@ -22,7 +22,10 @@ function IconScreen() {
                     })}
                 </View >
                 <Spacer x={2} />
-                <Typography normal variant={"heading2"}>Icon name: {name}</Typography>
+                <Typography style={{flex: 1}} normal variant={"heading2"}>Icon name: {name}</Typography>
+                <View style={{flex: 1, width: "100%", alignItems: "center"}}>
+                    <Icon name={name} size={300} color={colors.grayPrimary} />
+                </View>
             </View>
 
         </Wrapper >

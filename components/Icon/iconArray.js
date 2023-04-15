@@ -15,11 +15,11 @@ export default [
     "coupon",
     "delivery",
     "diet",
-    "empty-cart",//Pending
-    "error",//Pending
+    "empty-cart",
+    "error",
     "eye",
-    "facebook",//Pending
-    "google-logo",//Pending
+    "facebook",
+    "google",
     "healthy",//Pending
     "instagra-oultined",//Pending
     "instagram",//Pending

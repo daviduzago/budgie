@@ -21,6 +21,10 @@ import Cooking from './color-icons/cooking'
 import Coupon from './color-icons/coupon'
 import Delivery from './color-icons/delivery'
 import Diet from './color-icons/diet'
+import EmptyCart from './color-icons/empty-cart'
+import Error from './color-icons/error'
+import Facebook from './color-icons/facebook'
+import Google from './color-icons/google'
 
 const ourIcons = {
     "apple": (props) => <AppleLogo {...props} />,
@@ -89,6 +93,8 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "empty-cart": (props) => (<EmptyCart {...props} />),
+    "error": (props) => (<Error {...props} />),
     "eye": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -103,6 +109,8 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "facebook": (props) => (<Facebook {...props} />),
+    "google": (props) => (<Google {...props} />),
     "plus": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path

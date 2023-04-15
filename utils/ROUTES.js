@@ -11,4 +11,5 @@ export default {
     CHECKBOXES: "Checkboxes",
     CARDS: "Cards",
     CARTICON: "CartIcon",
+    ICONS: "Icons",
 }

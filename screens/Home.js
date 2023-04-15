@@ -7,6 +7,7 @@ import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
 import Button from "../components/Button";
 import React from "react";
+import Icon from "../components/Icon/Index";
 
 const COMPONENTS = [
     {
@@ -52,6 +53,10 @@ const COMPONENTS = [
     {
         name: "Cart Icon",
         route: ROUTES.CARTICON,
+    },
+    {
+        name: "Icons",
+        route: ROUTES.ICONS,
     },
 ]
 

@@ -11,6 +11,7 @@ import {View} from 'react-native'
 import colors from "../../utils/colors"
 import IconFromPath from "./IconFromPath"
 import Svg, {Circle, Path, Defs, ClipPath, G, LinearGradient, Stop} from 'react-native-svg'
+import Clock from './color-icons/clock'
 
 const ourIcons = {
     "arrow-path": (props) => (
@@ -23,7 +24,7 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
-    bell: (props) => (
+    "bell": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 25" fill={props.color}>
             <Path
                 fillRule="evenodd"
@@ -42,6 +43,7 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "color-clock": (props) => <Clock {...props} />,
     "clock": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -83,7 +85,7 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
-    plus: (props) => (
+    "plus": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path
                 fillRule="evenodd"
@@ -164,7 +166,7 @@ function RenderIcon(props) {
         return ourIcons[props.name](props)
     } else {
         console.warn('missing icon', props.name || 'props.name not set')
-        return <></>
+        return ourIcons['question-mark-circle'](props)
     }
 }
 

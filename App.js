@@ -24,6 +24,7 @@ import LoadingScreen from "./screens/components/LoadingScreen"
 import CheckboxesScreen from "./screens/components/CheckboxesScreen";
 import CardsScreen from "./screens/components/CardsScreen";
 import CartIconScreen from "./screens/components/CartIconScreen";
+import IconScreen from "./screens/components/IconScreen";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -68,6 +69,7 @@ export default function App() {
                     <Stack.Screen name="Checkboxes" component={CheckboxesScreen} />
                     <Stack.Screen name="Cards" component={CardsScreen} />
                     <Stack.Screen name="CartIcon" component={CartIconScreen} />
+                    <Stack.Screen name="Icons" component={IconScreen} />
                 </Stack.Navigator>
             </NavigationContainer>
             <StatusBar style="auto" />

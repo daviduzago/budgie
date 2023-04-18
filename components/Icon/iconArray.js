@@ -1,10 +1,11 @@
 export default [
-    "apple",
     "apple-pay",
+    "apple",
     "arrow-path",
     "balanced-diet",
     "bell",
     "brazil-flag",
+    "budgie-logo",
     "cart",
     "chevron-down",
     "chevron-up",
@@ -20,28 +21,27 @@ export default [
     "eye",
     "facebook",
     "google",
-    "healthy",//Pending
-    "instagra-oultined",//Pending
-    "instagram",//Pending
-    "map",//Pending
-    "order",//Pending
-    "payment-method",//Pending
-    "piggy-bank",//Pending
-    "pin",//Pending
+    "healthy",
+    "instagram",
+    "map",
+    "order",
+    "payment-method",
+    //"piggy-bank", //FIX RGB COLOR
+    "pin",
     "plus",
     "question-mark-circle",
-    "restaurant-house",//Pending
-    "restaurant",//Pending
-    "salad",//Pending
-    "smartphone",//Pending
+    "restaurant-house",
+    "restaurant",
+    "salad",
+    "smartphone",
     "star-outlined",
     "star-solid",
-    "success",//Pending
-    "tips",//Pending
+    "success",
+    "tip",
     "trash",
-    "twitter",//Pending
-    "united-states-flag",//Pending
-    "warning",//Pending 
-    "whatsapp",//Pending
+    "twitter",
+    "united-states-flag",
+    "warning",
+    "whatsapp",
     "x-mark",
 ]

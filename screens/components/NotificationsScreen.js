@@ -7,6 +7,7 @@ import {showNotification} from "../../components/Notification";
 import Typography from "../../components/Typography";
 import Input from "../../components/Input";
 import Select from "../../components/Select"
+import icons from "../../components/Icon/iconArray"
 
 function NotificationScreen() {
     const [notifications, setNotifications] = React.useState({})
@@ -33,12 +34,12 @@ function NotificationScreen() {
                     onChangeText={(text) => setNotifications({...notifications, message: text})}
                 />
                 <Typography style={{padding: 8}} variant="small">Icon. Ex: x-mark, bell, question-mark-circle, etc.</Typography>
-                <Input
-                    variant="white"
-                    placeholder="Icon"
-                    value={notifications.icon}
-                    onChangeText={(icon) => setNotifications({...notifications, icon: icon})}
-                />
+                <Select
+                    variant="light"
+                    selected={notifications.icon}
+                    title="Icon"
+                    options={icons}
+                    onChange={(value) => setNotifications({...notifications, icon: value})} />
                 <Button fullWidth title="Push Notification" onPress={() => {
                     if (!notifications.title && !notifications.message) {
                         return showNotification({

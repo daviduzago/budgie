@@ -9,7 +9,6 @@
 import React from 'react'
 import {View} from 'react-native'
 import colors from "../../utils/colors"
-import IconFromPath from "./IconFromPath"
 import Svg, {Circle, Path, Defs, ClipPath, G, LinearGradient, Stop} from 'react-native-svg'
 import Clock from './color-icons/clock'
 import AppleLogo from './color-icons/apple-logo'
@@ -25,6 +24,24 @@ import EmptyCart from './color-icons/empty-cart'
 import Error from './color-icons/error'
 import Facebook from './color-icons/facebook'
 import Google from './color-icons/google'
+import Healthy from './color-icons/healthy'
+import Instagram from './color-icons/instagram'
+import MapIcon from './color-icons/map'
+import Smartphone from './color-icons/smartphone'
+import PaymentMethod from './color-icons/payment-method'
+import Order from './color-icons/order'
+import PiggyBank from './color-icons/piggy-bank'
+import BudgieLogo from './color-icons/budgie-logo'
+import Pin from './color-icons/pin'
+import RestaurantHouse from './color-icons/restaurant-house'
+import Restaurant from './color-icons/restaurant'
+import Salad from './color-icons/salad'
+import Success from './color-icons/success'
+import Tip from './color-icons/tip'
+import Twitter from './color-icons/twitter'
+import UnitedStatesFlag from './color-icons/united-state'
+import Warning from './color-icons/warning'
+import Whatsapp from './color-icons/whatsapp'
 
 const ourIcons = {
     "apple": (props) => <AppleLogo {...props} />,
@@ -50,6 +67,7 @@ const ourIcons = {
         </SvgIcon>
     ),
     "brazil-flag": (props) => (<BrazilFlag {...props} />),
+    "budgie-logo": (props) => (<BudgieLogo {...props} />),
     "cart": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -111,6 +129,13 @@ const ourIcons = {
     ),
     "facebook": (props) => (<Facebook {...props} />),
     "google": (props) => (<Google {...props} />),
+    "healthy": (props) => (<Healthy {...props} />),
+    "instagram": (props) => (<Instagram {...props} />),
+    "map": (props) => (<MapIcon {...props} />),
+    "order": (props) => (<Order {...props} />),
+    "payment-method": (props) => (<PaymentMethod {...props} />),
+    "piggy-bank": (props) => (<PiggyBank {...props} />),
+    "pin": (props) => (<Pin {...props} />),
     "plus": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path
@@ -129,6 +154,10 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "restaurant-house": (props) => (<RestaurantHouse {...props} />),
+    "restaurant": (props) => (<Restaurant {...props} />),
+    "salad": (props) => (<Salad {...props} />),
+    "smartphone": (props) => (<Smartphone {...props} />),
     "star-outlined": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -147,6 +176,8 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "success": (props) => (<Success {...props} />),
+    "tip": (props) => (<Tip {...props} />),
     "trash": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" strokeWidth={props.strokeWidth || 1.5} stroke={props.color}>
             <Path
@@ -156,6 +187,10 @@ const ourIcons = {
             />
         </SvgIcon>
     ),
+    "twitter": (props) => (<Twitter {...props} />),
+    "united-states-flag": (props) => (<UnitedStatesFlag {...props} />),
+    "warning": (props) => (<Warning {...props} />),
+    "whatsapp": (props) => (<Whatsapp {...props} />),
     "x-mark": (props) => (
         <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
             <Path

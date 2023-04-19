@@ -8,6 +8,7 @@ import colors from '../utils/colors';
 import Spacer from '../utils/Spacer';
 import AddToCartButton from './AddToCartButton';
 import LoadingLine from './LoadingLine';
+import Expandable from "./Expand"
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
 const Bullet = (props) => {
@@ -282,13 +283,49 @@ function PromoCard(props) {
     )
 }
 
+function CheckoutCard(props) {
+    const {icon, title, rightLabel, expandable, buttonTitle, children, buttonOnPress, loading} = props
+    const [expanded, setExpanded] = React.useState(false)
+    return (
+        <View style={style.containerCheckout}>
+            <View style={[style.header, {
+                borderBottomWidth:
+                    (expandable && expanded) || (!expandable && !!children) ? 1 : 0
+            }]}>
+                {!!icon && <Icon name={icon} size={24} color={colors.grayPrimary} />}
+                <Spacer />
+                {!loading && <Typography variant="medium">{title}</Typography>}
+                {loading && <LoadingLine width={60} height={23} />}
+                <View style={{flex: 1}}></View>
+                {rightLabel && <>
+                    <Typography color="gray3" variant="small">{rightLabel}</Typography>
+                    <Spacer />
+                </>}
+                {!!buttonTitle && <Button small onPress={buttonOnPress} shape="round" variant="primary" textVariant="small" title={buttonTitle} />}
+                {expandable && <Pressable onPress={() => setExpanded(!expanded)} style={{width: 24, height: 24, justifyContent: 'center', alignItems: "center", backgroundColor: colors.gray3, borderRadius: 50}}>
+                    <Icon name={expanded ? 'chevron-up' : 'chevron-down'} strokeWidth={2} size={20} color="white" />
+                </Pressable>}
+            </View>
+            {!!children && !expandable && <View style={style.body}>
+                {children}
+            </View>}
+            {!!children && expandable && expanded && <View style={style.body}>
+                <Expandable open={expanded}>
+                    {children}
+                </Expandable>
+            </View>}
+        </View>
+    )
+}
+
 function Card(props) {
-    const {option, cart, promo} = props;
+    const {option, checkout, cart, promo} = props;
     return (
         <>
             {option && <OptionCard {...props} />}
             {cart && <CartCard {...props} />}
             {promo && <PromoCard {...props} />}
+            {checkout && <CheckoutCard {...props} />}
         </>
     )
 }
@@ -321,6 +358,21 @@ const style = StyleSheet.create({
         borderColor: colors.gray2,
         flexDirection: "row",
         overflow: "hidden"
+    },
+    containerCheckout: {
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        borderWidth: 1,
+        borderColor: colors.gray2,
+    },
+    header: {
+        flexDirection: 'row',
+        padding: 12,
+        alignItems: 'center',
+        borderBottomColor: colors.gray2
+    },
+    body: {
+        padding: 12
     },
     leftSection: {
         flex: 1 / 3,

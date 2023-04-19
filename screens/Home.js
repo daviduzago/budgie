@@ -64,7 +64,7 @@ function Home({navigation}) {
     return (
         <Wrapper hasTopNav={false}>
             <View style={styles.header}>
-                <Image style={{width: 80, height: 80}} source={require("../assets/logo-300.png")} />
+                <Icon name="budgie-logo" size={80} />
             </View>
             <Spacer x={2} />
             <View style={styles.body}>
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         borderBottomRightRadius: 30,
         borderBottomLeftRadius: 30,
-        flexDirection: "row",
     },
     body: {
         flex: 1,

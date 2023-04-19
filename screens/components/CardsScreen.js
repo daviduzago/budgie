@@ -9,6 +9,7 @@ import Button from "../../components/Button";
 import {Pagination} from "react-native-snap-carousel";
 import colors from "../../utils/colors";
 import Swiper from "../../components/Swiper";
+import CheckoutCard from "../../components/CheckoutCard";
 
 const data = [
     {
@@ -70,6 +71,11 @@ export default function CardsScreen() {
                 <Spacer />
                 <View style={{flex: 1, alignItems: "center"}}></View>
                 <Swiper data={data} loading={loading} />
+                <Spacer />
+                <CheckoutCard icon="map" rightLabel="1 product" title="Delivery Address" expandable>
+                    <Typography variant="small">No address added</Typography>
+                </CheckoutCard>
+                <Spacer x={3} />
             </View>
         </Wrapper>
     );

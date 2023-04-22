@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Modal, StyleSheet, Platform, TouchableOpacity} from 'react-native'
+import {View, Modal, StyleSheet, Platform, Pressable} from 'react-native'
 import Typography from './Typography'
 import Button from './Button'
 import Spacer from '../utils/Spacer'
@@ -10,47 +10,61 @@ export default function ModalComponent(props) {
     const {
         children,
         animationType = 'fade',
-        transparent = true,
+        transparent = false,
         variant = 'light',
-        onClose
+        confirmationModal
     } = props
     const insets = useSafeAreaInsets();
     return (
         <Modal
             animationType={animationType}
-            transparent={transparent}
+            transparent={true}
             {...props}>
             <View style={[style.container, {
-                paddingBottom: insets.bottom,
+                paddingBottom: insets.bottom + 20,
                 backgroundColor: variant === 'light' ? colors.white : colors.grayPrimary
             }]}>
-                {Platform.OS === "ios" && <View style={style.closingBar}></View>}
-                {children}
+                {!confirmationModal && children}
+                {confirmationModal && (
+                    <View style={{rowGap: 12}}>
+                        <Typography variant="heading2">{confirmationModal.title}</Typography>
+                        <View style={{width: "100%", borderBottomWidth: 1, borderColor: colors.gray2}}></View>
+                        <Typography variant="body">{confirmationModal.description}</Typography>
+                        <View style={{flexDirection: "row"}}>
+                            <View style={{flex: 1}}>
+                                <Button
+                                    fullWidth
+                                    title={confirmationModal.cancelText}
+                                    variant="outlined-danger"
+                                    onPress={confirmationModal.onCancel} />
+                            </View>
+                            <Spacer x={2} />
+                            <View style={{flex: 1}}>
+                                <Button
+                                    fullWidth
+                                    title={confirmationModal.confirmText}
+                                    variant="primary"
+                                    onPress={confirmationModal.onConfirm} />
+                            </View>
+                        </View>
+                    </View>
+                )}
             </View>
-            <TouchableOpacity
+            <Pressable
                 onPress={props.onRequestClose}
-                style={style.overlay}
+                style={[style.overlay, {backgroundColor: transparent ? 'transparent' : 'rgba(0, 0, 0, 0.5)'}]}
             />
         </Modal>
     )
 }
 
 const style = StyleSheet.create({
-    closingBar: {
-        width: 50,
-        height: 6,
-        backgroundColor: colors.gray3,
-        borderRadius: 50,
-        marginBottom: 8
-    },
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         position: 'absolute',
-        paddingHorizontal: 12,
-        paddingTop: 12,
+        paddingHorizontal: 20,
+        paddingTop: 16,
         bottom: 0,
         left: 0,
         right: 0,
@@ -62,6 +76,5 @@ const style = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
 })

@@ -14,6 +14,7 @@ export default [
     "color-clock",
     "cooking",
     "coupon",
+    "currency-dollar",
     "delivery",
     "diet",
     "empty-cart",
@@ -23,10 +24,10 @@ export default [
     "google",
     "healthy",
     "instagram",
+    "map-pin",
     "map",
     "order",
     "payment-method",
-    //"piggy-bank", //FIX RGB COLOR
     "pin",
     "plus",
     "question-mark-circle",
@@ -41,7 +42,9 @@ export default [
     "trash",
     "twitter",
     "united-states-flag",
+    "users",
     "warning",
     "whatsapp",
     "x-mark",
+    //"piggy-bank", //FIX RGB COLOR
 ]

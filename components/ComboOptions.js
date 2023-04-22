@@ -35,7 +35,7 @@ function ComboOptions(props) {
             </Pressable>
             <Expand open={open}>
                 {items.map((item, index) => {
-                    return <Pressable onPress={() => {setSelection(item.id)}}>
+                    return <Pressable key={item.id} onPress={() => {setSelection(item.id)}}>
                         <RadioSelect item={item} checked={selection === item.id} />
                     </Pressable>
                 })}

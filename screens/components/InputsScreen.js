@@ -3,6 +3,7 @@ import Wrapper from "../../components/ui/wrapper";
 import Spacer from "../../utils/Spacer"
 import Input from "../../components/Input"
 import InputAbs from "../../components/InputAbs"
+import OtpInput from "../../components/OtpInput";
 
 function InputsScreen() {
     return (
@@ -21,6 +22,8 @@ function InputsScreen() {
                 <InputAbs disabled error="Error" placeholder="Filled (Disabled)" />
                 <Spacer />
                 <InputAbs error="Error" placeholder="Ex: This or that" />
+                <Spacer />
+                <OtpInput />
             </View>
         </Wrapper>
     );

@@ -15,7 +15,6 @@
             "**/*"
         ],
         "ios": {
-            "useFrameworks": "static",
             "supportsTablet": true,
             "googleServicesFile": "./GoogleService-Info.plist"
         },
@@ -27,14 +26,23 @@
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
-            }
+            },
+            "package": "com.daviduzago.budgie"
         },
         "web": {
             "favicon": "./assets/favicon.png"
         },
         "plugins": [
             "@react-native-firebase/app",
-            "@react-native-firebase/auth"
+            "@react-native-firebase/auth",
+            [
+                "expo-build-properties",
+                {
+                    "ios": {
+                        "useFrameworks": "static"
+                    }
+                }
+            ]
         ]
     }
 }

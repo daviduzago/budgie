@@ -59,6 +59,10 @@ const COMPONENTS = [
         name: "Icons",
         route: ROUTES.ICONS,
     },
+    {
+        name: "Auth",
+        route: ROUTES.AUTH,
+    },
 ]
 
 function Home({navigation}) {

@@ -13,6 +13,8 @@ function InputsScreen() {
                 <Spacer />
                 <Input help icon={"bell"} placeholder={"Gray with Icons"} variant="gray" />
                 <Spacer />
+                <OtpInput />
+                <Spacer x={2} />
                 <Input help placeholder={"White"} variant="white" />
                 <Spacer />
                 <Input outlined help placeholder={"White Outlined"} variant="white" />
@@ -22,8 +24,6 @@ function InputsScreen() {
                 <InputAbs disabled error="Error" placeholder="Filled (Disabled)" />
                 <Spacer />
                 <InputAbs error="Error" placeholder="Ex: This or that" />
-                <Spacer />
-                <OtpInput />
             </View>
         </Wrapper>
     );

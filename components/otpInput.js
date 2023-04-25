@@ -36,7 +36,10 @@ export default function OtpInput(props) {
         if (digit1.length > 0) digit2Ref.current.focus();
         if (digit2.length > 0) digit3Ref.current.focus();
         if (digit3.length > 0) digit4Ref.current.focus();
-        if (digit4.length > 0) digit4Ref.current.blur();
+        if (digit4.length > 0) {
+            digit4Ref.current.blur()
+            props.otpCode(digit1 + digit2 + digit3 + digit4);
+        }
     }, [digit1, digit2, digit3, digit4]);
 
     return (
@@ -126,9 +129,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     input: {
-        fontSize: 48,
+        fontSize: 32,
         fontWeight: "500",
         letterSpacing: -0.5,
-        fontFamily: "Lato Bold",
+        fontFamily: "Lato Regular",
     },
 });

@@ -3,8 +3,10 @@ import * as SplashScreen from "expo-splash-screen"
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
+import {Provider} from "react-redux";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {StatusBar} from "expo-status-bar";
+import {store} from "./store/index"
 import {useFonts} from "expo-font"
 
 
@@ -48,34 +50,36 @@ export default function App() {
     }
 
     return (
-        <SafeAreaProvider onLayout={onLayoutRootView}>
-            <NavigationContainer>
-                <Stack.Navigator initialRouteName="Home">
-                    <Stack.Screen
-                        name="Home"
-                        component={Home}
-                        options={{
-                            headerShown: false,
-                        }}
-                    />
-                    <Stack.Screen name="Typography" component={TypographyScreen} />
-                    <Stack.Screen name="Buttons" component={ButtonsScreen} />
-                    <Stack.Screen name="Inputs" component={InputsScreen} />
-                    <Stack.Screen name="Notifications" component={NotificationsScreen} />
-                    <Stack.Screen name="Select" component={SelectScreen} />
-                    <Stack.Screen name="Expand" component={ExpandScreen} />
-                    <Stack.Screen name="Modals" component={ModalsScreen} />
-                    <Stack.Screen name="Loading" component={LoadingScreen} />
-                    <Stack.Screen name="Checkboxes" component={CheckboxesScreen} />
-                    <Stack.Screen name="Cards" component={CardsScreen} />
-                    <Stack.Screen name="CartIcon" component={CartIconScreen} />
-                    <Stack.Screen name="Icons" component={IconScreen} />
-                </Stack.Navigator>
-            </NavigationContainer>
-            <StatusBar style="auto" />
-            <BudgieNotification isAdditional />
-            <ModalHandler />
-        </SafeAreaProvider>
+        <Provider store={store}>
+            <SafeAreaProvider onLayout={onLayoutRootView}>
+                <NavigationContainer>
+                    <Stack.Navigator initialRouteName="Home">
+                        <Stack.Screen
+                            name="Home"
+                            component={Home}
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                        <Stack.Screen name="Typography" component={TypographyScreen} />
+                        <Stack.Screen name="Buttons" component={ButtonsScreen} />
+                        <Stack.Screen name="Inputs" component={InputsScreen} />
+                        <Stack.Screen name="Notifications" component={NotificationsScreen} />
+                        <Stack.Screen name="Select" component={SelectScreen} />
+                        <Stack.Screen name="Expand" component={ExpandScreen} />
+                        <Stack.Screen name="Modals" component={ModalsScreen} />
+                        <Stack.Screen name="Loading" component={LoadingScreen} />
+                        <Stack.Screen name="Checkboxes" component={CheckboxesScreen} />
+                        <Stack.Screen name="Cards" component={CardsScreen} />
+                        <Stack.Screen name="CartIcon" component={CartIconScreen} />
+                        <Stack.Screen name="Icons" component={IconScreen} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+                <StatusBar style="auto" />
+                <BudgieNotification isAdditional />
+                <ModalHandler />
+            </SafeAreaProvider>
+        </Provider>
     );
 }
 

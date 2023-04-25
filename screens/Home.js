@@ -8,6 +8,7 @@ import Wrapper from "../components/ui/wrapper";
 import Button from "../components/Button";
 import React from "react";
 import Icon from "../components/Icon/Index";
+import {useSelector} from "react-redux";
 
 const COMPONENTS = [
     {
@@ -61,6 +62,7 @@ const COMPONENTS = [
 ]
 
 function Home({navigation}) {
+    const counter = useSelector(state => state.counter.value);
     return (
         <Wrapper hasTopNav={false}>
             <View style={styles.header}>
@@ -80,6 +82,8 @@ function Home({navigation}) {
                         onPress={() => navigation.navigate(component.route)}
                     />))}
             </View>
+            <Spacer x={2} />
+            <Typography>Cart items: {counter}</Typography>
         </Wrapper>
     );
 }

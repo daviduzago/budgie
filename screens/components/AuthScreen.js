@@ -7,7 +7,6 @@ import Button from "../../components/Button"
 import Input from "../../components/Input"
 import colors from "../../utils/colors";
 import OtpInput from "../../components/otpInput"
-import auth from '@react-native-firebase/auth';
 
 function AuthScreen() {
     const [phoneNumber, setPhoneNumber] = React.useState('');
@@ -17,11 +16,6 @@ function AuthScreen() {
     const [newUser, setNewUser] = React.useState({});
     const [code, setCode] = React.useState('');
 
-    // Handle the button press
-    async function signInWithPhoneNumber(phoneNumber) {
-        const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
-        setConfirm(confirmation);
-    }
 
     React.useEffect(() => {
         if (registered) {
@@ -35,11 +29,6 @@ function AuthScreen() {
             }
         }
     }, [phoneNumber, registered]);
-
-    React.useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; // unsubscribe on unmount
-    }, []);
 
     return (
         <Wrapper hasTopNav>

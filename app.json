@@ -15,7 +15,6 @@
             "**/*"
         ],
         "ios": {
-            "useFrameworks": "static",
             "supportsTablet": true,
             "googleServicesFile": "./GoogleService-Info.plist"
         },
@@ -32,9 +31,6 @@
         "web": {
             "favicon": "./assets/favicon.png"
         },
-        "plugins": [
-            "@react-native-firebase/app",
-            "@react-native-firebase/auth"
-        ]
+        "plugins": []
     }
 }

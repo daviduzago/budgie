@@ -1,5 +1,6 @@
 import {initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
+
+import {initializeAuth, reactNativeLocalPersistence} from "firebase/auth"
 
 const firebaseConfig = {
     apiKey: "AIzaSyDp6uYZcP156xVW5mpjvbgFLTSINw8k6T8",
@@ -12,4 +13,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+initializeAuth(app, {
+    persistence: reactNativeLocalPersistence,
+})
+

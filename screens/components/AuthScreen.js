@@ -7,15 +7,16 @@ import Button from "../../components/Button"
 import Input from "../../components/Input"
 import colors from "../../utils/colors";
 import OtpInput from "../../components/otpInput"
+import {auth} from "../../firebase";
+import {GoogleAuthProvider, signInWithRedirect} from "firebase/auth";
 
 function AuthScreen() {
     const [phoneNumber, setPhoneNumber] = React.useState('');
-    const [confirmation, setConfirm] = React.useState(null);
+    const [confirmation, setConfirmation] = React.useState(null);
     const [registered, setRegistered] = React.useState(true);
     const [disabled, setDisabled] = React.useState(true);
     const [newUser, setNewUser] = React.useState({});
     const [code, setCode] = React.useState('');
-
 
     React.useEffect(() => {
         if (registered) {
@@ -30,31 +31,38 @@ function AuthScreen() {
         }
     }, [phoneNumber, registered]);
 
+    const signInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        await signInWithRedirect(auth, provider);
+    }
+
     return (
         <Wrapper hasTopNav>
-            {!confirmation ? (<View style={{flex: 1, padding: 20, width: "100%", alignItems: "center"}}>
-                <Typography variant={"heading2"}>Enter Code</Typography>
-                <Spacer x={2} />
-                <Typography variant={"body"}>{phoneNumber}</Typography>
-                <Spacer x={2} />
-                <OtpInput otpCode={(code) => setCode(code)} />
-                <Spacer x={2} />
-                <Button fullWidth variant="primary" title="Verify" />
-                <Spacer x={3} />
-                <View style={{flexDirection: "row"}}>
-                    <Typography variant={"body"} color={colors.gray3}>This is not your phone number?</Typography>
-                    <Spacer />
-                    <Pressable onPress={() => setSmsSent(false)}>
-                        <Typography variant={"body"} color={colors.grayPrimary}>Change number</Typography>
-                    </Pressable>
+            {confirmation ? (
+                <View style={{flex: 1, padding: 20, width: "100%", alignItems: "center"}}>
+                    <Typography variant={"heading2"}>Enter Code</Typography>
+                    <Spacer x={2} />
+                    <Typography variant={"body"}>{phoneNumber}</Typography>
+                    <Spacer x={2} />
+                    <OtpInput otpCode={(code) => setCode(code)} />
+                    <Spacer x={2} />
+                    <Button fullWidth variant="primary" title="Verify" />
+                    <Spacer x={3} />
+                    <View style={{flexDirection: "row"}}>
+                        <Typography variant={"body"} color={colors.gray3}>This is not your phone number?</Typography>
+                        <Spacer />
+                        <Pressable onPress={() => setConfirmation(null)}>
+                            <Typography variant={"body"} color={colors.grayPrimary}>Change number</Typography>
+                        </Pressable>
+                    </View>
                 </View>
-            </View>) : registered ? (
+            ) : registered ? (
                 /* REGISTERED */
                 <View style={{flex: 1, padding: 20, width: '100%', alignItems: "center"}}>
                     <Typography variant={"heading2"}>Auth</Typography>
                     <Spacer />
                     <View style={{width: 250}}>
-                        <Button fullWidth variant="primary" title="Goggle" iconLeft="google" />
+                            <Button fullWidth variant="primary" title="Goggle" iconLeft="google" onPress={signInWithGoogle} />
                     </View>
                     <Spacer />
                     <View style={{width: 250}}>
@@ -80,9 +88,9 @@ function AuthScreen() {
                             <Button fullWidth disabled={disabled} variant="primary" title="Whatsapp" />
                         </View>
                         <Spacer />
-                        <View style={{flex: 1}}>
+                            <Pressable id="sign-in-button" style={{flex: 1}}>
                             <Button fullWidth disabled={disabled} variant="primary" title="SMS" />
-                        </View>
+                            </Pressable>
                     </View>
                     <Spacer />
                     <View style={{flexDirection: "row"}}>

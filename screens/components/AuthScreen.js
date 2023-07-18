@@ -1,5 +1,6 @@
 import React from "react";
 import {Pressable, View} from "react-native";
+import {showNotification} from "../../components/Notification";
 import Typography from "../../components/Typography";
 import Wrapper from "../../components/ui/wrapper";
 import Spacer from "../../utils/Spacer"
@@ -7,8 +8,9 @@ import Button from "../../components/Button"
 import Input from "../../components/Input"
 import colors from "../../utils/colors";
 import OtpInput from "../../components/otpInput"
-import {auth} from "../../firebase";
-import {GoogleAuthProvider, signInWithRedirect} from "firebase/auth";
+
+import {createUserWithEmailAndPassword} from "firebase/auth";
+import {FIREBASE_AUTH} from "../../firebase";
 
 function AuthScreen() {
     const [phoneNumber, setPhoneNumber] = React.useState('');
@@ -25,15 +27,40 @@ function AuthScreen() {
             }
         }
         if (!registered) {
-            if (newUser.firstName && newUser.lastName && newUser.email && newUser.phoneNumber) {
+            if (newUser.email && newUser.phoneNumber) {
                 setDisabled(false);
             }
         }
-    }, [phoneNumber, registered]);
+    }, [newUser, phoneNumber, registered]);
 
-    const signInWithGoogle = async () => {
-        const provider = new GoogleAuthProvider();
-        await signInWithRedirect(auth, provider);
+    const auth = FIREBASE_AUTH;
+
+    const handleRegister = () => {
+        createUserWithEmailAndPassword(auth, newUser.email, newUser.phoneNumber)
+            .then((userCredential) => {
+                // User created
+                showNotification({
+                    type: "success",
+                    title: "Hurrah!",
+                    message: "User created successfully",
+                    icon: "success",
+                    hasCloseButton: false
+                })
+            })
+            .catch((error) => {
+                if (error.code === "auth/email-already-in-use") {
+                    // Sign in existing user
+                    showNotification({
+                        type: "error",
+                        title: "Whoopsie!",
+                        message: "User already exists",
+                        icon: "error",
+                        hasCloseButton: false
+                    })
+                } else {
+                    alert(error.message);
+                }
+            });
     }
 
     return (
@@ -62,7 +89,7 @@ function AuthScreen() {
                     <Typography variant={"heading2"}>Auth</Typography>
                     <Spacer />
                     <View style={{width: 250}}>
-                            <Button fullWidth variant="primary" title="Goggle" iconLeft="google" onPress={signInWithGoogle} />
+                            <Button fullWidth variant="primary" title="Goggle" iconLeft="google" onPress={() => { }} />
                     </View>
                     <Spacer />
                     <View style={{width: 250}}>
@@ -85,11 +112,11 @@ function AuthScreen() {
                     <Spacer />
                     <View style={{flexDirection: "row"}}>
                         <View style={{flex: 1}}>
-                            <Button fullWidth disabled={disabled} variant="primary" title="Whatsapp" />
+                                <Button fullWidth disabled={disabled} variant="primary" title="Whatsapp" />
                         </View>
                         <Spacer />
                             <Pressable id="sign-in-button" style={{flex: 1}}>
-                            <Button fullWidth disabled={disabled} variant="primary" title="SMS" />
+                                <Button fullWidth disabled={disabled} variant="primary" title="SMS" />
                             </Pressable>
                     </View>
                     <Spacer />
@@ -144,7 +171,7 @@ function AuthScreen() {
                     <Spacer />
                     <View style={{flexDirection: "row"}}>
                         <View style={{flex: 1}}>
-                            <Button fullWidth disabled={disabled} variant="primary" title="Whatsapp" />
+                                    <Button onPress={handleRegister} fullWidth disabled={disabled} variant="primary" title="Whatsapp" />
                         </View>
                         <Spacer />
                         <View style={{flex: 1}}>

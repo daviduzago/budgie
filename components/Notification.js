@@ -21,7 +21,7 @@ import {useSafeAreaInsets} from "react-native-safe-area-context";
 let queue = {}
 const listeners = new Set()
 
-export function showNotification({type, title, message, icon, timeout = 2500}) {
+export function showNotification({type, title, message, icon, timeout = 2500, hasCloseButton = true}) {
     listeners.forEach((listener) => {
         listener({
             type,
@@ -29,6 +29,7 @@ export function showNotification({type, title, message, icon, timeout = 2500}) {
             message,
             icon,
             timeout,
+            hasCloseButton
         })
     })
     return true
@@ -77,7 +78,7 @@ function NotificationCard(item) {
                     }}>
                     {/*  TODO: Add functionality to close the notification */}
                     <View style={{position: "absolute", right: 8, top: 8}}>
-                        <Icon color="gray3" name="x-mark" />
+                        {item.hasCloseButton && <Icon color="gray3" name="x-mark" />}
                     </View>
                     <View style={{flexDirection: 'row'}}>
                         <Icon

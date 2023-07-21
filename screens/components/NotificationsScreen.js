@@ -40,6 +40,7 @@ function NotificationScreen() {
                     title="Icon"
                     options={icons}
                     onChange={(value) => setNotifications({...notifications, icon: value})} />
+                <Spacer x={2} />
                 <Button fullWidth title="Push Notification" onPress={() => {
                     if (!notifications.title && !notifications.message) {
                         return showNotification({

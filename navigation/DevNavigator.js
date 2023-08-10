@@ -8,7 +8,7 @@ import CartIconScreen from "../screens/components/CartIconScreen";
 import CheckboxesScreen from "../screens/components/CheckboxesScreen";
 import Components from "../screens/Components";
 import ExpandableScreen from "../screens/components/ExpandScreen";
-import Home from "../screens/Home";
+import DevHome from "../screens/DevHome";
 import Icon from "../components/Icon/Index";
 import IconScreen from "../screens/components/IconScreen";
 import InputsScreen from "../screens/components/InputsScreen";
@@ -19,16 +19,17 @@ import React from "react";
 import SelectScreen from "../screens/components/SelectScreen";
 import TypographyScreen from "../screens/components/TypographyScreen";
 import Screens from "../screens/Screens";
+import Home from "../screens/Home";
 
 const Stack = createNativeStackNavigator();
 
 export default function DevNavigator() {
     return (
-        <Stack.Navigator initialRouteName="Home" screenOptions={{
+        <Stack.Navigator initialRouteName="DevHome" screenOptions={{
         }}>
             <Stack.Screen
-                name="Home"
-                component={Home}
+                name="DevHome"
+                component={DevHome}
                 options={{
                     headerTitle: () => {
                         return (
@@ -57,6 +58,7 @@ export default function DevNavigator() {
             <Stack.Screen name="Icons" component={IconScreen} />
             <Stack.Screen name="Auth" component={AuthScreen} />
 
+            <Stack.Screen name="Home" component={Home} />
         </Stack.Navigator>
     );
 }

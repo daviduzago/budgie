@@ -1,35 +1,40 @@
-
+import {useSelector} from "react-redux";
 import {View, StyleSheet} from "react-native";
 import Button from "../components/Button";
 import colors from "../utils/colors";
 import React from "react";
 import ROUTES from "../utils/ROUTES";
+import Spacer from "../utils/Spacer";
+import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
 
-const SCREENS = [
-    {
-        name: "Home",
-        route: ROUTES.HOME,
-    },
-]
-
-function Screens({navigation}) {
+function DevHome({navigation}) {
+    const counter = useSelector(state => state.counter.value);
     return (
         <Wrapper hasTopNav>
             <View style={styles.body}>
-                {SCREENS.map((component, index) => (
+                <View style={{width: "100%"}}>
+                    <Spacer />
                     <Button
                         variant={"outlined"}
-                        key={index}
-                        title={component.name}
-                        onPress={() => navigation.navigate(component.route)}
-                    />))}
+                        title="Components"
+                        onPress={() => navigation.navigate(ROUTES.COMPONENTS)}
+                    />
+                    <Spacer />
+                    <Button
+                        variant={"outlined"}
+                        title="Screens"
+                        onPress={() => navigation.navigate(ROUTES.SCREENS)}
+                    />
+                </View>
             </View>
+            <Spacer x={2} />
+            <Typography>Cart items: {counter}</Typography>
         </Wrapper>
     );
 }
 
-export default Screens;
+export default DevHome;
 
 const styles = StyleSheet.create({
     header: {
@@ -42,7 +47,6 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
-        paddingVertical: 10,
         paddingHorizontal: 20,
         flexDirection: "row",
         flexWrap: "wrap",

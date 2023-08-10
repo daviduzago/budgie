@@ -5,6 +5,7 @@ export default {
     CARTICON: "CartIcon",
     CHECKBOXES: "Checkboxes",
     COMPONENTS: "Components",
+    DEVHOME: "DevHome",
     EXPAND: "Expand",
     HOME: "Home",
     ICONS: "Icons",

@@ -1,21 +1,17 @@
-import React from "react";
-import * as SplashScreen from "expo-splash-screen"
-
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
 import {Provider} from "react-redux";
 import {SafeAreaProvider} from "react-native-safe-area-context";
 import {StatusBar} from "expo-status-bar";
 import {store} from "./store/index"
 import {useFonts} from "expo-font"
+import * as SplashScreen from "expo-splash-screen"
 import BudgieNotification from "./components/Notification";
-import ModalHandler from "./components/modal/ModalHandler";
 import DevNavigator from "./navigation/DevNavigator";
+import ModalHandler from "./components/modal/ModalHandler";
+import React from "react";
 
 
 SplashScreen.preventAutoHideAsync()
-
-const Stack = createNativeStackNavigator();
 
 export default function App() {
     const [fontsLoaded] = useFonts({

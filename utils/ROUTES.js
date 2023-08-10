@@ -4,6 +4,7 @@ export default {
     CARDS: "Cards",
     CARTICON: "CartIcon",
     CHECKBOXES: "Checkboxes",
+    COMPONENTS: "Components",
     EXPAND: "Expand",
     HOME: "Home",
     ICONS: "Icons",
@@ -11,6 +12,7 @@ export default {
     LOADING: "Loading",
     MODALS: "Modals",
     NOTIFICATIONS: "Notifications",
+    SCREENS: "Screens",
     SELECT: "Select",
     TYPOGRAPHY: "Typography",
 }

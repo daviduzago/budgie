@@ -8,26 +8,10 @@ import {SafeAreaProvider} from "react-native-safe-area-context";
 import {StatusBar} from "expo-status-bar";
 import {store} from "./store/index"
 import {useFonts} from "expo-font"
-
-
 import BudgieNotification from "./components/Notification";
 import ModalHandler from "./components/modal/ModalHandler";
+import DevNavigator from "./navigation/DevNavigator";
 
-
-import AuthScreen from "./screens/components/AuthScreen"
-import ButtonsScreen from "./screens/components/ButtonsScreen";
-import CardsScreen from "./screens/components/CardsScreen";
-import CartIconScreen from "./screens/components/CartIconScreen";
-import CheckboxesScreen from "./screens/components/CheckboxesScreen";
-import ExpandScreen from "./screens/components/ExpandScreen";
-import Home from "./screens/Home";
-import IconScreen from "./screens/components/IconScreen";
-import InputsScreen from "./screens/components/InputsScreen";
-import LoadingScreen from "./screens/components/LoadingScreen"
-import ModalsScreen from "./screens/components/ModalsScreen"
-import NotificationsScreen from "./screens/components/NotificationsScreen";
-import SelectScreen from "./screens/components/SelectScreen"
-import TypographyScreen from "./screens/components/TypographyScreen";
 
 SplashScreen.preventAutoHideAsync()
 
@@ -54,28 +38,7 @@ export default function App() {
         <Provider store={store}>
             <SafeAreaProvider onLayout={onLayoutRootView}>
                 <NavigationContainer>
-                    <Stack.Navigator initialRouteName="Home">
-                        <Stack.Screen
-                            name="Home"
-                            component={Home}
-                            options={{
-                                headerShown: false,
-                            }}
-                        />
-                        <Stack.Screen name="Typography" component={TypographyScreen} />
-                        <Stack.Screen name="Buttons" component={ButtonsScreen} />
-                        <Stack.Screen name="Inputs" component={InputsScreen} />
-                        <Stack.Screen name="Notifications" component={NotificationsScreen} />
-                        <Stack.Screen name="Select" component={SelectScreen} />
-                        <Stack.Screen name="Expand" component={ExpandScreen} />
-                        <Stack.Screen name="Modals" component={ModalsScreen} />
-                        <Stack.Screen name="Loading" component={LoadingScreen} />
-                        <Stack.Screen name="Checkboxes" component={CheckboxesScreen} />
-                        <Stack.Screen name="Cards" component={CardsScreen} />
-                        <Stack.Screen name="CartIcon" component={CartIconScreen} />
-                        <Stack.Screen name="Icons" component={IconScreen} />
-                        <Stack.Screen name="Auth" component={AuthScreen} />
-                    </Stack.Navigator>
+                    <DevNavigator />
                 </NavigationContainer>
                 <StatusBar style="auto" />
                 <BudgieNotification isAdditional />

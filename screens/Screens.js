@@ -1,64 +1,12 @@
-import {View, StyleSheet, Image} from "react-native";
 
-import colors from "../utils/colors";
-import ROUTES from "../utils/ROUTES";
-import Spacer from "../utils/Spacer";
-import Typography from "../components/Typography";
-import Wrapper from "../components/ui/wrapper";
+import {View, StyleSheet} from "react-native";
 import Button from "../components/Button";
+import colors from "../utils/colors";
 import React from "react";
-import Icon from "../components/Icon/Index";
-import {useSelector} from "react-redux";
+import ROUTES from "../utils/ROUTES";
+import Wrapper from "../components/ui/wrapper";
 
-const COMPONENTS = [
-    {
-        name: "Typography",
-        route: ROUTES.TYPOGRAPHY,
-    },
-    {
-        name: "Buttons",
-        route: ROUTES.BUTTONS,
-    },
-    {
-        name: "Inputs",
-        route: ROUTES.INPUTS,
-    },
-    {
-        name: "Notifications",
-        route: ROUTES.NOTIFICATIONS,
-    },
-    {
-        name: "Select",
-        route: ROUTES.SELECT,
-    },
-    {
-        name: "Expandables",
-        route: ROUTES.EXPAND,
-    },
-    {
-        name: "Modals",
-        route: ROUTES.MODALS,
-    },
-    {
-        name: "Loading",
-        route: ROUTES.LOADING,
-    },
-    {
-        name: "Checkboxes",
-        route: ROUTES.CHECKBOXES,
-    },
-    {
-        name: "Cards",
-        route: ROUTES.CARDS,
-    },
-    {
-        name: "Cart Icon",
-        route: ROUTES.CARTICON,
-    },
-    {
-        name: "Icons",
-        route: ROUTES.ICONS,
-    },
+const SCREENS = [
     {
         name: "Auth",
         route: ROUTES.AUTH,
@@ -66,15 +14,10 @@ const COMPONENTS = [
 ]
 
 function Screens({navigation}) {
-    const counter = useSelector(state => state.counter.value);
     return (
         <Wrapper hasTopNav>
             <View style={styles.body}>
-                <View style={{width: "100%"}}>
-                    <Typography variant={"heading1"}>Screens</Typography>
-                    <Spacer />
-                </View>
-                {COMPONENTS.map((component, index) => (
+                {SCREENS.map((component, index) => (
                     <Button
                         variant={"outlined"}
                         key={index}
@@ -82,8 +25,6 @@ function Screens({navigation}) {
                         onPress={() => navigation.navigate(component.route)}
                     />))}
             </View>
-            <Spacer x={2} />
-            <Typography>Cart items: {counter}</Typography>
         </Wrapper>
     );
 }
@@ -101,6 +42,7 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 1,
+        paddingVertical: 10,
         paddingHorizontal: 20,
         flexDirection: "row",
         flexWrap: "wrap",

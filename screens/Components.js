@@ -1,11 +1,9 @@
 import {View, StyleSheet} from "react-native";
-import colors from "../utils/colors";
-import ROUTES from "../utils/ROUTES";
-import Spacer from "../utils/Spacer";
-import Typography from "../components/Typography";
-import Wrapper from "../components/ui/wrapper";
 import Button from "../components/Button";
+import colors from "../utils/colors";
 import React from "react";
+import ROUTES from "../utils/ROUTES";
+import Wrapper from "../components/ui/wrapper";
 
 const COMPONENTS = [
     {

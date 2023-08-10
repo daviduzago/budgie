@@ -1,14 +1,12 @@
-import {View, StyleSheet, Image} from "react-native";
-
+import {useSelector} from "react-redux";
+import {View, StyleSheet} from "react-native";
+import Button from "../components/Button";
 import colors from "../utils/colors";
+import React from "react";
 import ROUTES from "../utils/ROUTES";
 import Spacer from "../utils/Spacer";
 import Typography from "../components/Typography";
 import Wrapper from "../components/ui/wrapper";
-import Button from "../components/Button";
-import React from "react";
-import Icon from "../components/Icon/Index";
-import {useSelector} from "react-redux";
 
 function Home({navigation}) {
     const counter = useSelector(state => state.counter.value);

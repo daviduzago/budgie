@@ -76,8 +76,8 @@ export default function Input(props) {
                 />
                 {help && <Icon name={"bell"} color={color || colors.gray3} />}
             </View>
-            <Spacer />
             <Typography style={{marginLeft: 8}} error variant="small">{error || " "}</Typography>
+            <Spacer x={0.5} />
         </View>
     )
 }

@@ -5,7 +5,7 @@ import colors from "../../utils/colors"
 
 const Wrapper = (props) => {
     const insets = useSafeAreaInsets();
-    const {children, hasTopNav, dark, centered} = props;
+    const {children, hasTopNav, dark, centered, scrollEnabled} = props;
     return (
         <View
             style={styles.container}
@@ -13,6 +13,7 @@ const Wrapper = (props) => {
             <ScrollView
                 style={{flex: 1}}
                 bounces={false}
+                scrollEnabled={scrollEnabled}
                 contentContainerStyle={[styles.scrollView, {
                     paddingTop: hasTopNav ? 0 : insets.top,
                     backgroundColor: dark ? colors.grayPrimary : colors.grayBg,

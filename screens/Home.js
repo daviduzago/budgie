@@ -39,7 +39,7 @@ function Home() {
     const insets = useSafeAreaInsets();
     return (
         /* TODO: Remove wrapper here */
-        <Wrapper hasTopNav>
+        <Wrapper hasTopNav scrollEnabled={false}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "position" : null} style={{flex: 1}}>
                 <ImageBackground
                     imageStyle={{resizeMode: "cover", height: Dimensions.get("window").width, position: 'absolute', top: 0, opacity: 0.8}}

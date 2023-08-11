@@ -357,7 +357,8 @@ const style = StyleSheet.create({
         borderWidth: 2,
         borderColor: colors.gray2,
         flexDirection: "row",
-        overflow: "hidden"
+        overflow: "hidden",
+        backgroundColor: colors.gray2
     },
     containerCheckout: {
         backgroundColor: colors.white,

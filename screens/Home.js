@@ -36,7 +36,35 @@ const SWIPER_DATA = [
 
 
 function Home() {
+    const [budget, setBudget] = React.useState(null);
     const insets = useSafeAreaInsets();
+
+    const formatCurrency = (val) => {
+        // Remove all non-digit characters
+        const onlyDigits = val.replace(/\D+/g, '');
+
+        // Convert to a number and then back to string, formatted
+        const number = parseFloat(onlyDigits) / 100;
+        const formatter = new Intl.NumberFormat('en-US', {
+            style: 'decimal',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+        });
+
+        // Customize format to use "." for thousand separator and "," for decimal
+        const formatted = formatter.format(number).replace(/,/g, '.').replace(/\./, ',');
+
+        return formatted;
+    };
+
+    const handleBudgetChange = (val) => {
+        setBudget(formatCurrency(val));
+    }
+
+    const handleSearch = () => {
+        console.log("Search");
+    }
+
     return (
         /* TODO: Remove wrapper here */
         <Wrapper hasTopNav scrollEnabled={false}>
@@ -46,7 +74,7 @@ function Home() {
                     source={require('../assets/map-background.png')}
                     style={styles.container}>
                     <View style={styles.header}>
-                        <Image source={{uri: "https://i.pravatar.cc/60"}} style={{width: 60, height: 60, borderRadius: 30}} />
+                        <Image source={{uri: "https://i.pravatar.cc/60"}} style={{width: 60, height: 60, borderRadius: 30, backgroundColor: colors.gray2}} />
                         <View style={{paddingLeft: 10, justifyContent: "center"}}>
                             <Typography normal variant="medium">Hi, John</Typography>
                             <Typography color="gray3">Lets get your order ready!</Typography>
@@ -58,16 +86,22 @@ function Home() {
                     <View style={[styles.order, {paddingBottom: insets.bottom + 20}]}>
                         <View style={{alignItems: "center"}}>
                             <Typography color="white" variant="heading1">Start your order</Typography>
-                            <Spacer x={2} />
+                            <Spacer />
                             <Typography body light color="white">Welcome! Let's get your feast started. Choose your budget, number of people, and location to find the perfect meal for your appetite and wallet. Bon appétit!</Typography>
                             <Spacer x={2} />
-                            <Input icon={"currency-dollar"} placeholder={"$15.00"} variant="gray" />
+                            <Input
+                                value={budget}
+                                onChangeText={handleBudgetChange}
+                                keyboardType={"number-pad"}
+                                icon={"currency-dollar"}
+                                placeholder={"Your budget"}
+                                variant="gray" />
                             <Input icon={"users"} placeholder={"1 person"} variant="gray" />
                             <Input icon={"map-pin"} placeholder={"Home"} variant="gray" />
                             <View style={{width: 200}}>
-                                <Button fullWidth title="Search" variant="secondary" />
+                                <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />
                             </View>
-                            <Spacer />
+                            <Spacer x={2} />
                             <Typography style={{textAlign: "center"}} variant="extraSmall" color="white">Delivery fees are included in the final price of each option. Available choices may be limited based on your location and budget. Thank you for your understanding!</Typography>
                         </View>
                     </View>

@@ -98,33 +98,33 @@ function Home() {
                     setPickerVisible(false)
                     if (user?.locations?.length > 0) setLocationModalVisible(false)
                 }}>
-                <ImageBackground
-                    imageStyle={{resizeMode: "cover", height: Dimensions.get("window").width, position: 'absolute', top: 0, opacity: 0.8}}
-                    source={require('../assets/map-background.png')}
-                    style={styles.container}>
-                    <View style={styles.header}>
+                    <ImageBackground
+                        imageStyle={{resizeMode: "cover", height: Dimensions.get("window").width, position: 'absolute', top: 0, opacity: 0.8}}
+                        source={require('../assets/map-background.png')}
+                        style={styles.container}>
+                        <View style={styles.header}>
                             <Image source={{uri: user.avatar}} style={{width: 60, height: 60, borderRadius: 30, backgroundColor: colors.gray2}} />
-                        <View style={{paddingLeft: 10, justifyContent: "center"}}>
+                            <View style={{paddingLeft: 10, justifyContent: "center"}}>
                                 <Typography normal variant="medium">Hi, {user?.name}</Typography>
-                            <Typography color="gray3">Lets get your order ready!</Typography>
+                                <Typography color="gray3">Lets get your order ready!</Typography>
+                            </View>
                         </View>
-                    </View>
-                    <View style={{width: "100%", paddingLeft: 20}}>
-                        <Swiper data={SWIPER_DATA} loading={false} />
-                    </View>
-                    <View style={[styles.order, {paddingBottom: insets.bottom + 20}]}>
-                        <View style={{alignItems: "center"}}>
-                            <Typography color="white" variant="heading1">Start your order</Typography>
-                            <Spacer />
-                            <Typography body light color="white">Welcome! Let's get your feast started. Choose your budget, number of people, and location to find the perfect meal for your appetite and wallet. Bon appétit!</Typography>
-                            <Spacer x={2} />
-                            <Input
-                                value={budget}
-                                onChangeText={handleBudgetChange}
-                                keyboardType={"number-pad"}
-                                icon={"currency-dollar"}
-                                placeholder={"Your budget"}
-                                variant="gray" />
+                        <View style={{width: "100%", paddingLeft: 20}}>
+                            <Swiper data={SWIPER_DATA} loading={false} />
+                        </View>
+                        <View style={[styles.order, {paddingBottom: insets.bottom + 20}]}>
+                            <View style={{alignItems: "center"}}>
+                                <Typography color="white" variant="heading1">Start your order</Typography>
+                                <Spacer />
+                                <Typography body light color="white">Welcome! Let's get your feast started. Choose your budget, number of people, and location to find the perfect meal for your appetite and wallet. Bon appétit!</Typography>
+                                <Spacer x={2} />
+                                <Input
+                                    value={budget}
+                                    onChangeText={handleBudgetChange}
+                                    keyboardType={"number-pad"}
+                                    icon={"currency-dollar"}
+                                    placeholder={"Your budget"}
+                                    variant="gray" />
                                 <Button
                                     fullWidth
                                     variant="inputGray"
@@ -136,20 +136,20 @@ function Home() {
                                     }} />
                                 <Button
                                     fullWidth
-                                    variant="orderGray"
+                                    variant="inputGray"
                                     iconRight={"map-pin"}
                                     title={"Your location"}
                                     onPress={() => {
                                         setLocationModalVisible(true)
                                     }} />
-                            <View style={{width: 200}}>
-                                <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />
+                                <View style={{width: 200}}>
+                                    <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />
+                                </View>
+                                <Spacer x={2} />
+                                <Typography style={{textAlign: "center"}} variant="extraSmall" color="white">Delivery fees are included in the final price of each option. Available choices may be limited based on your location and budget. Thank you for your understanding!</Typography>
                             </View>
-                            <Spacer x={2} />
-                            <Typography style={{textAlign: "center"}} variant="extraSmall" color="white">Delivery fees are included in the final price of each option. Available choices may be limited based on your location and budget. Thank you for your understanding!</Typography>
                         </View>
-                    </View>
-                </ImageBackground>
+                    </ImageBackground>
                 </Pressable>
             </KeyboardAvoidingView>
             {pickerVisible && <Picker
@@ -166,19 +166,10 @@ function Home() {
                 animationType="slide"
                 visible={locationModalVisible}
             >
-                <View style={{rowGap: 12}}>
+                <View style={{rowGap: 8}}>
                     <Typography style={{textAlign: "center"}} variant="heading2">{user?.locations?.length === 0 ? "Add a new address" : "Add or choose a new address"}</Typography>
-                    <Button variant="inputWhite" iconRight={"map-pin"} title={"Your location"} border />
-                    <View style={{flexDirection: "row"}}>
-                        <View style={{flex: 1}}>
-                            <Button
-                                fullWidth
-                                title="Close"
-                                variant="outlined"
-                                onPress={() => setLocationModalVisible(false)} />
-                        </View>
-                        <Spacer x={2} />
-                    </View>
+                    <Button noErrorLabel variant="inputWhite" iconRight={"map"} title={"Enter your address"} onPress={() => setLocationModalVisible(false)} />
+                    <Button noErrorLabel variant="inputBackground" iconRight={"pin"} title={"Current location"} />
                 </View>
             </ModalComponent>
         </Wrapper>

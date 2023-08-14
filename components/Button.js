@@ -21,11 +21,11 @@ import colors from '../utils/colors'
 import Icon from "./Icon/Index"
 
 function ButtonActual(props) {
-    const {variant, error, small, textVariant, borderColor, onPress, shape, fullWidth = false, loading = false} = props
+    const {variant, error, noErrorLabel, small, textVariant, borderColor, onPress, shape, fullWidth = false, loading = false} = props
 
     let title = props.title || ''
     let background = props.background || colors.grayPrimary
-    let color = colors.white
+    let color = props.color || colors.white
     let border = borderColor || background
     let lrPadding = small ? 12 : 24
     let tbPadding = small ? 8 : 16
@@ -51,7 +51,7 @@ function ButtonActual(props) {
         color = colors.danger
         border = borderColor || colors.danger
     }
-    if (variant === 'text') {   
+    if (variant === 'text') {
         background = 'transparent'
         border = background
         color = colors.grayPrimary
@@ -64,6 +64,11 @@ function ButtonActual(props) {
     }
     if (variant === "inputWhite") {
         background = colors.white
+        color = colors.gray3
+        border = "transparent"
+    }
+    if (variant === "inputBackground") {
+        background = colors.grayBg
         color = colors.gray3
         border = "transparent"
     }
@@ -98,7 +103,7 @@ function ButtonActual(props) {
             onPress={onPress}
             style={fullWidth ? {width: '100%'} : {}}
         >
-            {["inputGray", "inputWhite"].includes(variant) ?
+            {["inputGray", "inputWhite", "inputBackground"].includes(variant) ?
                 <View style={{
                     flex: props.style?.flex || null,
                 }}>
@@ -123,67 +128,71 @@ function ButtonActual(props) {
                             {title}
                         </Typography>
                     </View>
-                    <Typography style={{marginLeft: 8}} error variant="small">{error || " "}</Typography>
-                    <Spacer x={0.5} />
+                    {!noErrorLabel &&
+                        <>
+                        <Typography style={{marginLeft: 8}} error variant="small">{error || " "}</Typography>
+                        <Spacer x={0.5} />
+                        </>
+                    }
                 </View>
                 : <View
-                style={[
-                    {
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                    }, {
-                        opacity: props.disabled ? 0.5 : 1,
-                        backgroundColor: background,
-                        paddingTop: tbPadding,
-                        paddingBottom: tbPadding,
-                        paddingLeft: lrPadding,
-                        paddingRight: lrPadding,
-                        borderWidth: border ? 1 : null,
-                        borderColor: border ? border : null,
-                        borderRadius: shape === 'round' ? 8 * 2 + 17 : shape === 'circle' ? iconSize + 8 * 2 : 12,
-                    },
-                    fullWidth
-                        ? {
-                            flexGrow: 1,
-                            flexDirection: 'row',
-                        }
-                        : {
-                            alignSelf: 'flex-start',
-                            flexDirection: 'row',
+                    style={[
+                        {
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }, {
+                            opacity: props.disabled ? 0.5 : 1,
+                            backgroundColor: background,
+                            paddingTop: tbPadding,
+                            paddingBottom: tbPadding,
+                            paddingLeft: lrPadding,
+                            paddingRight: lrPadding,
+                            borderWidth: border ? 1 : null,
+                            borderColor: border ? border : null,
+                            borderRadius: shape === 'round' ? 8 * 2 + 17 : shape === 'circle' ? iconSize + 8 * 2 : 12,
                         },
-                ]}
-            >
-                {!!props.iconLeft && !loading && (
-                    <>
-                        <Icon
-                            {...(typeof props.iconLeft === 'string'
-                                ? {name: props.iconLeft, color: color || colors.black, size: iconSize}
-                                : {...{color: color || colors.black, size: iconSize}, ...props.iconLeft})}
-                        />
-                        {!!title && <Spacer />}
-                    </>
-                )}
+                        fullWidth
+                            ? {
+                                flexGrow: 1,
+                                flexDirection: 'row',
+                            }
+                            : {
+                                alignSelf: 'flex-start',
+                                flexDirection: 'row',
+                            },
+                    ]}
+                >
+                    {!!props.iconLeft && !loading && (
+                        <>
+                            <Icon
+                                {...(typeof props.iconLeft === 'string'
+                                    ? {name: props.iconLeft, color: color || colors.black, size: iconSize}
+                                    : {...{color: color || colors.black, size: iconSize}, ...props.iconLeft})}
+                            />
+                            {!!title && <Spacer />}
+                        </>
+                    )}
 
-                {!!title && !loading && (
-                    <Typography variant={textVariant || 'heading2'} color={color} style={{...(props.textStyle || {})}}>
-                        {title}
-                    </Typography>
-                )}
+                    {!!title && !loading && (
+                        <Typography variant={textVariant || 'heading2'} color={color} style={{...(props.textStyle || {})}}>
+                            {title}
+                        </Typography>
+                    )}
 
-                {loading && (
-                    <ActivityIndicator size={24} color={color} />
-                )}
+                    {loading && (
+                        <ActivityIndicator size={24} color={color} />
+                    )}
 
-                {!!props.iconRight && !loading && (
-                    <>
-                        {!!title && <Spacer />}
-                        <Icon
-                            {...(typeof props.iconRight === 'string'
-                                ? {name: props.iconRight, color: color || colors.black, size: iconSize}
-                                : {...{color: color || colors.black, size: iconSize}, ...props.iconRight})}
-                        />
-                    </>
-                )}
+                    {!!props.iconRight && !loading && (
+                        <>
+                            {!!title && <Spacer />}
+                            <Icon
+                                {...(typeof props.iconRight === 'string'
+                                    ? {name: props.iconRight, color: color || colors.black, size: iconSize}
+                                    : {...{color: color || colors.black, size: iconSize}, ...props.iconRight})}
+                            />
+                        </>
+                    )}
                 </View>}
         </Pressable>
     )

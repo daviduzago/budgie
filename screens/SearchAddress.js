@@ -1,11 +1,7 @@
-import React from 'react';
-import Wrapper from "../components/ui/wrapper"
-import {Text, View} from 'react-native';
 import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
-import Input from '../components/Input';
-import Spacer from '../utils/Spacer';
+import {View} from 'react-native';
 import colors from '../utils/colors';
-import Button from '../components/Button';
+import React from 'react';
 import Typography from '../components/Typography';
 
 const style = {
@@ -47,6 +43,55 @@ const style = {
 }
 
 const morada = {
+    "address_components": [
+        {
+            "long_name": "Carrera 7",
+            "short_name": "Cra. 7",
+            "types": [
+                "route"
+            ]
+        },
+        {
+            "long_name": "Neiva",
+            "short_name": "Neiva",
+            "types": [
+                "locality",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Neiva",
+            "short_name": "Neiva",
+            "types": [
+                "administrative_area_level_2",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Huila",
+            "short_name": "Huila",
+            "types": [
+                "administrative_area_level_1",
+                "political"
+            ]
+        },
+        {
+            "long_name": "Colombia",
+            "short_name": "CO",
+            "types": [
+                "country",
+                "political"
+            ]
+        },
+        {
+            "long_name": "410002",
+            "short_name": "410002",
+            "types": [
+                "postal_code"
+            ]
+        }
+    ],
+    "formatted_address": "Cra. 7, Neiva, Huila, Colombia",
     "location": {
         "lat": 2.9618696,
         "lng": -75.2870794

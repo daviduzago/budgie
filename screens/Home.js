@@ -1,6 +1,6 @@
 import React from 'react';
 import Wrapper from '../components/ui/wrapper';
-import {Dimensions, ImageBackground, StyleSheet, Image, KeyboardAvoidingView, Platform} from 'react-native';
+import {Dimensions, ImageBackground, StyleSheet, Image, KeyboardAvoidingView, Platform, Pressable} from 'react-native';
 import Swiper from '../components/Swiper';
 import {View} from 'react-native';
 import Typography from '../components/Typography';
@@ -9,6 +9,7 @@ import Spacer from '../utils/Spacer';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {Picker} from '@react-native-picker/picker';
 
 const SWIPER_DATA = [
     {
@@ -37,6 +38,9 @@ const SWIPER_DATA = [
 
 function Home() {
     const [budget, setBudget] = React.useState(null);
+    const pickerRef = React.useRef();
+    const [pickerVisible, setPickerVisible] = React.useState(false);
+    const [people, setPeople] = React.useState(1);
     const insets = useSafeAreaInsets();
 
     //TODO: Add a util to format our currency
@@ -70,6 +74,10 @@ function Home() {
         /* TODO: Remove wrapper here */
         <Wrapper hasTopNav scrollEnabled={false}>
             <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "position" : null} style={{flex: 1}}>
+                <Pressable onPress={() => {
+                    if (pickerRef.current) pickerRef.current.blur()
+                    setPickerVisible(false)
+                }}>
                 <ImageBackground
                     imageStyle={{resizeMode: "cover", height: Dimensions.get("window").width, position: 'absolute', top: 0, opacity: 0.8}}
                     source={require('../assets/map-background.png')}
@@ -97,7 +105,15 @@ function Home() {
                                 icon={"currency-dollar"}
                                 placeholder={"Your budget"}
                                 variant="gray" />
-                            <Button fullWidth variant="orderGray" iconRight={"users"} title="1 Person" />
+                                <Button
+                                    fullWidth
+                                    variant="orderGray"
+                                    iconRight={"users"}
+                                    title={`${people} ${people > 1 ? "People" : "Person"}`}
+                                    onPress={() => {
+                                        setPickerVisible(true)
+                                        if (pickerRef.current) pickerRef.current.focus()
+                                    }} />
                             <Input icon={"map-pin"} placeholder={"Home"} variant="gray" />
                             <View style={{width: 200}}>
                                 <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />
@@ -107,7 +123,16 @@ function Home() {
                         </View>
                     </View>
                 </ImageBackground>
+                </Pressable>
             </KeyboardAvoidingView>
+            {pickerVisible && <Picker
+                ref={pickerRef}
+                style={styles.picker}
+                selectedValue={people}
+                onValueChange={itemValue => setPeople(itemValue)} >
+                <Picker.Item label="1" value="1" />
+                <Picker.Item label="2" value="2" />
+            </Picker>}
         </Wrapper>
     );
 }
@@ -131,5 +156,15 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         padding: 20,
+    },
+    picker: {
+        backgroundColor: colors.grayBg,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        opacity: Platform.OS === "android" ? 0 : 1
     }
 })

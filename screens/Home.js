@@ -116,7 +116,7 @@ function Home() {
                             <View style={{alignItems: "center"}}>
                                 <Typography color="white" variant="heading1">Start your order</Typography>
                                 <Spacer />
-                                <Typography body light color="white">Welcome! Let's get your feast started. Choose your budget, number of people, and location to find the perfect meal for your appetite and wallet. Bon appétit!</Typography>
+                                <Typography body light color="white">Welcome! Let's get your feast started. Choose your budget, number of people, and location to find the perfect meal for your appetite and wallet.</Typography>
                                 <Spacer x={2} />
                                 <Input
                                     value={budget}

@@ -11,6 +11,10 @@ const SCREENS = [
         name: "Home",
         route: ROUTES.HOME,
     },
+    {
+        name: "SearchAddress",
+        route: ROUTES.SEARCH_ADDRESS,
+    },
 ]
 
 function Screens({navigation}) {

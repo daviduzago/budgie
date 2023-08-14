@@ -14,6 +14,7 @@ export default {
     MODALS: "Modals",
     NOTIFICATIONS: "Notifications",
     SCREENS: "Screens",
+    SEARCH_ADDRESS: "SearchAddress",
     SELECT: "Select",
     TYPOGRAPHY: "Typography",
 }

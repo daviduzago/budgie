@@ -20,6 +20,7 @@ import SelectScreen from "../screens/components/SelectScreen";
 import TypographyScreen from "../screens/components/TypographyScreen";
 import Screens from "../screens/Screens";
 import Home from "../screens/Home";
+import SearchAddress from "../screens/SearchAddress";
 
 const Stack = createNativeStackNavigator();
 
@@ -59,6 +60,7 @@ export default function DevNavigator() {
             <Stack.Screen name="Auth" component={AuthScreen} />
 
             <Stack.Screen name="Home" component={Home} />
+            <Stack.Screen name="SearchAddress" component={SearchAddress} />
         </Stack.Navigator>
     );
 }

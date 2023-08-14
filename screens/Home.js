@@ -96,6 +96,7 @@ function Home() {
                 <Pressable onPress={() => {
                     if (pickerRef.current) pickerRef.current.blur()
                     setPickerVisible(false)
+                    if (user?.locations?.length > 0) setLocationModalVisible(false)
                 }}>
                 <ImageBackground
                     imageStyle={{resizeMode: "cover", height: Dimensions.get("window").width, position: 'absolute', top: 0, opacity: 0.8}}
@@ -126,7 +127,7 @@ function Home() {
                                 variant="gray" />
                                 <Button
                                     fullWidth
-                                    variant="orderGray"
+                                    variant="inputGray"
                                     iconRight={"users"}
                                     title={`${people} ${people > 1 ? "People" : "Person"}`}
                                     onPress={() => {
@@ -161,12 +162,13 @@ function Home() {
             </Picker>}
             <ModalComponent
                 transparent
+                variant="lightGray"
                 animationType="slide"
                 visible={locationModalVisible}
             >
                 <View style={{rowGap: 12}}>
-                    <Typography variant="heading2">Add or choose an address</Typography>
-                    <View style={{width: "100%", borderBottomWidth: 1, borderColor: colors.gray2}}></View>
+                    <Typography style={{textAlign: "center"}} variant="heading2">{user?.locations?.length === 0 ? "Add a new address" : "Add or choose a new address"}</Typography>
+                    <Button variant="inputWhite" iconRight={"map-pin"} title={"Your location"} border />
                     <View style={{flexDirection: "row"}}>
                         <View style={{flex: 1}}>
                             <Button

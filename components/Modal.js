@@ -22,7 +22,7 @@ export default function ModalComponent(props) {
             {...props}>
             <View style={[style.container, {
                 paddingBottom: insets.bottom + 20,
-                backgroundColor: variant === 'light' ? colors.white : colors.grayPrimary
+                backgroundColor: variant === 'light' ? colors.white : variant === "lightGray" ? colors.grayBg : colors.grayPrimary
             }]}>
                 {!confirmationModal && children}
                 {confirmationModal && (

@@ -51,12 +51,21 @@ function ButtonActual(props) {
         color = colors.danger
         border = borderColor || colors.danger
     }
-
     if (variant === 'text') {   
         background = 'transparent'
         border = background
         color = colors.grayPrimary
         lrPadding = 0
+    }
+    if (variant === "inputGray") {
+        background = colors.gray4
+        color = colors.gray3
+        border = 'transparent'
+    }
+    if (variant === "inputWhite") {
+        background = colors.white
+        color = colors.gray3
+        border = "transparent"
     }
     if (shape === 'circle') {
         lrPadding = 8
@@ -89,21 +98,21 @@ function ButtonActual(props) {
             onPress={onPress}
             style={fullWidth ? {width: '100%'} : {}}
         >
-            {variant === "orderGray" ?
+            {["inputGray", "inputWhite"].includes(variant) ?
                 <View style={{
                     flex: props.style?.flex || null,
                 }}>
                     <View style={{
-                        backgroundColor: colors.gray4,
-                        color: colors.gray3,
+                        backgroundColor: background,
+                        color: color,
                         width: "100%",
                         borderRadius: 12,
                         paddingVertical: 16,
                         paddingHorizontal: 24,
                         flexDirection: "row",
                         alignItems: "center",
-                        borderWidth: error ? 1 : 0,
-                        borderColor: error ? colors.danger : "transparent",
+                        borderWidth: error ? 1 : border ? 1 : 0,
+                        borderColor: error ? colors.danger : border ? border : "transparent",
                     }}>
                         {props.iconRight && <><Icon name={props.iconRight} color={colors.gray3} /><Spacer /></>}
                         <Typography color="gray3" style={{

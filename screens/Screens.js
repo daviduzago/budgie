@@ -15,6 +15,10 @@ const SCREENS = [
         name: "SearchAddress",
         route: ROUTES.SEARCH_ADDRESS,
     },
+    {
+        name: "MapConfirmation",
+        route: ROUTES.MAP_CONFIRMATION,
+    },
 ]
 
 function Screens({navigation}) {

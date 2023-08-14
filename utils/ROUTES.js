@@ -11,6 +11,7 @@ export default {
     ICONS: "Icons",
     INPUTS: "Inputs",
     LOADING: "Loading",
+    MAP_CONFIRMATION: "MapConfirmation",
     MODALS: "Modals",
     NOTIFICATIONS: "Notifications",
     SCREENS: "Screens",

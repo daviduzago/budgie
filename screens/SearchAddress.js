@@ -36,10 +36,6 @@ const style = {
         fontSize: 17,
         color: colors.gray4
     },
-    powered: {
-        fontFamily: "Lato Regular",
-        fontSize: 17,
-    }
 }
 
 const morada = {

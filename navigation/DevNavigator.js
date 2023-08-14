@@ -21,6 +21,7 @@ import TypographyScreen from "../screens/components/TypographyScreen";
 import Screens from "../screens/Screens";
 import Home from "../screens/Home";
 import SearchAddress from "../screens/SearchAddress";
+import MapConfirmation from "../screens/MapConfirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -61,6 +62,7 @@ export default function DevNavigator() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SearchAddress" component={SearchAddress} />
+            <Stack.Screen name="MapConfirmation" component={MapConfirmation} />
         </Stack.Navigator>
     );
 }

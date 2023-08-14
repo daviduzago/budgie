@@ -42,6 +42,8 @@ function ButtonsScreen() {
                         onPressRight={cart > 0 ? () => setCart(cart + 1) : null}
                     />
                 </View>
+                <Spacer />
+                <Button variant="orderGray" disabled={disabled} iconRight={"users"} title="1 Person" />
             </View>
         </Wrapper>
     );

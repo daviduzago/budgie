@@ -39,6 +39,7 @@ function Home() {
     const [budget, setBudget] = React.useState(null);
     const insets = useSafeAreaInsets();
 
+    //TODO: Add a util to format our currency
     const formatCurrency = (val) => {
         // Remove all non-digit characters
         const onlyDigits = val.replace(/\D+/g, '');
@@ -96,7 +97,7 @@ function Home() {
                                 icon={"currency-dollar"}
                                 placeholder={"Your budget"}
                                 variant="gray" />
-                            <Input icon={"users"} placeholder={"1 person"} variant="gray" />
+                            <Button fullWidth variant="orderGray" iconRight={"users"} title="1 Person" />
                             <Input icon={"map-pin"} placeholder={"Home"} variant="gray" />
                             <View style={{width: 200}}>
                                 <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />

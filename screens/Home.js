@@ -10,6 +10,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Picker} from '@react-native-picker/picker';
+import ModalComponent from '../components/Modal';
 
 const SWIPER_DATA = [
     {
@@ -40,6 +41,8 @@ function Home() {
     const [budget, setBudget] = React.useState(null);
     const pickerRef = React.useRef();
     const [pickerVisible, setPickerVisible] = React.useState(false);
+    const [locationModalVisible, setLocationModalVisible] = React.useState(false);
+    const [user, setUser] = React.useState({});
     const [people, setPeople] = React.useState(1);
     const insets = useSafeAreaInsets();
 
@@ -70,6 +73,22 @@ function Home() {
         console.log("Search");
     }
 
+    React.useEffect(() => {
+        setTimeout(() => {
+            setUser({
+                name: "Eduardo",
+                avatar: "https://i.pravatar.cc/60",
+                locations: [],
+            })
+        }, 1000)
+    }, []);
+
+    React.useEffect(() => {
+        if (user?.locations?.length === 0) {
+            setLocationModalVisible(true);
+        }
+    }, [user]);
+
     return (
         /* TODO: Remove wrapper here */
         <Wrapper hasTopNav scrollEnabled={false}>
@@ -83,9 +102,9 @@ function Home() {
                     source={require('../assets/map-background.png')}
                     style={styles.container}>
                     <View style={styles.header}>
-                        <Image source={{uri: "https://i.pravatar.cc/60"}} style={{width: 60, height: 60, borderRadius: 30, backgroundColor: colors.gray2}} />
+                            <Image source={{uri: user.avatar}} style={{width: 60, height: 60, borderRadius: 30, backgroundColor: colors.gray2}} />
                         <View style={{paddingLeft: 10, justifyContent: "center"}}>
-                            <Typography normal variant="medium">Hi, John</Typography>
+                                <Typography normal variant="medium">Hi, {user?.name}</Typography>
                             <Typography color="gray3">Lets get your order ready!</Typography>
                         </View>
                     </View>
@@ -114,7 +133,14 @@ function Home() {
                                         setPickerVisible(true)
                                         if (pickerRef.current) pickerRef.current.focus()
                                     }} />
-                            <Input icon={"map-pin"} placeholder={"Home"} variant="gray" />
+                                <Button
+                                    fullWidth
+                                    variant="orderGray"
+                                    iconRight={"map-pin"}
+                                    title={"Your location"}
+                                    onPress={() => {
+                                        setLocationModalVisible(true)
+                                    }} />
                             <View style={{width: 200}}>
                                 <Button onPress={handleSearch} fullWidth title="Search" variant="secondary" />
                             </View>
@@ -133,6 +159,26 @@ function Home() {
                 <Picker.Item label="1" value="1" />
                 <Picker.Item label="2" value="2" />
             </Picker>}
+            <ModalComponent
+                transparent
+                animationType="slide"
+                visible={locationModalVisible}
+            >
+                <View style={{rowGap: 12}}>
+                    <Typography variant="heading2">Add or choose an address</Typography>
+                    <View style={{width: "100%", borderBottomWidth: 1, borderColor: colors.gray2}}></View>
+                    <View style={{flexDirection: "row"}}>
+                        <View style={{flex: 1}}>
+                            <Button
+                                fullWidth
+                                title="Close"
+                                variant="outlined"
+                                onPress={() => setLocationModalVisible(false)} />
+                        </View>
+                        <Spacer x={2} />
+                    </View>
+                </View>
+            </ModalComponent>
         </Wrapper>
     );
 }

@@ -1,11 +1,10 @@
-import React from "react";
 import {View} from "react-native";
-import Wrapper from "../../components/ui/wrapper";
-import Spacer from "../../utils/Spacer"
 import Input from "../../components/Input"
 import InputAbs from "../../components/InputAbs"
-import Typography from "../../components/Typography";
 import OtpInput from "../../components/otpInput";
+import React from "react";
+import Spacer from "../../utils/Spacer"
+import Wrapper from "../../components/ui/wrapper";
 
 function InputsScreen() {
     return (

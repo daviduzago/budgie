@@ -1,4 +1,4 @@
-import {StyleSheet, View} from 'react-native';
+import {BackHandler, StyleSheet, View} from 'react-native';
 import colors from '../utils/colors';
 import LottieView from 'lottie-react-native';
 import React from 'react';
@@ -7,6 +7,20 @@ import Typography from '../components/Typography';
 
 function PreparingOrder({navigation}) {
     const animation = React.useRef(null);
+
+    React.useEffect(() => {
+        const backAction = () => {
+            return true;
+        };
+
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            backAction
+        );
+
+        return () => backHandler.remove();
+    }, []);
+
     return (
         <View style={styles.container}>
             <LottieView

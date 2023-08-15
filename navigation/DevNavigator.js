@@ -81,7 +81,8 @@ export default function DevNavigator() {
                 headerTitle: "Confirm address",
             }} />
             <Stack.Screen name="PreparingOrder" component={PreparingOrder} options={{
-                headerShown: false
+                headerShown: false,
+                gestureEnabled: false,
             }} />
         </Stack.Navigator>
     );

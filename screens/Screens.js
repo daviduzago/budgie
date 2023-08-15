@@ -23,6 +23,10 @@ const SCREENS = [
         name: "Address Details Confirmation",
         route: ROUTES.ADDRESS_DETAILS_CONFIRMATION,
     },
+    {
+        name: "Preparing Order",
+        route: ROUTES.PREPARING_ORDER,
+    }
 ]
 
 function Screens({navigation}) {

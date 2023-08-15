@@ -15,6 +15,7 @@ export default {
     LOADING: "Loading",
     MODALS: "Modals",
     NOTIFICATIONS: "Notifications",
+    PREPARING_ORDER: "PreparingOrder",
     SCREENS: "Screens",
     SEARCH_ADDRESS: "SearchAddress",
     SELECT: "Select",

@@ -23,6 +23,7 @@ import Home from "../screens/Home";
 import SearchAddress from "../screens/SearchAddress";
 import AddressConfirmation from "../screens/AddressConfirmation";
 import AddressDetailsConfirmation from "../screens/AddressDetailsConfirmation";
+import PreparingOrder from "../screens/PreparingOrder";
 
 const Stack = createNativeStackNavigator();
 
@@ -78,6 +79,9 @@ export default function DevNavigator() {
             })} />
             <Stack.Screen name="AddressDetailsConfirmation" component={AddressDetailsConfirmation} options={{
                 headerTitle: "Confirm address",
+            }} />
+            <Stack.Screen name="PreparingOrder" component={PreparingOrder} options={{
+                headerShown: false
             }} />
         </Stack.Navigator>
     );

@@ -19,6 +19,10 @@ const SCREENS = [
         name: "Address Confirmation",
         route: ROUTES.ADDRESS_CONFIRMATION,
     },
+    {
+        name: "Address Details Confirmation",
+        route: ROUTES.ADDRESS_DETAILS_CONFIRMATION,
+    },
 ]
 
 function Screens({navigation}) {

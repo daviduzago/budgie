@@ -22,12 +22,16 @@ import Screens from "../screens/Screens";
 import Home from "../screens/Home";
 import SearchAddress from "../screens/SearchAddress";
 import AddressConfirmation from "../screens/AddressConfirmation";
+import AddressDetailsConfirmation from "../screens/AddressDetailsConfirmation";
 
 const Stack = createNativeStackNavigator();
 
 export default function DevNavigator() {
     return (
         <Stack.Navigator initialRouteName="DevHome" screenOptions={{
+            headerBackTitleVisible: false,
+            headerTintColor: "black",
+            headerTitleAlign: "center",
         }}>
             <Stack.Screen
                 name="DevHome"
@@ -71,8 +75,10 @@ export default function DevNavigator() {
                     </Pressable>
                 ),
                 headerTitle: "Confirm address",
-                headerTitleAlign: "center",
             })} />
+            <Stack.Screen name="AddressDetailsConfirmation" component={AddressDetailsConfirmation} options={{
+                headerTitle: "Confirm address",
+            }} />
         </Stack.Navigator>
     );
 }

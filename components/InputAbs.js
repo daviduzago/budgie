@@ -6,7 +6,7 @@ import Spacer from "../utils/Spacer";
 import Typography from "./Typography";
 
 export default function InputAbs(props) {
-    const {error, disabled, autoFocus, style} = props;
+    const {error, disabled, autoFocus, style, label, value} = props;
     const [clearButton, setClearButton] = React.useState(false);
     const ref = React.useRef();
     const useRef = props.passRef || ref;
@@ -44,11 +44,12 @@ export default function InputAbs(props) {
         <View style={{
             flex: props.style?.flex || null,
         }}>
-            <Typography color={disabled ? colors.gray3 : colors.black} variant={"small"} medium>Label</Typography>
+            <Typography color={disabled ? colors.gray3 : colors.black} variant={"body"} normal medium>{label}</Typography>
             <View style={[addStyles, {
                 width: "100%",
                 flexDirection: "row",
                 alignItems: "center",
+                paddingVertical: 4,
                 borderBottomWidth: 1,
                 borderColor: disabled ? colors.gray3 : error ? colors.danger : color,
                 backgroundColor: "transparent",
@@ -56,17 +57,18 @@ export default function InputAbs(props) {
                 <TextInput
                     {...setProps}
                     ref={useRef}
+                    value={value}
                     editable={!disabled}
                     placeholderTextColor={props.placeholderTextColor || color || colors.gray3}
                     onChangeText={handleTextChange}
                     style={{
-                        color: colors.black,
-                        fontSize: 17,
+                        color: disabled ? colors.gray3 : colors.black,
+                        fontSize: 20,
                         fontFamily: "Lato Regular",
                         flex: 1,
                     }}
                 />
-                {clearButton && !disabled && <Pressable onPress={clearInput}><Icon name={"bell"} color={color || colors.gray3} /></Pressable>}
+                {clearButton && !disabled && <Pressable onPress={clearInput}><Icon name={"x-mark"} color={color || colors.gray2} size={20} /></Pressable>}
             </View>
             <Spacer />
             <Typography error variant="small">{disabled ? " " : error || " "}</Typography>

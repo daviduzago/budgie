@@ -1,4 +1,6 @@
 export default {
+    ADDRESS_CONFIRMATION: "AddressConfirmation",
+    ADDRESS_DETAILS_CONFIRMATION: "AddressDetailsConfirmation",
     AUTH: "Auth",
     BUTTONS: "Buttons",
     CARDS: "Cards",
@@ -11,7 +13,6 @@ export default {
     ICONS: "Icons",
     INPUTS: "Inputs",
     LOADING: "Loading",
-    ADDRESS_CONFIRMATION: "AddressConfirmation",
     MODALS: "Modals",
     NOTIFICATIONS: "Notifications",
     SCREENS: "Screens",

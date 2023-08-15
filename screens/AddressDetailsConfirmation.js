@@ -1,20 +1,23 @@
+import {Keyboard, Pressable, StyleSheet, View} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Button from '../components/Button';
+import Checkbox from '../components/Checkbox';
+import colors from '../utils/colors';
+import InputAbs from "../components/InputAbs";
 import React from 'react';
 import Spacer from "../utils/Spacer"
 import Typography from '../components/Typography';
-import InputAbs from "../components/InputAbs";
-import {Keyboard, Pressable, StyleSheet, View} from 'react-native';
-import colors from '../utils/colors';
-import Checkbox from '../components/Checkbox';
-import Button from '../components/Button';
 
 const tags = ["Home", "Office", "Other"]
 
 function AddressDetailsConfirmation({navigation, route}) {
+    const insets = useSafeAreaInsets();
     const [addressHasDetails, setaddressHasDetails] = React.useState(false)
     const [selectedTag, setSelectedTag] = React.useState(null)
 
     return (
-        <Pressable onPress={() => Keyboard.dismiss()} style={styles.container}>
+        <View style={[styles.container, {paddingBottom: insets.bottom + 20}]}>
+            <Pressable onPress={() => Keyboard.dismiss()} style={{flex: 1}}>
             <InputAbs label="City, Country" disabled value="Neiva, Colombia" placeholder="City, Country" />
             <InputAbs label="Address or location *" value="123 Main St" placeholder="Address or location *" />
             <InputAbs disabled={addressHasDetails} label="Details: apt / flat / house" placeholder="e.g.: Royal Building apt 201" />
@@ -41,6 +44,8 @@ function AddressDetailsConfirmation({navigation, route}) {
             <Spacer x={2} />
             {selectedTag === "Other" && <InputAbs label="Details: apt / flat / house" placeholder="e.g.: Friend's house, high school, College" />}
         </Pressable>
+            <Button fullWidth title="Save" />
+        </View>
     )
 }
 

@@ -21,7 +21,7 @@ import TypographyScreen from "../screens/components/TypographyScreen";
 import Screens from "../screens/Screens";
 import Home from "../screens/Home";
 import SearchAddress from "../screens/SearchAddress";
-import MapConfirmation from "../screens/MapConfirmation";
+import AddressConfirmation from "../screens/AddressConfirmation";
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +46,7 @@ export default function DevNavigator() {
             <Stack.Screen name="Components" component={Components} />
             <Stack.Screen name="Screens" component={Screens} />
 
+            {/* COMPONENTS */}
             <Stack.Screen name="Typography" component={TypographyScreen} />
             <Stack.Screen name="Buttons" component={ButtonsScreen} />
             <Stack.Screen name="Inputs" component={InputsScreen} />
@@ -60,9 +61,10 @@ export default function DevNavigator() {
             <Stack.Screen name="Icons" component={IconScreen} />
             <Stack.Screen name="Auth" component={AuthScreen} />
 
+            {/* SCREENS */}
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SearchAddress" component={SearchAddress} />
-            <Stack.Screen name="MapConfirmation" component={MapConfirmation} options={({navigation}) => ({
+            <Stack.Screen name="AddressConfirmation" component={AddressConfirmation} options={({navigation}) => ({
                 headerLeft: () => (
                     <Pressable onPress={() => navigation.goBack()}>
                         <Icon name="x-mark" size={30} color="black" />

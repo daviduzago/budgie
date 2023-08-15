@@ -12,12 +12,12 @@ const SCREENS = [
         route: ROUTES.HOME,
     },
     {
-        name: "SearchAddress",
+        name: "Search Address",
         route: ROUTES.SEARCH_ADDRESS,
     },
     {
-        name: "MapConfirmation",
-        route: ROUTES.MAP_CONFIRMATION,
+        name: "Address Confirmation",
+        route: ROUTES.ADDRESS_CONFIRMATION,
     },
 ]
 

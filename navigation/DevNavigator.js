@@ -1,6 +1,6 @@
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {View} from "react-native";
+import {Pressable, View} from "react-native";
 import AuthScreen from "../screens/components/AuthScreen";
 import ButtonsScreen from "../screens/components/ButtonsScreen";
 import CardsScreen from "../screens/components/CardsScreen";
@@ -62,7 +62,15 @@ export default function DevNavigator() {
 
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="SearchAddress" component={SearchAddress} />
-            <Stack.Screen name="MapConfirmation" component={MapConfirmation} />
+            <Stack.Screen name="MapConfirmation" component={MapConfirmation} options={({navigation}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.goBack()}>
+                        <Icon name="x-mark" size={30} color="black" />
+                    </Pressable>
+                ),
+                headerTitle: "Confirm address",
+                headerTitleAlign: "center",
+            })} />
         </Stack.Navigator>
     );
 }

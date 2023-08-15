@@ -1,9 +1,14 @@
-import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {View, StyleSheet} from 'react-native';
+import Button from "../components/Button"
 import colors from '../utils/colors';
-import MapView, {Marker} from "react-native-maps";
+import Icon from "../components/Icon/Index"
+import MapView from "react-native-maps";
+import React from 'react';
+import Spacer from "../utils/Spacer"
+import Typography from '../components/Typography';
 
-const morada = {
+const data = {
     "address_components": [
         {
             "long_name": "Carrera 7",
@@ -71,12 +76,21 @@ const morada = {
     },
 }
 
+// Array order would be like this:
+// 0: Carrera o Calle
+// 1: Ciudad
+// 2: Municipio
+// 3: Departamento
+// 4: País
+// 5: Código postal
+
 function MapConfirmation({route, navigation}) {
+    const insets = useSafeAreaInsets();
     const [region, setRegion] = React.useState({
-        latitude: 2.9618696,
-        longitude: -75.2870794,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: data.geometry.location.lat,
+        longitude: data.geometry.location.lng,
+        latitudeDelta: 0.0080,
+        longitudeDelta: 0.0080
     });
 
     const onRegionChange = (region) => {
@@ -87,13 +101,30 @@ function MapConfirmation({route, navigation}) {
         <View style={styles.container}>
             <MapView
                 provider='google'
-                style={{flex: 1}}
+                style={{...StyleSheet.absoluteFillObject}}
                 initialRegion={region}
                 onRegionChange={onRegionChange}
-            />
-            <Marker
-                coordinate={{latitude: region?.latitude, longitude: region?.longitude}}
-            />
+                loadingEnabled={true}
+                loadingIndicatorColor={colors.primary}
+                loadingBackgroundColor={colors.grayBg}
+                moveOnMarkerPress={false}
+                showsUserLocation={false}
+                showsCompass={false}
+                showsPointsOfInterest={false}
+            >
+            </MapView>
+            <View style={{position: "absolute", zIndex: 10, paddingBottom: 80}}>
+                <Icon name="pin" size={70} />
+            </View>
+            <View style={[styles.confirmationBox, {paddingBottom: insets.bottom + 20, }]}>
+                <View style={{paddingLeft: 4}}>
+                    <Typography variant="medium" color="black">{data.address_components[2].short_name}</Typography>
+                    <Spacer />
+                    <Typography light color="black">{data.address_components[2].short_name}, {data.address_components[3].short_name}, {data.address_components[4].long_name}</Typography>
+                    <Spacer />
+                </View>
+                <Button onPress={() => console.log(JSON.stringify(region, 4, null))} fullWidth title="Confirm" />
+            </View>
         </View>
     );
 }
@@ -102,7 +133,18 @@ export default MapConfirmation;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        ...StyleSheet.absoluteFillObject,
         backgroundColor: colors.grayBg,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
+    confirmationBox: {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: 10,
+        backgroundColor: colors.white,
+        justifyContent: 'center',
+    }
 });

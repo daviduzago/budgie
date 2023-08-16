@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView, Text, View, Image, Pressable} from 'react-native';
+import {StyleSheet, ScrollView, ActivityIndicator, View, Image, Pressable, FlatList} from 'react-native';
 import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Icon from '../components/Icon/Index';
@@ -7,11 +7,42 @@ import Spacer from '../utils/Spacer';
 import Card from '../components/Cards';
 import colors from '../utils/colors';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import FAKE_DATA from '../assets/ITEMS'
+import {useSelector} from 'react-redux';
+
 
 function Results({navigation}) {
     const insets = useSafeAreaInsets();
     const [topNavHeight, setTopNavHeight] = React.useState(0);
+    const [checkoutButtonHeight, setCheckoutButtonHeight] = React.useState(0);
     const [checkoutButton, setCheckoutButton] = React.useState(false);
+    const [data, setData] = React.useState([]);
+    const [page, setPage] = React.useState(1);
+    const [loading, setLoading] = React.useState(false);
+    const [paginationLoading, setPaginationLoading] = React.useState(false);
+    const counter = useSelector(state => state.counter.value)
+
+    const renderedData = loading ? new Array(3).fill(FAKE_DATA[0]) : data;
+
+    React.useEffect(() => {
+        if (page > 1 && page < 3) {
+            setPaginationLoading(true);
+            setTimeout(() => {
+                setData(prevData => [...prevData, ...FAKE_DATA.slice(8, 10)]);
+                setPaginationLoading(false);
+            }, 1500);
+        }
+    }, [page]);
+
+    React.useEffect(() => {
+        console.log("counter", counter)
+        setLoading(true);
+        setTimeout(() => {
+            setData(prevData => [...prevData, ...FAKE_DATA.slice(0, 8)]);
+            setLoading(false);
+
+        }, 2000);
+    }, []);
 
     return (
         <View
@@ -63,11 +94,40 @@ function Results({navigation}) {
                 </View>
             </View>
             {/* BODY */}
-            <ScrollView style={[styles.body, {paddingTop: topNavHeight}]}>
-                <Typography variant="heading1">Body</Typography>
-            </ScrollView>
-            {checkoutButton && <Pressable style={[styles.checkoutButtonContainer, {bottom: insets.bottom}]}>
-                <View style={styles.checkoutButton}>
+            <View style={[styles.body, {paddingTop: topNavHeight}]}>
+                <FlatList
+                    data={renderedData}
+                    renderItem={({item, index}) =>
+                        <>
+                            {index === 0 && <Spacer />}
+                            <Card
+                                option
+                                loading={loading}
+                                item={item}
+                            />
+                        </>
+                    }
+                    keyExtractor={(item, index) => String(index)}
+                    ItemSeparatorComponent={() => <Spacer x={2} />}
+                    ListFooterComponentStyle={{paddingBottom: 100}}
+                    onEndReached={() => {
+                        if (page < 3) setPage(prevPage => prevPage + 1)
+                    }}
+                    onEndReachedThreshold={0.5}
+                    ListFooterComponent={() => paginationLoading && data ? (<View>
+                        <Spacer />
+                        <ActivityIndicator size="large" color={colors.primary} />
+                    </View>) : null}
+                />
+            </View>
+            {checkoutButton && <Pressable
+                style={[styles.checkoutButtonContainer, {bottom: insets.bottom}]}
+                onLayout={(event) => {
+                    const height = event.nativeEvent.layout.height;
+                    setCheckoutButtonHeight(height);
+                }}
+            >
+                <View style={styles.checkoutButton} >
                     <View style={{flexDirection: 'row', alignItems: "center"}}>
                         <Icon name="shopping-cart" size={24} color={colors.white} />
                         <Spacer x={0.5} />

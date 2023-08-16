@@ -105,6 +105,7 @@ function OptionCard(props) {
                 </>
                 <Spacer x={0.5} />
                 <Button
+                    iconSize={14}
                     loading={loading}
                     disabled={loading}
                     borderColor={colors.gray3}
@@ -135,7 +136,7 @@ function OptionCard(props) {
                             textVariant="medium"
                             shape="round"
                             small
-                            iconSize={23}
+                            iconSize={20}
                             iconRight={cart > 0 ? "plus" : null}
                             iconLeft={cart > 0 ? "trash" : null}
                             onPressText={cart === 0 ? () => setCart(cart + 1) : null}

@@ -180,7 +180,7 @@ function ButtonActual(props) {
                     )}
 
                     {loading && (
-                        <ActivityIndicator size={24} color={color} />
+                        <ActivityIndicator size={iconSize} color={color} />
                     )}
 
                     {!!props.iconRight && !loading && (

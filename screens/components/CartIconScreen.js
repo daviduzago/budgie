@@ -9,8 +9,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {increment, decrement} from "../../slices/counter-slice";
 
 export default function CartIconScreen() {
-    const [loading, setLoading] = React.useState(false)
-    const [cart, setCart] = React.useState(0)
     const dispatch = useDispatch()
     const counter = useSelector(state => state.counter.value)
     return (

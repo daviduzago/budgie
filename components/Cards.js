@@ -10,6 +10,8 @@ import AddToCartButton from './AddToCartButton';
 import LoadingLine from './LoadingLine';
 import Expandable from "./Expand"
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
+import {addProductToCart, removeProductFromCart} from '../slices/cart-slice';
 
 const Bullet = (props) => {
     const {quantity, name, loading} = props
@@ -37,7 +39,6 @@ const Bullet = (props) => {
 }
 
 function OptionCard(props) {
-    const [cart, setCart] = React.useState(0);
     const {item, loading = true} = props;
 
     return (
@@ -132,16 +133,16 @@ function OptionCard(props) {
                             disabled={loading}
                             loading={loading}
                             variant="primary"
-                            title={cart > 0 ? cart : "Add to cart"}
+                            title={props.actionButtonTitle}
                             textVariant="medium"
                             shape="round"
                             small
                             iconSize={20}
-                            iconRight={cart > 0 ? "plus" : null}
-                            iconLeft={cart > 0 ? "trash" : null}
-                            onPressText={cart === 0 ? () => setCart(cart + 1) : null}
-                            onPressLeft={cart > 0 ? () => setCart(cart - 1) : null}
-                            onPressRight={cart > 0 ? () => setCart(cart + 1) : null}
+                            iconRight={props.actionButtonIconRight}
+                            iconLeft={props.actionButtonIconLeft}
+                            onPressText={props.actionButtonOnPressText}
+                            onPressLeft={props.actionButtonOnPressLeft}
+                            onPressRight={props.actionButtonOnPressRight}
                         />
                     </View>
                 </View>

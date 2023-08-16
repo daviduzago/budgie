@@ -8,21 +8,78 @@ import Card from '../components/Cards';
 import colors from '../utils/colors';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import FAKE_DATA from '../assets/ITEMS'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {addProductToCart, removeProductFromCart} from '../slices/cart-slice';
 
 
 function Results({navigation}) {
+    // HOOKS
+    const dispatch = useDispatch();
     const insets = useSafeAreaInsets();
-    const [topNavHeight, setTopNavHeight] = React.useState(0);
-    const [checkoutButtonHeight, setCheckoutButtonHeight] = React.useState(0);
+
+    // STATE
     const [checkoutButton, setCheckoutButton] = React.useState(false);
     const [data, setData] = React.useState([]);
-    const [page, setPage] = React.useState(1);
     const [loading, setLoading] = React.useState(false);
+    const [page, setPage] = React.useState(1);
     const [paginationLoading, setPaginationLoading] = React.useState(false);
-    const counter = useSelector(state => state.counter.value)
+    const [topNavHeight, setTopNavHeight] = React.useState(0);
+
+    // STORE
+    const cartProducts = useSelector(state => state.cart.products);
+    const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+    const cartTotalQuantity = useSelector(state => state.cart.totalQuantity);
 
     const renderedData = loading ? new Array(3).fill(FAKE_DATA[0]) : data;
+
+    // FUNCTIONS
+    const productExistsInCart = (productId) => {
+        return cartProducts.some((p) => p.id === productId);
+    }
+
+    const actionButtonTitle = (product) => {
+        if (!productExistsInCart(product.id)) return "Add to cart";
+        if (productExistsInCart(product.id)) {
+            return cartProducts.find((p) => p.id === product.id).quantity
+        }
+    }
+
+    const actionButtonIconRight = (product) => {
+        if (!productExistsInCart(product.id)) return null;
+        if (productExistsInCart(product.id)) {
+            return cartProducts.find((p) => p.id === product.id).quantity > 0 ?
+                "plus"
+                : null;
+        }
+    }
+
+    const actionButtonIconLeft = (product) => {
+        if (!productExistsInCart(product.id)) return null;
+        if (productExistsInCart(product.id)) {
+            return cartProducts.find((p) => p.id === product.id).quantity > 0 ? "trash"
+                : null;
+        }
+    }
+
+    const actionButtonOnPressText = (product) => {
+        dispatch(addProductToCart(product));
+    }
+
+    const actionButtonOnPressLeft = (product) => {
+        if (productExistsInCart(product.id) && cartProducts.find((p) => p.id === product.id).quantity > 0) {
+            dispatch(removeProductFromCart(product.id));
+        }
+    }
+
+    const actionButtonOnPressRight = (product) => {
+        if (productExistsInCart(product.id) && cartProducts.find((p) => p.id === product.id).quantity > 0) {
+            dispatch(addProductToCart(product));
+        }
+    }
+
+    React.useEffect(() => {
+        console.log(JSON.stringify(cartProducts, null, 2));
+    }, [cartProducts]);
 
     React.useEffect(() => {
         if (page > 1 && page < 3) {
@@ -35,12 +92,10 @@ function Results({navigation}) {
     }, [page]);
 
     React.useEffect(() => {
-        console.log("counter", counter)
         setLoading(true);
         setTimeout(() => {
             setData(prevData => [...prevData, ...FAKE_DATA.slice(0, 8)]);
             setLoading(false);
-
         }, 2000);
     }, []);
 
@@ -93,7 +148,7 @@ function Results({navigation}) {
                     <Button small title="Edit" textVariant="body" iconLeft="pencil-square" iconSize={20} variant="secondary" />
                 </View>
             </View>
-            {/* BODY */}
+            {/* RESULTS */}
             <View style={[styles.body, {paddingTop: topNavHeight}]}>
                 <FlatList
                     data={renderedData}
@@ -104,6 +159,12 @@ function Results({navigation}) {
                                 option
                                 loading={loading}
                                 item={item}
+                                actionButtonTitle={actionButtonTitle(item)}
+                                actionButtonIconRight={actionButtonIconRight(item)}
+                                actionButtonIconLeft={actionButtonIconLeft(item)}
+                                actionButtonOnPressText={() => actionButtonOnPressText(item)}
+                                actionButtonOnPressLeft={() => actionButtonOnPressLeft(item)}
+                                actionButtonOnPressRight={() => actionButtonOnPressRight(item)}
                             />
                         </>
                     }
@@ -111,7 +172,7 @@ function Results({navigation}) {
                     ItemSeparatorComponent={() => <Spacer x={2} />}
                     ListFooterComponentStyle={{paddingBottom: 100}}
                     onEndReached={() => {
-                        if (page < 3) setPage(prevPage => prevPage + 1)
+                        if (page < 3) setPage(prev => prev + 1)
                     }}
                     onEndReachedThreshold={0.5}
                     ListFooterComponent={() => paginationLoading && data ? (<View>
@@ -120,12 +181,8 @@ function Results({navigation}) {
                     </View>) : null}
                 />
             </View>
-            {checkoutButton && <Pressable
+            {cartTotalQuantity < 0 && <Pressable
                 style={[styles.checkoutButtonContainer, {bottom: insets.bottom}]}
-                onLayout={(event) => {
-                    const height = event.nativeEvent.layout.height;
-                    setCheckoutButtonHeight(height);
-                }}
             >
                 <View style={styles.checkoutButton} >
                     <View style={{flexDirection: 'row', alignItems: "center"}}>
@@ -136,7 +193,7 @@ function Results({navigation}) {
                     <View style={{flexDirection: 'row', alignItems: "center"}}>
                         <Typography variant="heading2" light color="gray2">Total:</Typography>
                         <Spacer x={0.5} />
-                        <Typography variant="heading2" color="white">$20.00</Typography>
+                        <Typography variant="heading2" color="white">${cartTotalAmount}</Typography>
                     </View>
                 </View>
             </Pressable>}

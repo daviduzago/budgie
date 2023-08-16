@@ -24,6 +24,7 @@ import SearchAddress from "../screens/SearchAddress";
 import AddressConfirmation from "../screens/AddressConfirmation";
 import AddressDetailsConfirmation from "../screens/AddressDetailsConfirmation";
 import PreparingOrder from "../screens/PreparingOrder";
+import Results from "../screens/Results";
 
 const Stack = createNativeStackNavigator();
 
@@ -84,6 +85,9 @@ export default function DevNavigator() {
                 headerShown: false,
                 gestureEnabled: false,
                 animation: "fade"
+            }} />
+            <Stack.Screen name="Results" component={Results} options={{
+                headerShown: false,
             }} />
         </Stack.Navigator>
     );

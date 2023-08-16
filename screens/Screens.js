@@ -26,7 +26,11 @@ const SCREENS = [
     {
         name: "Preparing Order",
         route: ROUTES.PREPARING_ORDER,
-    }
+    },
+    {
+        name: "Results",
+        route: ROUTES.RESULTS,
+    },
 ]
 
 function Screens({navigation}) {

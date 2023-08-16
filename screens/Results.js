@@ -38,17 +38,10 @@ function Results({navigation}) {
     }
 
     const actionButtonOnPressText = (product) => {
-        dispatch(addProductToCart(product));
-    }
-
-    const actionButtonOnPressLeft = (product) => {
-        if (productExistsInCart(product.id) && cartProducts.find((p) => p.id === product.id).quantity > 0) {
-            dispatch(removeProductFromCart(product.id));
-        }
-    }
-
-    const actionButtonOnPressRight = (product) => {
-        if (productExistsInCart(product.id) && cartProducts.find((p) => p.id === product.id).quantity > 0) {
+        const cartProduct = getProduct(product.id);
+        if (cartProduct && cartProduct.quantity > 0) {
+            return
+        } else {
             dispatch(addProductToCart(product));
         }
     }
@@ -162,8 +155,8 @@ function Results({navigation}) {
                                 actionButtonIconRight={iconRight}
                                 actionButtonIconLeft={iconLeft}
                                 actionButtonOnPressText={() => actionButtonOnPressText(item)}
-                                actionButtonOnPressLeft={() => actionButtonOnPressLeft(item)}
-                                actionButtonOnPressRight={() => actionButtonOnPressRight(item)}
+                                actionButtonOnPressLeft={() => dispatch(removeProductFromCart(item.id))}
+                                actionButtonOnPressRight={() => dispatch(addProductToCart(item))}
                             />
                         </>)
                     }

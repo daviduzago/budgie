@@ -83,6 +83,7 @@ export default function DevNavigator() {
             <Stack.Screen name="PreparingOrder" component={PreparingOrder} options={{
                 headerShown: false,
                 gestureEnabled: false,
+                animation: "fade"
             }} />
         </Stack.Navigator>
     );

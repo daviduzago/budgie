@@ -13,6 +13,10 @@ function PreparingOrder({navigation}) {
             return true;
         };
 
+        setTimeout(() => {
+            navigation.goBack();
+        }, 3000);
+
         const backHandler = BackHandler.addEventListener(
             "hardwareBackPress",
             backAction
@@ -34,7 +38,7 @@ function PreparingOrder({navigation}) {
             />
             <Typography color="white" variant="heading1">Just a moment...</Typography>
             <Spacer />
-            <Typography light color="white" variant="body">Preparing your perfect meal!</Typography>
+            <Typography light color="white" variant="body">Preparing your perfect meal</Typography>
         </View>
     )
 }

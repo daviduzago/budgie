@@ -37,30 +37,6 @@ function Results({navigation}) {
         return cartProducts.some((p) => p.id === productId);
     }
 
-    const actionButtonTitle = (product) => {
-        if (!productExistsInCart(product.id)) return "Add to cart";
-        if (productExistsInCart(product.id)) {
-            return cartProducts.find((p) => p.id === product.id).quantity
-        }
-    }
-
-    const actionButtonIconRight = (product) => {
-        if (!productExistsInCart(product.id)) return null;
-        if (productExistsInCart(product.id)) {
-            return cartProducts.find((p) => p.id === product.id).quantity > 0 ?
-                "plus"
-                : null;
-        }
-    }
-
-    const actionButtonIconLeft = (product) => {
-        if (!productExistsInCart(product.id)) return null;
-        if (productExistsInCart(product.id)) {
-            return cartProducts.find((p) => p.id === product.id).quantity > 0 ? "trash"
-                : null;
-        }
-    }
-
     const actionButtonOnPressText = (product) => {
         dispatch(addProductToCart(product));
     }
@@ -75,6 +51,28 @@ function Results({navigation}) {
         if (productExistsInCart(product.id) && cartProducts.find((p) => p.id === product.id).quantity > 0) {
             dispatch(addProductToCart(product));
         }
+    }
+
+    const getProduct = (productId) => {
+        return cartProducts.find((p) => p.id === productId);
+    }
+
+    const actionButtonDetails = (product) => {
+        const cartProduct = getProduct(product.id);
+
+        if (!cartProduct) {
+            return {
+                title: "Add to cart",
+                iconRight: null,
+                iconLeft: null,
+            };
+        }
+
+        return {
+            title: cartProduct.quantity,
+            iconRight: cartProduct.quantity > 0 ? "plus" : null,
+            iconLeft: cartProduct.quantity > 0 ? "trash" : null,
+        };
     }
 
     React.useEffect(() => {
@@ -152,21 +150,23 @@ function Results({navigation}) {
             <View style={[styles.body, {paddingTop: topNavHeight}]}>
                 <FlatList
                     data={renderedData}
-                    renderItem={({item, index}) =>
-                        <>
+                    renderItem={({item, index}) => {
+                        const {title, iconRight, iconLeft} = actionButtonDetails(item);
+                        return (<>
                             {index === 0 && <Spacer />}
                             <Card
                                 option
                                 loading={loading}
                                 item={item}
-                                actionButtonTitle={actionButtonTitle(item)}
-                                actionButtonIconRight={actionButtonIconRight(item)}
-                                actionButtonIconLeft={actionButtonIconLeft(item)}
+                                actionButtonTitle={title}
+                                actionButtonIconRight={iconRight}
+                                actionButtonIconLeft={iconLeft}
                                 actionButtonOnPressText={() => actionButtonOnPressText(item)}
                                 actionButtonOnPressLeft={() => actionButtonOnPressLeft(item)}
                                 actionButtonOnPressRight={() => actionButtonOnPressRight(item)}
                             />
-                        </>
+                        </>)
+                    }
                     }
                     keyExtractor={(item, index) => String(index)}
                     ItemSeparatorComponent={() => <Spacer x={2} />}

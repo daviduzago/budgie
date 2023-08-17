@@ -33,6 +33,9 @@ function Results({navigation}) {
     const renderedData = loading ? new Array(3).fill(FAKE_DATA[0]) : data;
 
     // FUNCTIONS
+    const getProduct = (productId) => {
+        return cartProducts.find((p) => p.id === productId);
+    }
 
     const actionButtonOnPressText = (product) => {
         const cartProduct = getProduct(product.id);
@@ -41,10 +44,6 @@ function Results({navigation}) {
         } else {
             dispatch(addProductToCart(product));
         }
-    }
-
-    const getProduct = (productId) => {
-        return cartProducts.find((p) => p.id === productId);
     }
 
     const actionButtonDetails = (product) => {
@@ -64,11 +63,6 @@ function Results({navigation}) {
             iconLeft: cartProduct.quantity > 0 ? "trash" : null,
         };
     }
-
-    React.useEffect(() => {
-        console.log("Total Amount: $", cartTotalAmount);
-        console.log("Total Quantity: ", cartTotalQuantity);
-    }, [cartProducts]);
 
     React.useEffect(() => {
         if (page > 1 && page < 3) {

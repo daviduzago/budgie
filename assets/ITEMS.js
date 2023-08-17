@@ -46,7 +46,6 @@ export default [
         image: 'https://picsum.photos/100',
         comboTitle: 'Mexican Fiesta Combo',
         comboItems: [
-            {name: 'Taco', quantity: 2},
             {name: 'Burrito', quantity: 1},
             {name: 'Chips and Salsa', quantity: 1},
             {name: 'Soda', quantity: 1},
@@ -69,8 +68,6 @@ export default [
         comboItems: [
             {name: 'Grilled Chicken', quantity: 1},
             {name: 'Brown Rice', quantity: 1},
-            {name: 'Broccoli', quantity: 1},
-            {name: 'Sweet Potato', quantity: 1},
             {name: 'Water', quantity: 1},
         ],
         price: 8.99,
@@ -90,7 +87,6 @@ export default [
         comboTitle: 'BBQ Ribs Combo',
         comboItems: [
             {name: 'BBQ Ribs', quantity: 1},
-            {name: 'Baked Beans', quantity: 1},
             {name: 'Cornbread', quantity: 1},
             {name: 'Soda', quantity: 1},
         ],
@@ -111,7 +107,6 @@ export default [
         comboTitle: 'Sushi Combo',
         comboItems: [
             {name: 'California Roll', quantity: 1},
-            {name: 'Salmon Nigiri', quantity: 2},
             {name: 'Miso Soup', quantity: 1},
             {name: 'Green Tea', quantity: 1},
         ],

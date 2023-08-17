@@ -33,9 +33,6 @@ function Results({navigation}) {
     const renderedData = loading ? new Array(3).fill(FAKE_DATA[0]) : data;
 
     // FUNCTIONS
-    const productExistsInCart = (productId) => {
-        return cartProducts.some((p) => p.id === productId);
-    }
 
     const actionButtonOnPressText = (product) => {
         const cartProduct = getProduct(product.id);
@@ -69,7 +66,8 @@ function Results({navigation}) {
     }
 
     React.useEffect(() => {
-        console.log(JSON.stringify(cartProducts, null, 2));
+        console.log("Total Amount: $", cartTotalAmount);
+        console.log("Total Quantity: ", cartTotalQuantity);
     }, [cartProducts]);
 
     React.useEffect(() => {
@@ -174,7 +172,7 @@ function Results({navigation}) {
                     </View>) : null}
                 />
             </View>
-            {cartTotalQuantity < 0 && <Pressable
+            {cartTotalQuantity > 0 && <Pressable
                 style={[styles.checkoutButtonContainer, {bottom: insets.bottom}]}
             >
                 <View style={styles.checkoutButton} >
@@ -186,7 +184,7 @@ function Results({navigation}) {
                     <View style={{flexDirection: 'row', alignItems: "center"}}>
                         <Typography variant="heading2" light color="gray2">Total:</Typography>
                         <Spacer x={0.5} />
-                        <Typography variant="heading2" color="white">${cartTotalAmount}</Typography>
+                        <Typography variant="heading2" color="white">${(Math.round(cartTotalAmount * 100) / 100).toFixed(2)}</Typography>
                     </View>
                 </View>
             </Pressable>}

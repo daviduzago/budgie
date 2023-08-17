@@ -113,7 +113,7 @@ function ButtonActual(props) {
         >
             {!!props.iconLeft && !loading && (
                 <>
-                    <Pressable onPress={onPressLeft}>
+                    <Pressable onPress={onPressLeft} style={{flex: 1}}>
                         <Icon
                             {...(typeof props.iconLeft === 'string'
                                 ? {name: props.iconLeft, color: color || colors.black, size: iconSize}
@@ -136,7 +136,7 @@ function ButtonActual(props) {
             )}
             {!!props.iconRight && !loading && (
                 <>
-                    <Pressable onPress={onPressRight}>
+                    <Pressable onPress={onPressRight} style={{flex: 1, alignItems: "flex-end"}}>
                         <Icon
                             {...(typeof props.iconRight === 'string'
                                 ? {name: props.iconRight, color: color || colors.black, size: iconSize}

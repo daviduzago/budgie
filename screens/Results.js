@@ -10,6 +10,7 @@ import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import FAKE_DATA from '../assets/ITEMS'
 import {useSelector, useDispatch} from 'react-redux';
 import {addProductToCart, removeProductFromCart} from '../slices/cart-slice';
+import CartIcon from '../components/CartIcon';
 
 
 function Results({navigation}) {
@@ -93,7 +94,7 @@ function Results({navigation}) {
                     setTopNavHeight(height);
                 }}>
                 {/*  TOPNAV */}
-                <View style={{flexDirection: 'row', alignItems: 'center', paddingVertical: 6}}>
+                <View style={{flexDirection: 'row', alignItems: 'center', paddingVertical: 6, paddingRight: 10}}>
                     <Pressable onPress={() => navigation.goBack()}>
                         <Icon name="chevron-left" size={40} color={colors.white} />
                     </Pressable>
@@ -105,7 +106,7 @@ function Results({navigation}) {
                         <Typography color="gray3">You're almost finished</Typography>
                     </View>
                     <Pressable onPress={() => setCheckoutButton(prev => !prev)}>
-                        <Icon name="cart" size={30} color={colors.white} />
+                        <CartIcon items={cartTotalQuantity} />
                     </Pressable>
                     <Spacer />
                 </View>

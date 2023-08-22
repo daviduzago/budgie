@@ -9,18 +9,23 @@ import Spacer from '../utils/Spacer';
 import RadioSelect from './RadioSelect';
 
 function ComboOptions(props) {
-    const {label, items} = props;
-    const [selection, setSelection] = React.useState(null);
+    const {label, items, defaultSelection} = props;
+    const [selection, setSelection] = React.useState(defaultSelection || null);
     const [open, setOpen] = React.useState(false);
+
+    const handleSelection = (id) => {
+        setSelection(id);
+        props.onSelect(id);
+    }
+
     return (
-        <View style={styles.container}>
+        <>
             <Pressable onPress={() => setOpen(!open)}>
                 <View style={{
                     flexDirection: "row",
                     justifyContent: "space-between",
                     alignItems: "center",
                     paddingBottom: 12,
-                    paddingHorizontal: 20,
                     borderBottomColor: colors.gray2,
                     borderBottomWidth: 1,
                 }}>
@@ -35,19 +40,16 @@ function ComboOptions(props) {
             </Pressable>
             <Expand open={open}>
                 {items.map((item, index) => {
-                    return <Pressable key={item.id} onPress={() => {setSelection(item.id)}}>
+                    return <Pressable key={item.id} onPress={() => handleSelection(item.id)}>
                         <RadioSelect item={item} checked={selection === item.id} />
                     </Pressable>
                 })}
             </Expand>
-        </View >
+        </>
     );
 }
 
 export default React.memo(ComboOptions);
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    }
 });

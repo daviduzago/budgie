@@ -31,6 +31,10 @@ const SCREENS = [
         name: "Results",
         route: ROUTES.RESULTS,
     },
+    {
+        name: "Combo Details",
+        route: ROUTES.COMBO_DETAILS,
+    },
 ]
 
 function Screens({navigation}) {

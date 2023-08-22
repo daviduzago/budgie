@@ -25,6 +25,7 @@ import AddressConfirmation from "../screens/AddressConfirmation";
 import AddressDetailsConfirmation from "../screens/AddressDetailsConfirmation";
 import PreparingOrder from "../screens/PreparingOrder";
 import Results from "../screens/Results";
+import ComboDetails from "../screens/ComboDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -87,6 +88,9 @@ export default function DevNavigator() {
                 animation: "fade"
             }} />
             <Stack.Screen name="Results" component={Results} options={{
+                headerShown: false,
+            }} />
+            <Stack.Screen name="ComboDetails" component={ComboDetails} options={{
                 headerShown: false,
             }} />
         </Stack.Navigator>

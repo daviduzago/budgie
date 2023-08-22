@@ -112,7 +112,7 @@ const ourIcons = {
         </SvgIcon>
     ),
     "chevron-left": (props) => (
-        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color}>
+        <SvgIcon {...props} viewBox="0 0 24 24" fill={props.color} strokeWidth={props.strokeWidth || 1.5}>
             <Path
                 fillRule="evenodd"
                 clipRule="evenodd"

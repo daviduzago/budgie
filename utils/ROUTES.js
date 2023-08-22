@@ -6,6 +6,7 @@ export default {
     CARDS: "Cards",
     CARTICON: "CartIcon",
     CHECKBOXES: "Checkboxes",
+    COMBO_DETAILS: "ComboDetails",
     COMPONENTS: "Components",
     DEVHOME: "DevHome",
     EXPAND: "Expand",

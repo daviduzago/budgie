@@ -23,7 +23,8 @@ export default function ModalComponent(props) {
             <View style={[style.container, {
                 paddingBottom: insets.bottom + 20,
                 backgroundColor: variant === 'light' ? colors.white : variant === "lightGray" ? colors.grayBg : colors.grayPrimary
-            }]}>
+            }, props.style
+            ]}>
                 {!confirmationModal && children}
                 {confirmationModal && (
                     <View style={{rowGap: 12}}>
@@ -63,12 +64,10 @@ const style = StyleSheet.create({
         borderTopLeftRadius: 30,
         borderTopRightRadius: 30,
         position: 'absolute',
-        paddingHorizontal: 20,
-        paddingTop: 16,
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 9999,
+        zIndex: 999
     },
     overlay: {
         position: 'absolute',

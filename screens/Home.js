@@ -166,7 +166,7 @@ function Home() {
                 animationType="slide"
                 visible={locationModalVisible}
             >
-                <View style={{rowGap: 8}}>
+                <View style={{rowGap: 8, paddingVertical: 16, paddingHorizontal: 20}}>
                     <Typography style={{textAlign: "center"}} variant="heading2">{user?.locations?.length === 0 ? "Add a new address" : "Add or choose a new address"}</Typography>
                     <Button noErrorLabel variant="inputWhite" iconRight={"map"} title={"Enter your address"} onPress={() => setLocationModalVisible(false)} />
                     <Button noErrorLabel variant="inputBackground" iconRight={"pin"} title={"Current location"} />

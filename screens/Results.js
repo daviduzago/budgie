@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, ScrollView, ActivityIndicator, View, Image, Pressable, FlatList} from 'react-native';
+import {StyleSheet, ActivityIndicator, View, Image, Pressable, FlatList, Platform, KeyboardAvoidingView, Keyboard} from 'react-native';
 import Typography from '../components/Typography';
 import Button from '../components/Button';
 import Icon from '../components/Icon/Index';
@@ -11,7 +11,9 @@ import FAKE_DATA from '../assets/ITEMS'
 import {useSelector, useDispatch} from 'react-redux';
 import {addProductToCart, removeProductFromCart} from '../slices/cart-slice';
 import CartIcon from '../components/CartIcon';
-
+import Modal from '../components/Modal';
+import Input from '../components/Input';
+import {Picker} from '@react-native-picker/picker';
 
 function Results({navigation}) {
     // HOOKS
@@ -19,12 +21,16 @@ function Results({navigation}) {
     const insets = useSafeAreaInsets();
 
     // STATE
-    const [checkoutButton, setCheckoutButton] = React.useState(false);
     const [data, setData] = React.useState([]);
     const [loading, setLoading] = React.useState(false);
     const [page, setPage] = React.useState(1);
     const [paginationLoading, setPaginationLoading] = React.useState(false);
     const [topNavHeight, setTopNavHeight] = React.useState(0);
+    const [updateModal, setUpdateModal] = React.useState(false);
+    const [pickerVisible, setPickerVisible] = React.useState(false);
+    const pickerRef = React.useRef();
+    const [people, setPeople] = React.useState(1);
+    const [locationModalVisible, setLocationModalVisible] = React.useState(false);
 
     // STORE
     const cartProducts = useSelector(state => state.cart.products);
@@ -87,13 +93,14 @@ function Results({navigation}) {
         <View
             style={[styles.container, {paddingTop: insets.top, paddingBottom: insets.bottom}]}
         >
+            {/*  TOPNAV */}
             <View
                 style={[styles.topNav, {top: insets.top}]}
                 onLayout={(event) => {
                     const height = event.nativeEvent.layout.height;
                     setTopNavHeight(height);
                 }}>
-                {/*  TOPNAV */}
+
                 <View style={{flexDirection: 'row', alignItems: 'center', paddingVertical: 6, paddingRight: 10}}>
                     <Pressable onPress={() => navigation.goBack()}>
                         <Icon name="chevron-left" size={40} color={colors.white} />
@@ -105,7 +112,7 @@ function Results({navigation}) {
                         <Spacer x={0.5} />
                         <Typography color="gray3">You're almost finished</Typography>
                     </View>
-                    <Pressable onPress={() => setCheckoutButton(prev => !prev)}>
+                    <Pressable onPress={() => { }}>
                         <CartIcon items={cartTotalQuantity} />
                     </Pressable>
                     <Spacer />
@@ -129,7 +136,7 @@ function Results({navigation}) {
                         <Spacer x={0.5} />
                         <Typography color="gray2" variant="medium">Home</Typography>
                     </View>
-                    <Button small title="Edit" textVariant="body" iconLeft="pencil-square" iconSize={20} variant="secondary" />
+                    <Button disabled={loading} onPress={() => setUpdateModal(true)} small title="Edit" textVariant="body" iconLeft="pencil-square" iconSize={20} variant="secondary" />
                 </View>
             </View>
             {/* RESULTS */}
@@ -155,6 +162,7 @@ function Results({navigation}) {
                     }
                     }
                     keyExtractor={(item, index) => String(index)}
+                    showsVerticalScrollIndicator={false}
                     ItemSeparatorComponent={() => <Spacer x={2} />}
                     ListFooterComponentStyle={{paddingBottom: 100}}
                     onEndReached={() => {
@@ -167,6 +175,7 @@ function Results({navigation}) {
                     </View>) : null}
                 />
             </View>
+            {/* CHECKOUT BUTTON */}
             {cartTotalQuantity > 0 && <Pressable
                 style={[styles.checkoutButtonContainer, {bottom: insets.bottom}]}
             >
@@ -183,6 +192,82 @@ function Results({navigation}) {
                     </View>
                 </View>
             </Pressable>}
+            {/* Dark Modal */}
+            <Modal
+                variant="dark"
+                transparent
+                animationType="slide"
+                onRequestClose={() => setUpdateModal(false)}
+                visible={updateModal}
+            >
+                <Pressable onPress={() => {
+                    if (pickerRef.current) pickerRef.current.blur()
+                    setPickerVisible(false)
+                    setLocationModalVisible(false)
+                    Keyboard.dismiss()
+                }}>
+                    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "position" : null} style={{flex: 1}}>
+                        <View style={{alignItems: "center", paddingVertical: 16, paddingHorizontal: 20}}>
+                            <Typography color="white" variant="heading1">Edit your options</Typography>
+                            <Spacer x={2} />
+                            <Input
+                                value={"20"}
+                                onChangeText={() => { }}
+                                keyboardType={"number-pad"}
+                                icon={"currency-dollar"}
+                                placeholder={"Your budget"}
+                                variant="gray" />
+                            <Button
+                                fullWidth
+                                variant="inputGray"
+                                iconRight={"users"}
+                                title={`${people} ${people > 1 ? "People" : "Person"}`}
+                                onPress={() => {
+                                    setPickerVisible(true)
+                                    if (pickerRef.current) pickerRef.current.focus()
+                                }} />
+                            <Button
+                                fullWidth
+                                variant="inputGray"
+                                iconRight={"map-pin"}
+                                title={"Your location"}
+                                onPress={() => {
+                                    setLocationModalVisible(true)
+                                }} />
+                            <View style={{width: 200}}>
+                                <Button onPress={() => { }} fullWidth title="Update" variant="secondary" />
+                            </View>
+                            <Spacer x={2} />
+                            <Typography style={{textAlign: "center"}} variant="extraSmall" color="white">Delivery fees are included in the final price of each option. Available choices may be limited based on your location and budget. Thank you for your understanding!</Typography>
+                        </View>
+                        {/* Location Modal */}
+                        <Modal
+                            transparent
+                            variant="lightGray"
+                            animationType="slide"
+                            visible={locationModalVisible}
+                            onRequestClose={() => setLocationModalVisible(false)}
+                        >
+                            <View style={{rowGap: 8, paddingVertical: 16, paddingHorizontal: 20}}>
+                                <Typography style={{textAlign: "center"}} variant="heading2">Choose a new address</Typography>
+                                <Button noErrorLabel variant="inputWhite" iconRight={"map"} title={"Enter your address"} onPress={() => setLocationModalVisible(false)} />
+                                <Button noErrorLabel variant="inputBackground" iconRight={"pin"} title={"Current location"} />
+                            </View>
+                        </Modal>
+                        {/* Picker */}
+
+                    </KeyboardAvoidingView>
+                </Pressable>
+                {pickerVisible && <Picker
+                    ref={pickerRef}
+                    style={styles.picker}
+                    selectedValue={people}
+                    onValueChange={itemValue => setPeople(itemValue)} >
+                    <Picker.Item label="1" value="1" />
+                    <Picker.Item label="2" value="2" />
+                </Picker>}
+            </Modal>
+
         </View>
     )
 }
@@ -224,5 +309,15 @@ const styles = StyleSheet.create({
         backgroundColor: colors.grayPrimary,
         borderRadius: 15,
         padding: 10,
+    },
+    picker: {
+        backgroundColor: colors.grayBg,
+        borderTopLeftRadius: 30,
+        borderTopRightRadius: 30,
+        position: "absolute",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        opacity: Platform.OS === "android" ? 0 : 1,
     }
 })

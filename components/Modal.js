@@ -30,7 +30,7 @@ export default function ModalComponent(props) {
                     <View style={{rowGap: 12, padding: 20}}>
                         <Typography variant="heading2">{confirmationModal.title}</Typography>
                         <View style={{width: "100%", borderBottomWidth: 1, borderColor: colors.gray2}}></View>
-                        <Typography variant="body">{confirmationModal.description}</Typography>
+                        <Typography variant="medium">{confirmationModal.description}</Typography>
                         <View style={{flexDirection: "row"}}>
                             <View style={{flex: 1}}>
                                 <Button

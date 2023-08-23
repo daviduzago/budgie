@@ -1,20 +1,25 @@
 import React from 'react';
-import {View, ScrollView, Pressable, StyleSheet} from 'react-native';
+import {View, ScrollView, Pressable, StyleSheet, FlatList} from 'react-native';
 import Typography from '../components/Typography';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Spacer from '../utils/Spacer';
 import Icon from "../components/Icon/Index"
 import colors from '../utils/colors';
 import Button from '../components/Button';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import {clearCart} from '../slices/cart-slice';
 import ModalComponent from '../components/Modal';
+import Cards from '../components/Cards';
 
 
 function Cart({navigation}) {
     const insets = useSafeAreaInsets();
+    const dispatch = useDispatch();
     const [bottomNavHeight, setBottomNavHeight] = React.useState(0);
     const [confirmEmptyModal, setConfirmEmptyModal] = React.useState(false);
+    const cartProducts = useSelector(state => state.cart.products);
     const totalCartQuantity = useSelector(state => state.cart.totalQuantity);
+    const totalCartAmount = useSelector(state => state.cart.totalAmount);
 
     const emptyCart = () => {
         totalCartQuantity > 0 ?
@@ -28,12 +33,26 @@ function Cart({navigation}) {
 
     return (
         <View style={[styles.container, {paddingBottom: bottomNavHeight}]}>
-            {totalCartQuantity > 1 ?
-                <ScrollView bounces={false} style={{flex: 1, width: "100%"}} contentContainerStyle={{flexGrow: 1}}>
-                    <View style={styles.body}>
-                        <Typography variant="medium">Cart</Typography>
-                    </View>
-                </ScrollView>
+            {totalCartQuantity > 0 ?
+                <FlatList
+                    data={cartProducts}
+                    renderItem={({item, index}) => {
+                        //const {title, iconRight, iconLeft} = actionButtonDetails(item);
+                        return (<>
+                            {index === 0 && <Spacer />}
+                            <Cards
+                                cart
+                                loading={false}
+                                item={item}
+                            />
+                        </>)
+                    }
+                    }
+                    keyExtractor={(item, index) => String(index)}
+                    showsVerticalScrollIndicator={false}
+                    ListFooterComponentStyle={{paddingBottom: 20}}
+
+                />
                 :
                 <Icon name="empty-cart" size={100} />
             }
@@ -48,7 +67,7 @@ function Cart({navigation}) {
                 <View style={{alignItems: 'center'}}>
                     <Typography variant="body" color="white">Total</Typography>
                     <Spacer />
-                    <Typography variant="heading2" color="white">$0.00</Typography>
+                    <Typography variant="heading2" color="white">${totalCartAmount}</Typography>
                 </View>
                 <Button variant="secondary" title="Checkout" />
             </View>
@@ -60,8 +79,11 @@ function Cart({navigation}) {
                     description: "Are you sure you want emtpy de cart?",
                     cancelText: "No",
                     confirmText: "Yes",
-                    onCancel: () => {setModals({...modals, confirmation: !modals.confirmation})},
-                    onConfirm: () => {console.log("Cart Emptied")},
+                    onCancel: () => {setConfirmEmptyModal(false)},
+                    onConfirm: () => {
+                        dispatch(clearCart())
+                        setConfirmEmptyModal(false)
+                    },
                 }}
             />
         </View>

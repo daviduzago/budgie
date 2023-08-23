@@ -35,6 +35,10 @@ const SCREENS = [
         name: "Combo Details",
         route: ROUTES.COMBO_DETAILS,
     },
+    {
+        name: "Cart",
+        route: ROUTES.CART,
+    },
 ]
 
 function Screens({navigation}) {

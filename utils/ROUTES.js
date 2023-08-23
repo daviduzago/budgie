@@ -4,6 +4,7 @@ export default {
     AUTH: "Auth",
     BUTTONS: "Buttons",
     CARDS: "Cards",
+    CART: "Cart",
     CARTICON: "CartIcon",
     CHECKBOXES: "Checkboxes",
     COMBO_DETAILS: "ComboDetails",

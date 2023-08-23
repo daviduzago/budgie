@@ -1,6 +1,6 @@
 
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import {Pressable, View} from "react-native";
+import {Pressable, View, LogBox} from "react-native";
 import AuthScreen from "../screens/components/AuthScreen";
 import ButtonsScreen from "../screens/components/ButtonsScreen";
 import CardsScreen from "../screens/components/CardsScreen";
@@ -26,10 +26,20 @@ import AddressDetailsConfirmation from "../screens/AddressDetailsConfirmation";
 import PreparingOrder from "../screens/PreparingOrder";
 import Results from "../screens/Results";
 import ComboDetails from "../screens/ComboDetail";
+import Cart from "../screens/Cart";
+import Typography from "../components/Typography";
+import {useSelector} from "react-redux";
+import colors from "../utils/colors";
+
+// Since we're not using any deeplinks, we can ignore this warning. This is related to passing a function in the navigation params.
+LogBox.ignoreLogs([
+    'Non-serializable values were found in the navigation state',
+]);
 
 const Stack = createNativeStackNavigator();
 
 export default function DevNavigator() {
+    const cartTotalQuantity = useSelector(state => state.cart.totalQuantity);
     return (
         <Stack.Navigator initialRouteName="DevHome" screenOptions={{
             headerBackTitleVisible: false,
@@ -93,6 +103,19 @@ export default function DevNavigator() {
             <Stack.Screen name="ComboDetails" component={ComboDetails} options={{
                 headerShown: false,
             }} />
+            <Stack.Screen name="Cart" component={Cart} options={({navigation, route}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.goBack()}>
+                        <Icon name="chevron-left" size={30} color="black" />
+                    </Pressable>
+                ),
+                headerTitle: "Your cart",
+                headerRight: () => (
+                    <Pressable onPress={route.params?.emptyCart}>
+                        <Typography color={cartTotalQuantity > 0 ? colors.black : colors.gray3}>Empty</Typography>
+                    </Pressable>
+                ),
+            })} />
         </Stack.Navigator>
     );
 }

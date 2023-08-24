@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Pressable, StyleSheet, FlatList, LogBox} from 'react-native';
+import {View, ScrollView, Pressable, StyleSheet, FlatList, LogBox, LayoutAnimation} from 'react-native';
 import Typography from '../components/Typography';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Spacer from '../utils/Spacer';
@@ -27,6 +27,9 @@ function Cart({navigation}) {
     const totalCartQuantity = useSelector(state => state.cart.totalQuantity);
     const totalCartAmount = useSelector(state => state.cart.totalAmount);
 
+    //TODOS
+    // Add an animation to the height to 0 when removing an item from the cart
+
     // FUNCTIONS
     const emptyCart = () => {
         totalCartQuantity > 0 ?
@@ -45,14 +48,16 @@ function Cart({navigation}) {
             : dispatch(removeProductFromCart(item.id))
     } 
 
+    const handleRemoveItem = (itemId) => {
+        // This will animate changes over the next render cycle
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
+        dispatch(removeProductFromCart(itemId))
+    };
+
     React.useEffect(() => {
         navigation.setParams({emptyCart: emptyCart});
     }, [navigation]);
-
-    React.useEffect(() => {
-        console.log("Cart Products: ", cartProducts)
-    }, [cartProducts])
-
 
     return (
         <View style={[styles.container, {paddingBottom: bottomNavHeight}]}>
@@ -71,7 +76,7 @@ function Cart({navigation}) {
                                 loading={false}
                                 item={item}
                                 quantity={item.quantity}
-                                removeButtonOnPress={() => dispatch(removeProductFromCart(item.id))}
+                                removeButtonOnPress={() => handleRemoveItem(item.id)}
                                 actionButtonOnPressLeft={() => actionButtonOnPressLeft(item)}
                                 actionButtonOnPressRight={() => dispatch(addProductToCart(item))}
                             />

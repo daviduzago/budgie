@@ -9,11 +9,17 @@ import BudgieNotification from "./components/Notification";
 import DevNavigator from "./navigation/DevNavigator";
 import ModalHandler from "./components/modal/ModalHandler";
 import React from "react";
+import {Platform, UIManager} from "react-native";
 
 
 SplashScreen.preventAutoHideAsync()
 
 export default function App() {
+
+    if (Platform.OS === 'android') {
+        UIManager.setLayoutAnimationEnabledExperimental(true);
+    }
+
     const [fontsLoaded] = useFonts({
         "Lato Regular": require("./assets/fonts/Lato-Regular.ttf"),
         "Lato Bold": require("./assets/fonts/Lato-Bold.ttf"),

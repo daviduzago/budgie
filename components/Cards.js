@@ -151,6 +151,7 @@ function OptionCard(props) {
     )
 }
 
+
 function CartCard(props) {
     const {item, loading} = props;
     const swipableRef = React.useRef(null);
@@ -227,15 +228,13 @@ function CartCard(props) {
                                     fullWidth
                                     noBorder
                                     disabled={loading}
-                                    variant={cart > 0 ? "outlined" : "outlined-danger"}
-                                    title={loading ? "0" : cart > 0 ? cart : "Remove"}
+                                    variant="outlined"
+                                    title={loading ? "0" : cart}
                                     textVariant="medium"
-                                    shape="round"
                                     small
                                     iconSize={23}
-                                    iconRight={cart > 0 ? "plus" : null}
-                                    iconLeft={cart > 0 ? "trash" : null}
-                                    onPressText={cart === 0 ? () => console.log("Removed") : null}
+                                    iconRight="plus"
+                                    iconLeft="trash"
                                     onPressLeft={
                                         cart === 1 ? () => swipableRef.current.openRight()
                                             : cart > 0 && cart !== 1 ? () => setCart(cart - 1) : null}
@@ -345,8 +344,6 @@ const style = StyleSheet.create({
     containerCart: {
         flex: 1,
         backgroundColor: colors.grayBg,
-        borderBottomColor: colors.gray2,
-        borderBottomWidth: 1,
         flexDirection: "row",
         overflow: "hidden"
     },

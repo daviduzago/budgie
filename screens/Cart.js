@@ -83,6 +83,7 @@ function Cart({navigation}) {
                         </>)
                     }
                     }
+                    bounces={false}
                     keyExtractor={(item, index) => String(index)}
                     showsVerticalScrollIndicator={false}
                     ItemSeparatorComponent={() => <View style={{
@@ -107,7 +108,7 @@ function Cart({navigation}) {
                     <Typography variant="body" color="white">Total</Typography>
                     <Typography variant="heading2" color="white">${(Math.round(totalCartAmount * 100) / 100).toFixed(2)}</Typography>
                 </View>
-                <Button variant="secondary" title="Checkout" />
+                <Button onPress={() => console.log("Set up navigation: Cart.js line 110")} variant="secondary" title="Checkout" />
             </View>
             <ModalComponent
                 onRequestClose={() => setConfirmEmptyModal(false)}

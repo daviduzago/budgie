@@ -53,7 +53,7 @@ function CartCard(props, ref) {
             <Swipeable ref={swipableRef} renderRightActions={rightSwipeAction}>
                 <View style={style.containerCart}>
                     <View style={{padding: 8, justifyContent: 'center', alignItems: 'center'}}>
-                        <Pressable onPress={() => console.log("Open Combo")}>
+                        <Pressable onPress={() => console.log("Set up combo: CartCard.js line 56")}>
                             <ImageBackground
                                 source={require("../assets/fast-food.png")}
                                 imageStyle={{resizeMode: "contain", width: "100%", height: "100%", }}
@@ -65,9 +65,9 @@ function CartCard(props, ref) {
                                     alignItems: !item.image ? "center" : null,
                                     overflow: "hidden",
                                 }}>
-                                <Pressable style={{position: 'absolute', top: 4, right: 4, zIndex: 10, }}>
+                                <View style={{position: 'absolute', top: 4, right: 4, zIndex: 10, }}>
                                     <Icon name="eye" color={colors.white} size={24} />
-                                </Pressable>
+                                </View>
                                 {!loading &&
                                     <Image source={{uri: item.image}} style={{
                                         flex: 1,

@@ -39,6 +39,10 @@ const SCREENS = [
         name: "Cart",
         route: ROUTES.CART,
     },
+    {
+        name: "Checkout",
+        route: ROUTES.CHECKOUT,
+    },
 ]
 
 function Screens({navigation}) {

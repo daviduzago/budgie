@@ -7,6 +7,7 @@ export default {
     CART: "Cart",
     CARTICON: "CartIcon",
     CHECKBOXES: "Checkboxes",
+    CHECKOUT: "Checkout",
     COMBO_DETAILS: "ComboDetails",
     COMPONENTS: "Components",
     DEVHOME: "DevHome",

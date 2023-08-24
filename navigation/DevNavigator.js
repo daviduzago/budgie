@@ -30,6 +30,7 @@ import Cart from "../screens/Cart";
 import Typography from "../components/Typography";
 import {useSelector} from "react-redux";
 import colors from "../utils/colors";
+import Checkout from "../screens/Checkout";
 
 // Since we're not using any deeplinks, we can ignore this warning. This is related to passing a function in the navigation params.
 LogBox.ignoreLogs([
@@ -115,6 +116,14 @@ export default function DevNavigator() {
                         <Typography color={cartTotalQuantity > 0 ? colors.black : colors.gray3}>Empty</Typography>
                     </Pressable>
                 ),
+            })} />
+            <Stack.Screen name="Checkout" component={Checkout} options={({navigation}) => ({
+                headerLeft: () => (
+                    <Pressable onPress={() => navigation.goBack()}>
+                        <Icon name="chevron-left" size={30} color="black" />
+                    </Pressable>
+                ),
+                headerTitle: "Checkout",
             })} />
         </Stack.Navigator>
     );

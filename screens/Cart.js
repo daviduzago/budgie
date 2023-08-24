@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, ScrollView, Pressable, StyleSheet, FlatList, LogBox, LayoutAnimation} from 'react-native';
+import {View, ScrollView, Pressable, StyleSheet, FlatList, LogBox, LayoutAnimation, Platform} from 'react-native';
 import Typography from '../components/Typography';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Spacer from '../utils/Spacer';
@@ -98,7 +98,7 @@ function Cart({navigation}) {
             }
             {/* BOTNAV */}
             <View
-                style={[styles.bottomNav, {bottom: 0, paddingBottom: insets.bottom + 24}]}
+                style={[styles.bottomNav, {bottom: 0, paddingBottom: insets.bottom + (Platform.OS === 'ios' ? 10 : 20)}]}
                 onLayout={(event) => {
                     const height = event.nativeEvent.layout.height;
                     setBottomNavHeight(height);

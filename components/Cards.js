@@ -295,14 +295,14 @@ function CheckoutCard(props) {
             }]}>
                 {!!icon && <Icon name={icon} size={24} color={colors.grayPrimary} />}
                 <Spacer />
-                {!loading && <Typography variant="medium">{title}</Typography>}
+                {!loading && <Typography variant="medium" bold>{title}</Typography>}
                 {loading && <LoadingLine width={60} height={23} />}
                 <View style={{flex: 1}}></View>
                 {rightLabel && <>
                     <Typography color="gray3" variant="small">{rightLabel}</Typography>
                     <Spacer />
                 </>}
-                {!!buttonTitle && <Button small onPress={buttonOnPress} shape="round" variant="primary" textVariant="small" title={buttonTitle} />}
+                {!!buttonTitle && <Button small onPress={buttonOnPress} shape="round" variant="primary" textVariant="body" title={buttonTitle} />}
                 {expandable && <Pressable onPress={() => setExpanded(!expanded)} style={{width: 24, height: 24, justifyContent: 'center', alignItems: "center", backgroundColor: colors.gray3, borderRadius: 50}}>
                     <Icon name={expanded ? 'chevron-up' : 'chevron-down'} strokeWidth={2} size={20} color="white" />
                 </Pressable>}
